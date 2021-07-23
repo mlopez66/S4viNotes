@@ -1,0 +1,33 @@
+bookdown::gitbook:
+  css: assets/gitbook.css
+  config:
+    fontsettings:
+      theme: night
+      family: sans
+      size: 2
+    toc:
+      collapse: section
+      scroll_highlight: yes
+      before: |
+        <li class="header-light">
+          <a class="logo" href="/">
+            <img src="assets/wr404-transparent.png" alt="LoOpInG 404" class="img-fluid">
+          </a>
+          <h1>Lo0pInG 404</h1>
+        </li>
+      after: |
+        <li class="summary-footer"><a class="logo" href="https://lopezmichel.org"><img alt="IPESE" src="assets/wr404-transparent.png"></a></li>
+    download: ["pdf"]
+    edit:  https://github.com/mlopez66/hacking-notes/edit/master/%s
+    sharing: no
+  includes:
+    after_body: assets/footer.html.include
+  split_by: chapter
+  number_sections: true
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  #latex_engine: xelatex
+  citation_package: natbib
+  keep_tex: yes
+  template: assets/template.tex

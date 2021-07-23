@@ -1,0 +1,23 @@
+# Preface {-}
+
+## Introduction {-}
+
+Este es el Notebook de los lives en Twitch del tito S4vitar. Aqui podreis encontrar los passos impotantes de cada maquina
+echa. Este book no tiene que estar considerado como una lista de Walktrough, pero mas como unas notas de technicas utilizadas
+durante la resolucion de maquinas.
+
+Cada maquina esta separada de la manera siguiente:
+
+- Introduccion y link del directo
+- Fase de enumeracion
+- Notas sobre las vulnerabilidades econtradas
+- Explotacion de vulnerabilidades para ganar accesso a la maquina victima
+- Parte de escalacion de privilegios
+
+Espero que este book ayude a la comunidad. 
+
+## Acknoledgement {-}
+
+Por cierto, me gustaria dar las gracias a S4vitar por su contenido de calidad y las ganas que mete a lo que hace para la comunidad.
+Son estas ganas que me motivaron en querer aprender mas y mas.
+

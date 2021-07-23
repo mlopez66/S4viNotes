@@ -1,0 +1,151 @@
+@font-face {
+  font-family: 'quantum';
+  src:  url('/assets/7th-Service-Condensed.ttf.woff2') format('woff2'),
+        url('/assets/7th-Service-Condensed.ttf.woff') format('woff') /* Safari, Android, iOS */
+}
+
+#section- .title {
+  font-family: 'quantum';
+}
+
+p.author {
+  font-family: 'quantum';
+}
+
+p.caption {
+    color: #777;
+    margin-top: 10px;
+  }
+  
+  /* EFPL Theme */
+  /* Summary */
+  .book .book-summary ul.summary li.active > a {
+    border-right: 2px solid #00ffff;
+    background: #e6e6e6;
+    font-weight: 700;
+    color: #212121;
+  }
+  
+  .book .book-summary ul.summary li a:hover {
+    color: #00ffff;
+  }
+  
+  .book .book-summary ul.summary li.chapter a::before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    width: calc(100% - 30px);
+    height: 1px;
+    background: #d5d5d5;
+    -webkit-transition: background .25s;
+    transition: background .25s;
+  }
+  
+  .book .book-summary ul.summary li.divider + li.chapter > a::before,
+  .book .book-summary ul.summary li.active > a::before {
+    content: none;
+  }
+  
+  .book .book-summary ul.summary li.chapter a:hover::before {
+    background: #00ffff;
+  }
+  
+  .book .book-summary ul.summary .logo {
+    text-align: center;
+  }
+  
+  .book .book-summary ul.summary .summary-footer .logo img {
+    max-height: 80px;
+    height: 100%;
+    visibility: hidden;
+  }
+  
+  .header-light {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    height: 50px;
+    margin-bottom: -8px;
+  }
+  
+  .book .book-summary ul.summary li.header-light .logo {
+    margin-right: 1rem;
+    padding: 0 15px 0 1rem;
+  }
+  
+  .header-light img {
+    width: 70px;
+    max-width: 100%;
+  }
+  
+  .header-light h1 {
+    font-family: 'quantum';
+    font-size: 1.2em;
+    text-transform: uppercase;
+  }
+  
+  .book .book-summary ul.summary .summary-footer .logo,
+  .book .book-summary ul.summary li.summary-footer.active > a.logo, .book .book-summary ul.summary li.summary-footer a.logo:hover {
+    background-image: url('/assets/wr404-transparent.png');
+    background-size: auto 120px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .book.color-theme-1 .book-summary ul.summary .summary-footer .logo,
+  .book.color-theme-2 .book-summary ul.summary .summary-footer .logo,
+  .book.color-theme-1 .book-summary ul.summary li.summary-footer.active > a.logo, .book.color-theme-1 .book-summary ul.summary li.summary-footer a.logo:hover,
+  .book.color-theme-2 .book-summary ul.summary li.summary-footer.active > a.logo, .book.color-theme-2 .book-summary ul.summary li.summary-footer a.logo:hover {
+    background-image: url('/assets/wr404-transparent.png');
+    background-position: center;
+  }
+  
+  /* Content */
+  .book .book-body .navigation:hover,
+  .book .book-header .btn:hover {
+    color: #00ffff;
+  }
+  
+  .book .book-body .page-wrapper .page-inner {
+    max-width: 1200px !important;
+  }
+
+  .book .book-body .page-wrapper .page-inner section.normal pre.sourceCode {
+    border-left: 2px solid #00ffff;
+  }
+  
+  .book .book-body .page-wrapper .page-inner section {
+    text-align: justify;
+  }
+  
+  .book .book-body .page-wrapper .page-inner section.normal table {
+      display: block;
+  }
+  
+  
+  blockquote > p:last-child {
+    text-align: right;
+  }
+  blockquote > p:first-child {
+    text-align: inherit;
+  }
+
+  code span.fu {
+    color:#00ffff;
+  }
+  
+  code span.va {
+    color: #716fd6;
+  }
+  
+  code span.dt {
+    color: #eb5b33;
+}
+
+  /* Footer */
+  .copyright {
+    font-style: italic;
+    margin-top: 50px;
+    font-family: 'quantum';
+  }
+  

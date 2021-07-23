@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Searchsploit | 2021 - Hacking Notes</title>
+  <meta name="description" content="Full Pentest notebook" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Searchsploit | 2021 - Hacking Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Full Pentest notebook" />
+  <meta name="github-repo" content="https://github.com/mlopez66/hacking-notes" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Searchsploit | 2021 - Hacking Notes" />
+  
+  <meta name="twitter:description" content="Full Pentest notebook" />
+  
+
+<meta name="author" content="Lo0pInG 404" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="exploit-database.html"/>
+<link rel="next" href="web-vulneratilities.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="assets/gitbook.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="header-light">
+  <a class="logo" href="/">
+    <img src="assets/wr404-transparent.png" alt="LoOpInG 404" class="img-fluid">
+  </a>
+  <h1>Lo0pInG 404</h1>
+</li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="acknoledgement-1.html"><a href="acknoledgement-1.html"><i class="fa fa-check"></i>Acknoledgement</a></li>
+</ul></li>
+<li class="part"><span><b>I Information Gathering</b></span><ul>
+<li class="chapter" data-level="" data-path="get-information-from-public-sources.html"><a href="get-information-from-public-sources.html"><i class="fa fa-check"></i>Get Information from public sources</a><ul>
+<li class="chapter" data-level="" data-path="get-information-from-public-sources.html"><a href="get-information-from-public-sources.html#social-networks"><i class="fa fa-check"></i>Social Networks</a></li>
+<li class="chapter" data-level="" data-path="get-information-from-public-sources.html"><a href="get-information-from-public-sources.html#public-sites"><i class="fa fa-check"></i>Public sites</a></li>
+<li class="chapter" data-level="" data-path="get-information-from-public-sources.html"><a href="get-information-from-public-sources.html#whois"><i class="fa fa-check"></i>Whois</a></li>
+<li class="chapter" data-level="" data-path="get-information-from-public-sources.html"><a href="get-information-from-public-sources.html#check-personnal-victim-website"><i class="fa fa-check"></i>Check personnal victim website</a></li>
+<li class="chapter" data-level="" data-path="get-information-from-public-sources.html"><a href="get-information-from-public-sources.html#passive-enumeration"><i class="fa fa-check"></i>Passive Enumeration</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Enumeration</b></span></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html"><i class="fa fa-check"></i>Server Enumeration</a><ul>
+<li class="chapter" data-level="" data-path="ping-for-network-connectivity.html"><a href="ping-for-network-connectivity.html"><i class="fa fa-check"></i>Ping for Network connectivity</a></li>
+<li class="chapter" data-level="" data-path="fping-to-enumerate-multiple-unknown-machines.html"><a href="fping-to-enumerate-multiple-unknown-machines.html"><i class="fa fa-check"></i>fping to enumerate multiple unknown machines</a></li>
+<li class="chapter" data-level="" data-path="nmap-for-machine-enumeration.html"><a href="nmap-for-machine-enumeration.html"><i class="fa fa-check"></i>NMAP for Machine Enumeration</a></li>
+<li class="chapter" data-level="" data-path="port-scanner-with-bash.html"><a href="port-scanner-with-bash.html"><i class="fa fa-check"></i>Port scanner with bash</a></li>
+<li class="chapter" data-level="" data-path="use-specific-or-grouped-nmap-script-for-enumeration.html"><a href="use-specific-or-grouped-nmap-script-for-enumeration.html"><i class="fa fa-check"></i>Use specific or grouped nmap script for Enumeration</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html"><i class="fa fa-check"></i>Web Enumeration</a><ul>
+<li class="chapter" data-level="" data-path="check-if-web-app-is-under-a-waf.html"><a href="check-if-web-app-is-under-a-waf.html"><i class="fa fa-check"></i>Check if web app is under a WAF</a></li>
+<li class="chapter" data-level="" data-path="nmap-http-scripting.html"><a href="nmap-http-scripting.html"><i class="fa fa-check"></i>Nmap http scripting</a></li>
+<li class="chapter" data-level="" data-path="whatweb.html"><a href="whatweb.html"><i class="fa fa-check"></i>Whatweb</a></li>
+<li class="chapter" data-level="" data-path="create-a-dictionary-with-the-elements-in-a-website.html"><a href="create-a-dictionary-with-the-elements-in-a-website.html"><i class="fa fa-check"></i>Create a dictionary with the elements in a website</a></li>
+<li class="chapter" data-level="" data-path="fuzzing-with-wfuzz.html"><a href="fuzzing-with-wfuzz.html"><i class="fa fa-check"></i>Fuzzing with WFUZZ</a></li>
+<li class="chapter" data-level="" data-path="fuzzing-with-dirbuster.html"><a href="fuzzing-with-dirbuster.html"><i class="fa fa-check"></i>Fuzzing with Dirbuster</a></li>
+<li class="chapter" data-level="" data-path="fuzzing-with-dirb.html"><a href="fuzzing-with-dirb.html"><i class="fa fa-check"></i>Fuzzing with Dirb</a></li>
+<li class="chapter" data-level="" data-path="wpscan-for-wordpress-webapps.html"><a href="wpscan-for-wordpress-webapps.html"><i class="fa fa-check"></i>WPScan for wordpress webapps</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="steganography.html"><a href="steganography.html"><i class="fa fa-check"></i>Steganography</a><ul>
+<li class="chapter" data-level="" data-path="look-at-info-with-file.html"><a href="look-at-info-with-file.html"><i class="fa fa-check"></i>Look at info with file</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="active-directory-windows-machines.html"><a href="active-directory-windows-machines.html"><i class="fa fa-check"></i>Active Directory &amp; Windows Machines</a><ul>
+<li class="chapter" data-level="0.1" data-path="interesting-windows-ports.html"><a href="interesting-windows-ports.html"><i class="fa fa-check"></i><b>0.1</b> Interesting Windows ports</a></li>
+<li class="chapter" data-level="0.2" data-path="map-samba-exposed-shared-resources-with-smbmap.html"><a href="map-samba-exposed-shared-resources-with-smbmap.html"><i class="fa fa-check"></i><b>0.2</b> Map SAMBA exposed shared resources with smbmap</a></li>
+<li class="chapter" data-level="0.3" data-path="smb-connection-with-smbclient.html"><a href="smb-connection-with-smbclient.html"><i class="fa fa-check"></i><b>0.3</b> SMB connection with smbclient</a></li>
+<li class="chapter" data-level="" data-path="enumerate-machines-by-samba-with-crackmapexec.html"><a href="enumerate-machines-by-samba-with-crackmapexec.html"><i class="fa fa-check"></i>Enumerate machines by SAMBA with crackmapexec</a></li>
+<li class="chapter" data-level="" data-path="sniffing-traffic-for-samba-relay-with-responder.html"><a href="sniffing-traffic-for-samba-relay-with-responder.html"><i class="fa fa-check"></i>Sniffing traffic for SAMBA Relay with responder</a></li>
+</ul></li>
+<li class="part"><span><b>III Vulnerabilies Assessment</b></span></li>
+<li class="chapter" data-level="" data-path="searching-for-exploits.html"><a href="searching-for-exploits.html"><i class="fa fa-check"></i>Searching for exploits</a><ul>
+<li class="chapter" data-level="" data-path="exploit-database.html"><a href="exploit-database.html"><i class="fa fa-check"></i>Exploit database</a></li>
+<li class="chapter" data-level="" data-path="searchsploit.html"><a href="searchsploit.html"><i class="fa fa-check"></i>Searchsploit</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html"><i class="fa fa-check"></i>Web Vulneratilities</a><ul>
+<li class="chapter" data-level="" data-path="lfi-local-file-inclusion.html"><a href="lfi-local-file-inclusion.html"><i class="fa fa-check"></i>LFI (Local File inclusion)</a></li>
+<li class="chapter" data-level="" data-path="wrappers.html"><a href="wrappers.html"><i class="fa fa-check"></i>Wrappers</a></li>
+<li class="chapter" data-level="" data-path="log-poisoning.html"><a href="log-poisoning.html"><i class="fa fa-check"></i>Log Poisoning</a><ul>
+<li class="chapter" data-level="" data-path="log-poisoning.html"><a href="log-poisoning.html#apache2"><i class="fa fa-check"></i>Apache2</a></li>
+<li class="chapter" data-level="" data-path="log-poisoning.html"><a href="log-poisoning.html#ssh-logs"><i class="fa fa-check"></i>ssh logs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="rfi-remote-file-inclusion.html"><a href="rfi-remote-file-inclusion.html"><i class="fa fa-check"></i>RFI (Remote File inclusion)</a></li>
+<li class="chapter" data-level="" data-path="html-injection.html"><a href="html-injection.html"><i class="fa fa-check"></i>HTML Injection</a></li>
+<li class="chapter" data-level="" data-path="xss-cross-site-scripting.html"><a href="xss-cross-site-scripting.html"><i class="fa fa-check"></i>XSS (Cross site scripting)</a></li>
+<li class="chapter" data-level="" data-path="xss-blind.html"><a href="xss-blind.html"><i class="fa fa-check"></i>XSS Blind</a></li>
+<li class="chapter" data-level="" data-path="csrf-cross-site-request-forgery.html"><a href="csrf-cross-site-request-forgery.html"><i class="fa fa-check"></i>CSRF (Cross-site Request Forgery)</a></li>
+<li class="chapter" data-level="" data-path="ssrf-server-side-request-forgery.html"><a href="ssrf-server-side-request-forgery.html"><i class="fa fa-check"></i>SSRF (Server-Side Request Forgery)</a></li>
+<li class="chapter" data-level="" data-path="sql-injection-error-based.html"><a href="sql-injection-error-based.html"><i class="fa fa-check"></i>SQL Injection - Error Based</a></li>
+<li class="chapter" data-level="" data-path="sql-injection-time-based.html"><a href="sql-injection-time-based.html"><i class="fa fa-check"></i>SQL Injection - Time Based</a></li>
+<li class="chapter" data-level="" data-path="sql-injection-boolean-based.html"><a href="sql-injection-boolean-based.html"><i class="fa fa-check"></i>SQL Injection - Boolean Based</a><ul>
+<li class="chapter" data-level="" data-path="sql-injection-boolean-based.html"><a href="sql-injection-boolean-based.html#sqlmap"><i class="fa fa-check"></i>SQLMap</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="padding-oracle-attack-padbuster.html"><a href="padding-oracle-attack-padbuster.html"><i class="fa fa-check"></i>Padding Oracle Attack (Padbuster)</a></li>
+<li class="chapter" data-level="" data-path="padding-oracle-attack-bit-flipper-attack-burpsuite.html"><a href="padding-oracle-attack-bit-flipper-attack-burpsuite.html"><i class="fa fa-check"></i>Padding Oracle Attack (Bit Flipper Attack - BurpSuite)</a></li>
+<li class="chapter" data-level="" data-path="shellshock.html"><a href="shellshock.html"><i class="fa fa-check"></i>ShellShock</a></li>
+<li class="chapter" data-level="" data-path="xxe-xml-external-entity-injection.html"><a href="xxe-xml-external-entity-injection.html"><i class="fa fa-check"></i>XXE (XML External Entity Injection)</a></li>
+<li class="chapter" data-level="" data-path="blind-xxe.html"><a href="blind-xxe.html"><i class="fa fa-check"></i>Blind XXE</a></li>
+<li class="chapter" data-level="" data-path="domain-zone-transfer.html"><a href="domain-zone-transfer.html"><i class="fa fa-check"></i>Domain Zone Transfer</a></li>
+<li class="chapter" data-level="" data-path="insecure-deserialization.html"><a href="insecure-deserialization.html"><i class="fa fa-check"></i>Insecure Deserialization</a></li>
+<li class="chapter" data-level="" data-path="type-juggling.html"><a href="type-juggling.html"><i class="fa fa-check"></i>Type Juggling</a></li>
+<li class="chapter" data-level="" data-path="ssti.html"><a href="ssti.html"><i class="fa fa-check"></i>SSTI</a></li>
+</ul></li>
+<li class="part"><span><b>IV Vuln exploit &amp; Gaining Access</b></span></li>
+<li class="chapter" data-level="" data-path="beyond-remote-code-execution.html"><a href="beyond-remote-code-execution.html"><i class="fa fa-check"></i>Beyond Remote Code Execution</a><ul>
+<li class="chapter" data-level="" data-path="checking-if-code-execution-occurs.html"><a href="checking-if-code-execution-occurs.html"><i class="fa fa-check"></i>Checking if code execution occurs</a><ul>
+<li class="chapter" data-level="" data-path="checking-if-code-execution-occurs.html"><a href="checking-if-code-execution-occurs.html#time-sleep-technic"><i class="fa fa-check"></i>Time sleep technic</a></li>
+<li class="chapter" data-level="" data-path="checking-if-code-execution-occurs.html"><a href="checking-if-code-execution-occurs.html#check-network-connectivity"><i class="fa fa-check"></i>Check network connectivity</a></li>
+<li class="chapter" data-level="" data-path="checking-if-code-execution-occurs.html"><a href="checking-if-code-execution-occurs.html#use-wget-and-netcat-to-execute-command"><i class="fa fa-check"></i>Use wget and netcat to execute command</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visible-remote-code-execution.html"><a href="visible-remote-code-execution.html"><i class="fa fa-check"></i>Visible remote code execution</a></li>
+<li class="chapter" data-level="" data-path="gaining-access-throw-remote-code-execution.html"><a href="gaining-access-throw-remote-code-execution.html"><i class="fa fa-check"></i>Gaining access throw remote code execution</a><ul>
+<li class="chapter" data-level="" data-path="gaining-access-throw-remote-code-execution.html"><a href="gaining-access-throw-remote-code-execution.html#listen-and-connection-with-netcat"><i class="fa fa-check"></i>Listen and connection with netcat</a></li>
+<li class="chapter" data-level="" data-path="gaining-access-throw-remote-code-execution.html"><a href="gaining-access-throw-remote-code-execution.html#connection-with-curl"><i class="fa fa-check"></i>Connection with curl</a></li>
+<li class="chapter" data-level="" data-path="gaining-access-throw-remote-code-execution.html"><a href="gaining-access-throw-remote-code-execution.html#use-sql-injection-for-create-a-reverse-shell"><i class="fa fa-check"></i>Use SQL Injection for create a reverse shell</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="spawning-a-terminal-from-a-shell.html"><a href="spawning-a-terminal-from-a-shell.html"><i class="fa fa-check"></i>Spawning a terminal from a shell</a></li>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html"><i class="fa fa-check"></i>Password Cracking</a><ul>
+<li class="chapter" data-level="" data-path="password-cracking-with-johntheripper.html"><a href="password-cracking-with-johntheripper.html"><i class="fa fa-check"></i>Password Cracking with JohnTheRipper</a><ul>
+<li class="chapter" data-level="" data-path="password-cracking-with-johntheripper.html"><a href="password-cracking-with-johntheripper.html#use-john-for-brute-force"><i class="fa fa-check"></i>Use John for brute force</a></li>
+<li class="chapter" data-level="" data-path="password-cracking-with-johntheripper.html"><a href="password-cracking-with-johntheripper.html#use-john-for-dictionary-attack"><i class="fa fa-check"></i>Use John for dictionary attack</a></li>
+<li class="chapter" data-level="0.3.1" data-path="password-cracking-with-johntheripper.html"><a href="password-cracking-with-johntheripper.html#use-websites-for-cracking-password"><i class="fa fa-check"></i><b>0.3.1</b> Use websites for cracking password</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="authentication-cracking.html"><a href="authentication-cracking.html"><i class="fa fa-check"></i>Authentication Cracking</a><ul>
+<li class="chapter" data-level="" data-path="authentication-cracking.html"><a href="authentication-cracking.html#authentication-cracking-with-hydra"><i class="fa fa-check"></i>Authentication Cracking with Hydra</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="pivoting.html"><a href="pivoting.html"><i class="fa fa-check"></i>Pivoting</a><ul>
+<li class="chapter" data-level="" data-path="pivoting-with-chisel.html"><a href="pivoting-with-chisel.html"><i class="fa fa-check"></i>Pivoting with chisel</a></li>
+<li class="chapter" data-level="" data-path="pivoting-with-socat.html"><a href="pivoting-with-socat.html"><i class="fa fa-check"></i>Pivoting with socat</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="gaining-access-with-metasploit.html"><a href="gaining-access-with-metasploit.html"><i class="fa fa-check"></i>Gaining access with Metasploit</a><ul>
+<li class="chapter" data-level="" data-path="search-for-a-proper-exploit.html"><a href="search-for-a-proper-exploit.html"><i class="fa fa-check"></i>Search for a proper exploit</a></li>
+<li class="chapter" data-level="" data-path="use-the-desired-exploit.html"><a href="use-the-desired-exploit.html"><i class="fa fa-check"></i>Use the desired exploit</a></li>
+<li class="chapter" data-level="" data-path="run-the-exploit.html"><a href="run-the-exploit.html"><i class="fa fa-check"></i>Run the exploit</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html"><i class="fa fa-check"></i>Windows Specific</a><ul>
+<li class="chapter" data-level="" data-path="ms-sql-server.html"><a href="ms-sql-server.html"><i class="fa fa-check"></i>MS SQL Server</a></li>
+<li class="chapter" data-level="" data-path="connect-to-machine-with-psexec.html"><a href="connect-to-machine-with-psexec.html"><i class="fa fa-check"></i>Connect to machine with PSEXEC</a></li>
+</ul></li>
+<li class="part"><span><b>V Priviledge Escalation</b></span></li>
+<li class="chapter" data-level="" data-path="linux-machine.html"><a href="linux-machine.html"><i class="fa fa-check"></i>Linux Machine</a><ul>
+<li class="chapter" data-level="" data-path="writable-rights-in-etcpasswd.html"><a href="writable-rights-in-etcpasswd.html"><i class="fa fa-check"></i>Writable rights in /etc/passwd</a></li>
+<li class="chapter" data-level="" data-path="local-port-forwarding.html"><a href="local-port-forwarding.html"><i class="fa fa-check"></i>Local Port forwarding</a></li>
+<li class="chapter" data-level="" data-path="add-ssuid-priviledge-to-tool.html"><a href="add-ssuid-priviledge-to-tool.html"><i class="fa fa-check"></i>Add SSUID priviledge to tool</a></li>
+<li class="chapter" data-level="" data-path="path-hijacking.html"><a href="path-hijacking.html"><i class="fa fa-check"></i>Path Hijacking</a></li>
+<li class="chapter" data-level="" data-path="library-hijacking.html"><a href="library-hijacking.html"><i class="fa fa-check"></i>Library Hijacking</a></li>
+<li class="chapter" data-level="" data-path="wildcards.html"><a href="wildcards.html"><i class="fa fa-check"></i>WildCards</a></li>
+<li class="chapter" data-level="" data-path="linux-capabilities-exploitation.html"><a href="linux-capabilities-exploitation.html"><i class="fa fa-check"></i>Linux capabilities exploitation</a></li>
+<li class="chapter" data-level="" data-path="kernel-abuse.html"><a href="kernel-abuse.html"><i class="fa fa-check"></i>Kernel abuse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="windows-machine.html"><a href="windows-machine.html"><i class="fa fa-check"></i>Windows Machine</a><ul>
+<li class="chapter" data-level="" data-path="active-directory.html"><a href="active-directory.html"><i class="fa fa-check"></i>Active Directory</a><ul>
+<li class="chapter" data-level="" data-path="active-directory.html"><a href="active-directory.html#golden-ticket-attack"><i class="fa fa-check"></i>Golden Ticket Attack</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="check-possible-priviledge-escalation-vulnerabilities.html"><a href="check-possible-priviledge-escalation-vulnerabilities.html"><i class="fa fa-check"></i>check possible priviledge escalation vulnerabilities</a></li>
+<li class="chapter" data-level="" data-path="check-command-history.html"><a href="check-command-history.html"><i class="fa fa-check"></i>Check command history</a></li>
+<li class="chapter" data-level="0.4" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>0.4</b> </a></li>
+</ul></li>
+<li class="part"><span><b>VI Appendix</b></span></li>
+<li class="chapter" data-level="1" data-path="first-appendix.html"><a href="first-appendix.html"><i class="fa fa-check"></i><b>1</b> First Appendix</a></li>
+<li class="chapter" data-level="2" data-path="second-appendix.html"><a href="second-appendix.html"><i class="fa fa-check"></i><b>2</b> Second Appendix</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li class="summary-footer"><a class="logo" href="https://lopezmichel.org"><img alt="IPESE" src="assets/wr404-transparent.png"></a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">2021 - Hacking Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="searchsploit" class="section level2 unnumbered">
+<h2>Searchsploit</h2>
+<p><strong>Searchsploit</strong> is a command line tool directly binded to exploits-db.com that helps attacker find exploits over services in a specific version.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="searchsploit.html#cb26-1"></a><span class="ex">searchsploit</span> <span class="op">&lt;</span>service name + version<span class="op">&gt;</span></span></code></pre></div>
+</div>
+<!-- </div> -->
+<div class="page-inner">
+    <section class="normal" id="section-">
+        <div class="copyright">
+          &copy; 2021 - Lo0pInG 404 [michellopez.org]
+        </div>
+    </section>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="exploit-database.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="web-vulneratilities.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://gitlab.epfl.ch/ipese/reports/templates/report/edit/master/03-Vulnerability-Assessment/03-00-web.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["2021-Hacking-Notes.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,163 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{assets/EPFLletter50}[2019/05/03 v0.97]
+\RequirePackage{graphicx,color,helvet}
+\newif\ifc@rporate
+\newif\ifwind@w
+\definecolor{epflred}{rgb}{1,0,0}
+\def\epflletterbw{%
+  \def\epfll@go{EPFLlogo50bw}%
+  \def\epflc@rp{EPFLcorp50bw}%
+  \def\setrulec@lor{\relax}}
+\def\epflletternobw{%
+  \def\epfll@go{assets/EPFLlogo50}%
+  \def\epflc@rp{EPFLcorp50}%
+  \def\setrulec@lor{\color{epflred}}}
+\def\epflletterwindow{\wind@wtrue}
+\def\epflletternowindow{\wind@wfalse}
+\def\epfllettercorporate{\c@rporatetrue}
+\def\epflletternocorporate{\c@rporatefalse}
+\epflletternobw\epflletternowindow\epflletternocorporate
+%
+\DeclareOption{bw}{\epflletterbw}
+\DeclareOption{corporate}{\epfllettercorporate}
+\DeclareOption{window}{\epflletterwindow}
+\ProcessOptions
+%
+\def\unitname#1#2#3{\def\unitnamefoot{#1}\def\unitnameheadbf{#2}\def\unitnameheadmd{#3}}
+\unitname{}{}{}
+%
+\def\texthelvet{\fontfamily{phv}\selectfont}
+\def\tenp@int{\@setfontsize\tenp@int\@xpt\@xiipt}
+%\def\ninep@int{\@setfontsize\ninep@int\@ixpt\@xipt}
+\def\eightp@int{\@setfontsize\eightp@int\@viiipt{9.5}}
+%
+\let\@texttop\relax
+%
+\newlength\l@tterheadraise
+\newlength\l@tterfootraise
+\newlength\l@tterheadshift
+\newlength\l@tterheadwidth
+\newlength\l@tterheadmargin\l@tterheadmargin=20mm
+\newlength\l@goheight\l@goheight=10mm
+\newlength\l@gowidth\l@gowidth=3.4402778\l@goheight
+\newlength\wind@wwidth
+%
+\def\epflmargins{%
+  \oddsidemargin=-1in%
+  \addtolength\oddsidemargin\l@tterheadmargin%
+  \addtolength\oddsidemargin\l@gowidth%
+  \textwidth=\paperwidth%
+  \addtolength\textwidth{-\oddsidemargin}%
+  \addtolength\textwidth{-\l@tterheadmargin}%
+  \addtolength\textwidth{-1in}%
+  \onecolumn}
+\def\narrowmargins{%
+  \oddsidemargin=13.4mm
+  \textwidth=\paperwidth%
+  \addtolength\textwidth{-20mm}%
+  \addtolength\textwidth{-1in}%
+  \addtolength\textwidth{-\oddsidemargin}%
+  \onecolumn}
+\def\symmetricmargins{%
+  \oddsidemargin=\paperwidth%
+  \addtolength\oddsidemargin{-\textwidth}%
+  \oddsidemargin=.5\oddsidemargin%
+  \addtolength\oddsidemargin{-1in}%
+  \onecolumn}
+%\epflmargins
+\topmargin=0pt
+\textheight=\paperheight
+\addtolength\textheight{-80mm}
+\addtolength\textheight{-\topmargin}
+%
+\def\c@lculatedimens{%
+  \l@tterheadwidth=\paperwidth%
+  \addtolength\l@tterheadwidth{-2\l@tterheadmargin}%
+  \l@tterheadshift=-1in%
+  \addtolength\l@tterheadshift{-\oddsidemargin}%
+  \addtolength\l@tterheadshift\l@tterheadmargin%
+  \l@tterheadraise=1in%
+  \addtolength\l@tterheadraise\topmargin%
+  \addtolength\l@tterheadraise\headheight%
+  \addtolength\l@tterheadraise{-\l@goheight}%
+  \addtolength\l@tterheadraise{-10mm}%
+  \wind@wwidth=\paperwidth%
+  \addtolength{\wind@wwidth}{-142mm}%
+  \l@tterfootraise=1in%
+  \addtolength\l@tterfootraise\topmargin%
+  \addtolength\l@tterfootraise\headheight%
+  \addtolength\l@tterfootraise\headsep%
+  \addtolength\l@tterfootraise\textheight%
+  \addtolength\l@tterfootraise\footskip%
+  \addtolength\l@tterfootraise{-\paperheight}%
+  \addtolength\l@tterfootraise{21mm}}
+%
+\def\c@mmonoddfoot{%
+  \c@lculatedimens%
+  \hspace*{\l@tterheadshift}%
+  \raisebox{\l@tterfootraise}[0pt][0pt]{%
+    \makebox[\l@tterheadwidth][l]{\texthelvet\eightp@int%
+      \makebox[0pt][r]{\setrulec@lor\rule{6.5pt}{5.6pt}\hspace*{5.6pt}}%
+      \makebox[\l@gowidth][l]{%
+        \ifc@rporate%
+          \includegraphics[viewport=5 176 337 221, width=0.596\l@gowidth]{\epflc@rp}%
+        \else%
+          \begin{bfseries}\begin{tabularx}{\l@tterheadwidth}{@{}l@{}}
+            \unitnamefoot\end{tabularx}\end{bfseries}%
+        \fi}%
+      \ifc@rporate%
+        \begin{bfseries}\begin{tabular}[t]{@{}l@{}}
+          \unitnamefoot\end{tabular}\end{bfseries}\hss%
+      \fi%
+      }%
+    % \hspace*{-.3pt}\raisebox{-33pt}{\texthelvet\eightp@int%
+    %   \rule{.3pt}{44pt}\makebox[0pt][l]{\hspace*{3pt}\thepage}}%
+  }\hss}
+%
+\def\ps@EPFLletterfirst{%
+  \def\@oddhead{%
+    \c@lculatedimens%
+    \hspace*{\l@tterheadshift}\raisebox{\l@tterheadraise}[0pt][0pt]{%
+      %\begin{picture}(0,0)\put(393,-121){\oval(284,128)}\end{picture}%
+      \makebox[\l@tterheadwidth][l]{\texthelvet\tenp@int%\bfseries%
+        \includegraphics[height=\l@goheight]{\epfll@go}%
+        \hfill\makebox[\wind@wwidth][l]{\vtop{\bfseries\begin{tabular}[t]{@{}l@{}}%
+          \unitnameheadbf%
+        \end{tabular}\\\mdseries\begin{tabular}{@{}l@{}}\unitnameheadmd\end{tabular}}}}}\hss}%
+  \let\@oddfoot\c@mmonoddfoot
+}
+%
+\def\ps@EPFLletter{%
+  \def\@oddhead{%
+    \c@lculatedimens%
+    \hspace*{\l@tterheadshift}\raisebox{\l@tterheadraise}[0pt][0pt]{%
+      \makebox[\l@tterheadwidth][l]{\texthelvet\tenp@int\bfseries%
+        \raisebox{0.3\l@goheight}{%
+          \includegraphics[height=.7\l@goheight]{\epfll@go}}%
+        \hfill\makebox[\wind@wwidth][l]{\vtop{\bfseries\begin{tabular}[t]{@{}l@{}}%
+          \unitnameheadbf%
+        \end{tabular}\\\mdseries\begin{tabular}{@{}l@{}}\unitnameheadmd\end{tabular}}}}}\hss}%
+  \let\@oddfoot\c@mmonoddfoot
+}
+\pagestyle{EPFLletter}
+%
+\def\opening#1{%
+  \thispagestyle{EPFLletterfirst}%
+  \c@lculatedimens\onecolumn%
+  \noindent\hspace*{-\oddsidemargin}\hspace*{-1in}\hspace*{-\wind@wwidth}%
+  \hspace*{-\l@tterheadmargin}\hspace*{\paperwidth}%
+  \parbox{\wind@wwidth}{%
+    \parindent=0pt\raggedright%
+    \ifwind@w%
+      \vspace*{2mm}\vbox to 35mm{\toname\\ \toaddress\par\vfil\@date}%
+    \else%
+      \toname\\ \toaddress\par%
+      \vspace*{2\baselineskip}\@date%
+    \fi%
+  }\par\vspace*{2\parskip}
+  #1\par\nobreak}
+%
+\def\closefirstpage{%
+  \clearpage\pagebreak\narrowmargins} 
+%
+\def\familydefault{\sfdefault}

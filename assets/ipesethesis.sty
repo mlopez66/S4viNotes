@@ -1,0 +1,436 @@
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+% style file for my phd thesis and other stuff
+% richard
+% september 2008
+% Modified by Maziar Kermani November 11, 2017
+% 2018_05_02 removing teal lines for numberless chapters and lof,lot,toc
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+% toc style \medskip or \vspace{.5cm}
+%\pdfminorversion=6
+% \usepackage{tocloft} TODO@Muz-begin
+% \usepackage{shorttoc}
+% \def\contentsname{Contents}
+% \renewcommand{\cfttoctitlefont}{{\color{teal}\titlerule[3pt]\vspace{.25cm}}~\\\hspace*{\fill}\normalfont\bfseries\Huge}
+% \renewcommand{\cftaftertoctitle}{\hspace*{\fill} \\\vspace{.2cm}{\color{teal}\titlerule}}
+% \def\listfigurename{List of Figures}
+% \renewcommand{\cftloftitlefont}{{\color{teal}\titlerule[3pt]\vspace{.25cm}}~\\\hspace*{\fill}\normalfont\bfseries\Huge}
+% \renewcommand{\cftafterloftitle}{\hspace*{\fill} \\\vspace{.2cm}{\color{teal}\titlerule}}
+% \def\listtablename{List of Tables}
+% \renewcommand{\cftlottitlefont}{{\color{teal}\titlerule[3pt]\vspace{.25cm}}~\\\hspace*{\fill}\normalfont\bfseries\Huge}
+% \renewcommand{\cftafterlottitle}{\hspace*{\fill} \\\vspace{.2cm}{\color{teal}\titlerule}} TODO@Muz-end
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+\usepackage[inline]{enumitem}
+\usepackage[super]{nth}
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+% bibliography style
+\usepackage[square,comma,numbers]{natbib}
+\usepackage[french,english]{babel}
+\usepackage[sectionbib]{chapterbib} % biblio for each chapter
+\bibliographystyle{elsarticle-num-names}
+\setlength{\bibsep}{5pt}
+\usepackage{bibentry}
+%\nobibliography*
+\def\bibname{References}
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+% title hirarchy and toc levels
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+% enum style
+\renewcommand{\theenumi}{\alph{enumi})}
+\renewcommand{\labelenumi}{\alph{enumi})}
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+% figures & tables
+\newcommand{\ftsize}{\small} % size to be used in figure and table environments
+%\usepackage{graphicx,subfigure,psfrag,float,booktabs}
+\usepackage{graphicx}
+  \def\figurename{Figure}
+  \graphicspath{{figures/}}
+  \def\tablename{Table}
+\usepackage{caption}
+  \DeclareCaptionFont{ftsize}{\ftsize}
+  \DeclareCaptionLabelFormat{sclabel}{\textsc{#1}\ #2}
+  \DeclareCaptionLabelSeparator{longdash}{---}
+  \captionsetup{font=ftsize,labelformat=sclabel,labelsep=longdash}
+  \DeclareCaptionLabelFormat{continued}{\textsc{#1}\ #2 \textit{(cont.)}}	% used for continued floats (marked with \ContinuedFloat)
+  \captionsetup[ContinuedFloat]{labelformat=continued}
+\def\textfraction{0.2} % minimum fraction of text per page
+\usepackage{threeparttable}	% for table footnotes
+\usepackage{lscape}	% for landscape floats
+\usepackage{wrapfig}
+\usepackage[figuresright]{rotating}
+\usepackage{subcaption}
+\usepackage{rotating,tabularx}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{tabu}
+\usepackage{pdflscape}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% HERE COMES THE PATCH
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% https://tex.stackexchange.com/questions/86211/colortbl-and-amsmath-conflict
+\usepackage{etoolbox}
+\makeatletter
+\pretocmd\start@align
+{%
+  \let\everycr\CT@everycr
+  \CT@start
+}{}{}
+\apptocmd{\endalign}{\CT@end}{}{}
+\makeatother
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+% symbols, math and units
+\usepackage{latexsym,bm,upgreek}
+\usepackage{amsfonts,amsmath,amstext,amssymb,amsthm}
+%\usepackage{pifont} % circled numbers
+%\usepackage{units} % correct printing of numbers with units
+\usepackage{textcomp} % symbols and text figures (nice and old school)
+\usepackage{eurosym}
+\usepackage{gensymb}	% celsius, etc
+\usepackage{array}
+\usepackage{float}
+\usepackage{booktabs,caption}
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+\usepackage[explicit]{titlesec}
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+% hyperlinks
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[breaklinks=true,
+            colorlinks=true,
+            linkcolor=black,
+            citecolor=teal,
+            urlcolor=teal,
+			linktoc=all,
+            anchorcolor=teal,
+            bookmarksnumbered=true,
+            breaklinks=true,
+            backref=false,
+            driverfallback=dvipdfm]{hyperref}
+\usepackage[all]{hypcap} % fix links to figures and toc
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+% float placement
+\renewcommand{\topfraction}{0.85}	% maximum share of float on top of page
+\renewcommand{\textfraction}{0.1}	% minimum share of text on a page (if both floats and text is present)
+\renewcommand{\floatpagefraction}{0.75} % min share of float on a page that justifies a float-only page. must be smaller than topfraction (and 1-textfraction, i guess)
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+% avoid single lines at beginning and end of pages (widows and orphans). increase value up to 1000 if required
+\widowpenalty=600
+\clubpenalty=600
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+\usepackage{filecontents}
+\usepackage{pdfpages}
+\usepackage{lipsum}
+\usepackage{enumitem}
+\usepackage{epstopdf}
+\usepackage[colorinlistoftodos]{todonotes}
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+% Boxes at the beginning of the chapter
+\newtcolorbox{mybox}[1]
+	{leftright skip=1cm,colback	=white,
+	colframe	=teal,
+	fonttitle	=\bfseries,
+	colbacktitle=teal,
+	enhanced,
+	%width = 0.9\textwidth,
+	attach boxed title to top center	= {yshift=-2mm, xshift = 0mm},
+	arc	=0cm,
+	boxrule=0.04cm,
+	title=#1}
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NEW
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% chapter title all-the-way box
+\titleformat{\chapter}
+    {\normalfont\bfseries\huge}
+    {}
+    {0pt}
+    {{\color{teal}\titlerule[3pt]}~\raisebox{-2pt}{\sc{\chaptername}~\thechapter}~{\color{teal}\titlerule[3pt]}%
+      \\\medskip\filcenter #1\\\medskip{\color{teal}\titlerule}}
+
+\titleformat{name=\chapter,numberless}
+	{\normalfont\bfseries\Huge}
+	{}
+	{0pt}
+	{{\color{teal}\titlerule[3pt]}\\\filcenter #1 \\{\vspace{.5cm}\color{teal}\titlerule}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FANCY BOX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\iffalse
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries\Huge}
+  {}
+  {20pt}
+  {%
+    \begin{tcolorbox}[
+      enhanced,
+      colback=teal,
+      boxrule=0.2cm,
+      colframe=white,
+      arc=0pt,
+      outer arc=0pt,
+      leftrule=0pt,
+      rightrule=0pt,
+      fontupper=\color{white}\bfseries\huge,
+      enlarge left by=-1in-\hoffset-\oddsidemargin,
+      enlarge right by=-\paperwidth+1in+\hoffset+\oddsidemargin+\textwidth,
+      width=\paperwidth,
+      left=1in+\hoffset+\oddsidemargin,
+      right=\paperwidth-1in-\hoffset-\oddsidemargin-\textwidth,
+      top=0.6cm,
+      bottom=0.6cm,
+      overlay={
+        \node[
+          fill=teal,
+          draw=white,
+          line width=0.1cm,
+          inner sep=0pt,
+          text width=1.7cm,
+          minimum height=1.7cm,
+          align=center,
+          font=\color{white}\bfseries\fontsize{30}{36}\selectfont
+        ]
+        (chapname)
+        at ([xshift=-4cm,yshift = 1.5cm] frame.north east)
+        {\thechapter};
+        \node[font=\small,anchor=south,inner sep=2pt] at (chapname.north)
+        {\MakeUppercase\chaptertitlename};
+      }
+    ]
+    #1
+    \end{tcolorbox}%
+  }
+\titleformat{name=\chapter,numberless}[display]
+  {\normalfont\bfseries\Huge}
+  {}
+  {20pt}
+  {%
+    \begin{tcolorbox}[
+      enhanced,
+      colback=teal,
+      boxrule=0.2cm,
+      colframe=white,
+      arc=0pt,
+      outer arc=0pt,
+      remember as=title,
+      leftrule=0pt,
+      rightrule=0pt,
+      fontupper=\color{white}\bfseries\huge,
+      enlarge left by=-1in-\hoffset-\oddsidemargin,
+      enlarge right by=-\paperwidth+1in+\hoffset+\oddsidemargin+\textwidth,
+      width=\paperwidth,
+      left=1in+\hoffset+\oddsidemargin,
+      right=\paperwidth-1in-\hoffset-\oddsidemargin-\textwidth,
+      top=0.6cm,
+      bottom=0.6cm,
+    ]
+    #1
+    \end{tcolorbox}%
+  }
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% EPFL
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\iffalse
+% chapter colored box, EPFL style.
+\titleformat{\chapter}[hang]
+        {\normalfont\bfseries\Huge}
+        {\makebox[.5ex][r]{\colorbox{titlebgdark}{%
+            \hspace*{5cm}\rule[-1.5mm]{0pt}{13mm}\color{white}\thechapter\,%
+          }}\,}
+        {0pt}{#1}
+
+\titleformat{name=\chapter,numberless}[hang]
+        {\normalfont\bfseries\Huge}
+        {\makebox[.5ex][r]{\colorbox{titlebgdark}{%
+            \hspace*{5cm}\rule[-0mm]{0pt}{13mm}\color{white}\,%
+          }}\,}
+        {0pt}{#1}
+\fi
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+\titlespacing*{\chapter}
+  {0pt}{0pt}{10pt}
+\makeatother
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+% part pages with epigraph
+\makeatletter
+\titleformat{\part}
+  {\normalfont\bfseries\Huge\scshape}
+  {\vspace*{\fill}}
+  {0pt}
+{%
+    \begin{tcolorbox}[
+      enhanced,
+      colback=white,
+      boxrule=0.05cm,
+      colframe=teal,
+      arc=0pt,
+      outer arc=0pt,
+      remember as=title,
+      leftrule=0pt,
+      rightrule=0pt,
+      fontupper=\color{black}\Huge\scshape,
+      enlarge left by=0pt, %-1in-\hoffset-\oddsidemargin
+      enlarge right by=0pt, % -\paperwidth+1in+\hoffset+\oddsidemargin+\textwidth
+      width=\textwidth,
+      left= 0pt, % 1in+\hoffset+\oddsidemargin
+      right=0pt, % \paperwidth-1in-\hoffset-\oddsidemargin-\textwidth
+      top=0.6cm,
+      bottom=0.6cm,
+	  box align=center,
+	  halign=center,
+      valign=center,
+	  overlay={
+        \node[
+          fill=teal,
+          draw=white,
+          line width=0.1cm,
+          inner sep=0pt,
+          text width=2.5cm,
+          minimum height=2.5cm,
+          align=center,
+          font=\color{white}\bfseries\Huge\selectfont
+        ]
+        (partname)
+        at ([xshift=0cm,yshift = 2cm]frame.north)
+        {\thepart};
+        \node[font=\huge,anchor=south,inner sep=2pt] at (partname.north)
+        {\MakeUppercase\partname};
+      }
+    ]
+	%{{\color{teal}\titlerule}\\\filcenter #1 \\\vspace{.3cm}{\color{teal}\titlerule}}
+    {#1}
+    \end{tcolorbox}%
+  }
+\makeatother
+
+\titleformat{name=\part,numberless}
+  {\normalfont\bfseries\Huge\scshape}
+  {\vspace*{\fill}}
+  {0pt}
+{%
+    \begin{tcolorbox}[
+      enhanced,
+      colback=white,
+      boxrule=0.05cm,
+      colframe=teal,
+      arc=0pt,
+      outer arc=0pt,
+      remember as=title,
+      leftrule=0pt,
+      rightrule=0pt,
+      fontupper=\color{black}\Huge\scshape,
+      enlarge left by=0pt, %-1in-\hoffset-\oddsidemargin
+      enlarge right by=0pt, % -\paperwidth+1in+\hoffset+\oddsidemargin+\textwidth
+      width=\textwidth,
+      left= 0pt, % 1in+\hoffset+\oddsidemargin
+      right=0pt, % \paperwidth-1in-\hoffset-\oddsidemargin-\textwidth
+      top=0.6cm,
+      bottom=0.6cm,
+	  box align=center,
+	  halign=center,
+      valign=center,
+    ]
+	%{{\color{teal}\titlerule}\\\filcenter #1 \\\vspace{.3cm}{\color{teal}\titlerule}}
+    {#1}
+    \end{tcolorbox}%
+  }
+
+\setlength\epigraphwidth{\textwidth}
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+% add something to the part section
+\newtcolorbox{mypartbox}[1]{colback=white,colframe=teal,arc=0cm,boxrule=0cm,leftright skip=0.5cm}
+\makeatletter
+
+\let\LaTeXStandardPart\part%
+\newcommand{\unstarredpart@@noopt}[1]{%
+  \unstarredpart@@opt[#1]{#1}%
+}%
+
+\newcommand{\unstarredpart@@opt}[2][]{%
+  \cleardoublepage% (For clearing content before!!!)
+  \begingroup%
+  \let\newpage\relax%
+  \LaTeXStandardPart[#1]{#2}%
+  \endgroup%
+}%
+
+\newcommand{\starredpart}[1]{%
+  \LaTeXStandardPart*{#1}%
+}%
+
+\newcommand{\unstarredpart}{%
+  \@ifnextchar[{\unstarredpart@@opt}{\unstarredpart@@noopt}%
+}%
+
+\renewcommand{\part}{%
+  \@ifstar{\starredpart}{\unstarredpart}%
+}%
+
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+% Change part name in contents
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+%\renewcommand{\cftpartfont}{\bfseries\Large} TODO@Muz
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+% from https://gist.github.com/philipptempel/5220000
+% intentionally left blank
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+\makeatletter
+    \def\cleardoublepage{\clearpage%
+        \if@twoside
+            \ifodd\c@page\else
+                \vspace*{\fill}
+                \hfill
+                \begin{center}
+                This page intentionally left blank
+                \end{center}
+                \vspace{\fill}
+                \thispagestyle{empty}
+                \newpage
+                \if@twocolumn\hbox{}\newpage\fi
+            \fi
+        \fi
+    }
+\makeatother
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+% research question box
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+\tcbset{textmarker/.style={%
+skin=enhanced,breakable,parbox=false,
+boxrule=0mm,leftrule=10mm,rightrule=0mm,boxsep=0mm,arc=0mm,outer arc=0mm,valign=center,box align=center,
+left=3mm,right=3mm,top=1mm,bottom=1mm,toptitle=1mm,bottomtitle=1mm}}
+
+\newtcolorbox{myQbox}{textmarker,width = \textwidth,colback=teal!4!white,colframe=teal}
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+\DeclareUnicodeCharacter{2009}{-}
+\DeclareUnicodeCharacter{2212}{-}
+\usepackage{hyphenat}
+%% not adding sections of appendix to toc
+%\appto\appendix{\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}}
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+% note lines at the end of the thesis
+\usepackage{pgffor, ifthen}
+\newcommand{\notes}[3][\empty]{%
+    \noindent \textbf{Notes}\vspace{10pt}\\
+    \foreach \n in {1,...,#2}{%
+        \ifthenelse{\equal{#1}{\empty}}
+            {\color[gray]{.8}\rule{#3}{0.1pt}\\}
+            {\color[gray]{.8}\rule{#3}{0.1pt}\vspace{#1}\\}
+        }
+}
+%///////////////////////////////////////////////////////////////////////////////////////////////////////
+% type out some encouragement
+\typeout{///////////////////////////////////////////////////////////////}
+\typeout{///////////////////////////////////////////////////////////////}
+\typeout{///////////////////////////////////////////////////////////////}
+\typeout{ CLIMB NOW, WORK LATER!}
+\typeout{///////////////////////////////////////////////////////////////}
+\typeout{///////////////////////////////////////////////////////////////}
+\typeout{///////////////////////////////////////////////////////////////}

