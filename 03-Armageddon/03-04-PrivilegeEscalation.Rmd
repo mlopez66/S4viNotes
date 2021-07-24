@@ -1,0 +1,10 @@
+## Privilege Escalation {-}
+
+### Enumeracion del usuario en la maquina victima {-}
+
+```bash
+whoami
+id
+```
+
+

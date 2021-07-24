@@ -1,0 +1,25 @@
+## Enumeracion {-}
+
+### Reconocimiento de maquina, puertos abiertos y servicios {-} 
+
+#### Ping {-}
+
+```bash
+ping -c 1 10.10.10.233
+```
+ttl: 63 -> maquina linux
+
+#### Nmap {-}
+
+```bash
+nmap -p- --open -T5 -v -n 10.10.10.233 -oG allPorts
+extractPorts allPorts
+nmap -sC -sV -p53,80,2222 10.10.10.83 -oN targeted
+```
+
+
+|Puerto|Servicio| Que se nos occure?             |    Que falta?      |
+|------|--------|--------------------------------|--------------------|
+|22    |ssh     |Accesso directo                 |usuario y contraseña|
+|80    |http    |Drupal-armageddon (drupalgeddon)|Checkear el exploit |
+

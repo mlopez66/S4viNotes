@@ -3,3 +3,5 @@ delete_merged_file: true
 edit: https://github.com/mlopez66/S4viNotes/edit/master/%s
 rmd_subdir:
   - "01-Olympus"
+  - "02-Traverxec"
+  

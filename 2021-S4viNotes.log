@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.4.25)  23 JUL 2021 12:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.4.25)  24 JUL 2021 23:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1409,7 +1409,7 @@ File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 
 pdfTeX warning: pdflatex (file ./assets/EPFLlogo50.pdf): PDF inclusion: found P
 DF version <1.7>, but at most version <1.5> allowed
-<assets/EPFLlogo50.pdf, id=76, 2486.28876pt x 722.7pt>
+<assets/EPFLlogo50.pdf, id=119, 2486.28876pt x 722.7pt>
 File: assets/EPFLlogo50.pdf Graphic file (type pdf)
 <use assets/EPFLlogo50.pdf>
 Package pdftex.def Info: assets/EPFLlogo50.pdf  used on input line 192.
@@ -1479,7 +1479,7 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [2
 
 ]
-<images/curl-xdebug.png, id=143, 443.6575pt x 220.825pt>
+<images/curl-xdebug.png, id=211, 443.6575pt x 220.825pt>
 File: images/curl-xdebug.png Graphic file (type png)
 <use images/curl-xdebug.png>
 Package pdftex.def Info: images/curl-xdebug.png  used on input line 436.
@@ -1515,33 +1515,48 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
 (Font)              Font shape `T1/lmss/m/sl' tried instead on input line 569.
 [6]
-<images/aircrack-airgeddon.png, id=192, 834.11626pt x 367.3725pt>
+<images/aircrack-airgeddon.png, id=259, 834.11626pt x 367.3725pt>
 File: images/aircrack-airgeddon.png Graphic file (type png)
 <use images/aircrack-airgeddon.png>
 Package pdftex.def Info: images/aircrack-airgeddon.png  used on input line 680.
 
 (pdftex.def)             Requested size: 398.96184pt x 175.72015pt.
 [7 <./images/aircrack-airgeddon.png>] [8]
-<images/dig-ctfolympus.png, id=210, 1356.06625pt x 496.85625pt>
+<images/dig-ctfolympus.png, id=277, 1356.06625pt x 496.85625pt>
 File: images/dig-ctfolympus.png Graphic file (type png)
 <use images/dig-ctfolympus.png>
 Package pdftex.def Info: images/dig-ctfolympus.png  used on input line 811.
 (pdftex.def)             Requested size: 398.96184pt x 146.17708pt.
 [9 <./images/dig-ctfolympus.png>] [10] [11]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 923.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 923.
+
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 926.
+
+[12
+
+] [13] [14] [15] [16] [17]
+
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 1346.
+
+[18
+
+] [19]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1468.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1468.
 (./2021-S4viNotes.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 923.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 923.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1468.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1468.
+
 Package rerunfilecheck Info: File `2021-S4viNotes.out' has not changed.
-(rerunfilecheck)             Checksum: D5619874952A8D136878B35D4D45C39E;706.
+(rerunfilecheck)             Checksum: C094D16545ADBA6E45758D0BF4E5C3BC;1473.
  ) 
 Here is how much of TeX's memory you used:
- 35994 strings out of 481239
- 677111 string characters out of 5920377
+ 36097 strings out of 481239
+ 678927 string characters out of 5920377
  1250113 words of memory out of 5000000
- 50229 multiletter control sequences out of 15000+600000
- 625860 words of font info for 162 fonts, out of 8000000 for 9000
+ 50273 multiletter control sequences out of 15000+600000
+ 626163 words of font info for 165 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  67i,14n,115p,1041b,690s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
@@ -1552,10 +1567,10 @@ xmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/
 lmsso10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso12.pfb></usr/share/tex
 mf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/public/lm/lmt
 t10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb>
-Output written on 2021-S4viNotes.pdf (14 pages, 848674 bytes).
+Output written on 2021-S4viNotes.pdf (22 pages, 868296 bytes).
 PDF statistics:
- 293 PDF objects out of 1000 (max. 8388607)
- 241 compressed objects within 3 object streams
- 78 named destinations out of 1000 (max. 500000)
- 20705 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 445 PDF objects out of 1000 (max. 8388607)
+ 384 compressed objects within 4 object streams
+ 131 named destinations out of 1000 (max. 500000)
+ 20801 words of extra memory for PDF output out of 24883 (max. 10000000)
 

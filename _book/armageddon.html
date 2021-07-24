@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2021 - S4viNotes</title>
+  <title>Armageddon | 2021 - S4viNotes</title>
   <meta name="description" content="Full Pentest notebook" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2021 - S4viNotes" />
+  <meta property="og:title" content="Armageddon | 2021 - S4viNotes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="https://github.com/mlopez66/hacking-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2021 - S4viNotes" />
+  <meta name="twitter:title" content="Armageddon | 2021 - S4viNotes" />
   
   <meta name="twitter:description" content="Full Pentest notebook" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="traverxec.html"/>
 
-<link rel="next" href="olympus.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -224,33 +224,101 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">2021 - S4viNotes</h1>
-<p class="author"><em>Lo0pInG 404</em></p>
-<p class="date"><em>updated on 2021-07-24</em></p>
-</div>
-<div id="preface-1" class="section level1 unnumbered">
-<h1>Preface</h1>
-<div id="introduction-1" class="section level2 unnumbered">
-<h2>Introduction</h2>
-<p>Este es el Notebook de los lives en Twitch del tito S4vitar. Aqui podreis encontrar los passos impotantes de cada maquina
-echa. Este book no tiene que estar considerado como una lista de Walktrough, pero mas como unas notas de technicas utilizadas
-durante la resolucion de maquinas.</p>
-<p>Cada maquina esta separada de la manera siguiente:</p>
-<ul>
-<li>Introduccion y link del directo</li>
-<li>Fase de enumeracion</li>
-<li>Notas sobre las vulnerabilidades econtradas</li>
-<li>Explotacion de vulnerabilidades para ganar accesso a la maquina victima</li>
-<li>Parte de escalacion de privilegios</li>
-</ul>
-<p>Espero que este book ayude a la comunidad.</p>
-</div>
-<div id="acknoledgement-1" class="section level2 unnumbered">
-<h2>Acknoledgement</h2>
-<p>Por cierto, me gustaria dar las gracias a S4vitar por su contenido de calidad y las ganas que mete a lo que hace para la comunidad.
-Son estas ganas que me motivaron en querer aprender mas y mas.</p>
+<div id="armageddon" class="section level1 unnumbered">
+<h1>Armageddon</h1>
+<div id="introduccion-2" class="section level2 unnumbered">
+<h2>Introduccion</h2>
+<p>La maquina del dia 22/07/2021 se llama Armageddon.</p>
+<p>El replay del live se puede ver en <a href="https://www.twitch.tv/videos/1094808182">Twitch: S4vitaar Olympus maquina</a></p>
 
+</div>
+<div id="enumeracion-2" class="section level2 unnumbered">
+<h2>Enumeracion</h2>
+<div id="reconocimiento-de-maquina-puertos-abiertos-y-servicios-2" class="section level3 unnumbered">
+<h3>Reconocimiento de maquina, puertos abiertos y servicios</h3>
+<div id="ping-2" class="section level4 unnumbered">
+<h4>Ping</h4>
+<div class="sourceCode" id="cb65"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb65-1"><a href="armageddon.html#cb65-1"></a><span class="fu">ping</span> -c 1 10.10.10.233</span></code></pre></div>
+<p>ttl: 63 -&gt; maquina linux</p>
+</div>
+<div id="nmap-2" class="section level4 unnumbered">
+<h4>Nmap</h4>
+<div class="sourceCode" id="cb66"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb66-1"><a href="armageddon.html#cb66-1"></a><span class="fu">nmap</span> -p- --open -T5 -v -n 10.10.10.233 -oG allPorts</span>
+<span id="cb66-2"><a href="armageddon.html#cb66-2"></a><span class="ex">extractPorts</span> allPorts</span>
+<span id="cb66-3"><a href="armageddon.html#cb66-3"></a><span class="fu">nmap</span> -sC -sV -p53,80,2222 10.10.10.83 -oN targeted</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th>Puerto</th>
+<th>Servicio</th>
+<th>Que se nos occure?</th>
+<th>Que falta?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>22</td>
+<td>ssh</td>
+<td>Accesso directo</td>
+<td>usuario y contraseña</td>
+</tr>
+<tr class="even">
+<td>80</td>
+<td>http</td>
+<td>Drupal-armageddon (drupalgeddon)</td>
+<td>Checkear el exploit</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="vulnerability-assessment-2" class="section level2 unnumbered">
+<h2>Vulnerability Assessment</h2>
+<div id="druppalgeddon" class="section level3 unnumbered">
+<h3>Druppalgeddon</h3>
+<p><strong>Druppalgeddon2</strong> es un exploit creado por Hans Topo y g0tmi1k escrito en ruby.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb67-1"><a href="armageddon.html#cb67-1"></a><span class="ex">ruby</span> drupalggedon2.rb 10.10.10.233</span></code></pre></div>
+
+</div>
+</div>
+<div id="vuln-exploit-gaining-access-2" class="section level2 unnumbered">
+<h2>Vuln exploit &amp; Gaining Access</h2>
+<div id="tratamiento-de-la-tty-2" class="section level3 unnumbered">
+<h3>Tratamiento de la TTY</h3>
+<div class="sourceCode" id="cb68"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb68-1"><a href="armageddon.html#cb68-1"></a><span class="ex">script</span> /dev/null -c bash</span>
+<span id="cb68-2"><a href="armageddon.html#cb68-2"></a>^<span class="ex">Z</span></span>
+<span id="cb68-3"><a href="armageddon.html#cb68-3"></a><span class="fu">stty</span> raw -echo<span class="kw">;</span> <span class="bu">fg</span></span>
+<span id="cb68-4"><a href="armageddon.html#cb68-4"></a><span class="ex">-</span><span class="op">&gt;</span> reset</span>
+<span id="cb68-5"><a href="armageddon.html#cb68-5"></a><span class="ex">-</span><span class="op">&gt;</span> xterm</span>
+<span id="cb68-6"><a href="armageddon.html#cb68-6"></a><span class="bu">export</span> <span class="va">TERM=</span>xterm</span>
+<span id="cb68-7"><a href="armageddon.html#cb68-7"></a><span class="bu">export</span> <span class="va">SHELL=</span>bash</span>
+<span id="cb68-8"><a href="armageddon.html#cb68-8"></a></span>
+<span id="cb68-9"><a href="armageddon.html#cb68-9"></a><span class="fu">stty</span> -a</span>
+<span id="cb68-10"><a href="armageddon.html#cb68-10"></a></span>
+<span id="cb68-11"><a href="armageddon.html#cb68-11"></a><span class="fu">stty</span> rows <span class="op">&lt;</span>rownb<span class="op">&gt;</span> columns <span class="op">&lt;</span>colnb<span class="op">&gt;</span></span></code></pre></div>
+</div>
+<div id="investigamos-la-maquina-1" class="section level3 unnumbered">
+<h3>Investigamos la maquina</h3>
+<div class="sourceCode" id="cb69"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb69-1"><a href="armageddon.html#cb69-1"></a><span class="bu">cd</span> /home</span>
+<span id="cb69-2"><a href="armageddon.html#cb69-2"></a><span class="co">#Output</span></span>
+<span id="cb69-3"><a href="armageddon.html#cb69-3"></a><span class="ex">zeus</span></span>
+<span id="cb69-4"><a href="armageddon.html#cb69-4"></a></span>
+<span id="cb69-5"><a href="armageddon.html#cb69-5"></a><span class="fu">ls</span> /home/zeus</span>
+<span id="cb69-6"><a href="armageddon.html#cb69-6"></a><span class="co">#Output</span></span>
+<span id="cb69-7"><a href="armageddon.html#cb69-7"></a><span class="ex">airgeddon</span></span></code></pre></div>
+
+</div>
+</div>
+<div id="privilege-escalation-2" class="section level2 unnumbered">
+<h2>Privilege Escalation</h2>
+<div id="enumeracion-del-usuario-en-la-maquina-victima-2" class="section level3 unnumbered">
+<h3>Enumeracion del usuario en la maquina victima</h3>
+<div class="sourceCode" id="cb70"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb70-1"><a href="armageddon.html#cb70-1"></a><span class="fu">whoami</span></span>
+<span id="cb70-2"><a href="armageddon.html#cb70-2"></a><span class="fu">id</span></span></code></pre></div>
+
+</div>
 </div>
 </div>
 <div class="page-inner">
@@ -265,8 +333,8 @@ Son estas ganas que me motivaron en querer aprender mas y mas.</p>
           </div>
         </div>
       </div>
+<a href="traverxec.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="olympus.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -288,7 +356,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mlopez66/hacking-notes/edit/master/index.Rmd",
+"link": "https://github.com/mlopez66/hacking-notes/edit/master/03-Armageddon/03-00-Information.Rmd",
 "text": "Edit"
 },
 "history": {

