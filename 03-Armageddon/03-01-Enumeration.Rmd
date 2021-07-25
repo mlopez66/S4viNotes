@@ -17,9 +17,13 @@ extractPorts allPorts
 nmap -sC -sV -p53,80,2222 10.10.10.83 -oN targeted
 ```
 
+- Drupal 7
 
-|Puerto|Servicio| Que se nos occure?             |    Que falta?      |
-|------|--------|--------------------------------|--------------------|
-|22    |ssh     |Accesso directo                 |usuario y contraseña|
-|80    |http    |Drupal-armageddon (drupalgeddon)|Checkear el exploit |
+|Puerto|Servicio| Que se nos occure?              |    Que falta?      |
+|------|--------|---------------------------------|--------------------|
+|22    |ssh     |Accesso directo                  |usuario y contraseña|
+|80    |http    |Drupal-armageddon (drupalgeddon2)|Checkear el exploit |
 
+#### Browsear la web {-}
+
+Nada interessante.

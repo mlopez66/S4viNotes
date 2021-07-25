@@ -4,7 +4,8 @@
 
 Este es el Notebook de los lives en Twitch del tito S4vitar. Aqui podreis encontrar los passos impotantes de cada maquina
 echa. Este book no tiene que estar considerado como una lista de Walktrough, pero mas como unas notas de technicas utilizadas
-durante la resolucion de maquinas.
+durante la resolucion de maquinas. Por cierto no estara listado los passwords o algun usuarios, menos si estan utilizados en 
+commandos.
 
 Cada maquina esta separada de la manera siguiente:
 
@@ -16,8 +17,10 @@ Cada maquina esta separada de la manera siguiente:
 
 Espero que este book ayude a la comunidad. 
 
+Todas las notas estan disponibles separadas por typos y categorias en el [hacking Notebook](https://looping404.michellopez.org).
+
 ## Acknoledgement {-}
 
-Por cierto, me gustaria dar las gracias a S4vitar por su contenido de calidad y las ganas que mete a lo que hace para la comunidad.
-Son estas ganas que me motivaron en querer aprender mas y mas.
-
+Me gustaria dar las gracias a S4vitar por su contenido de calidad y las ganas que mete a lo que hace para la comunidad.
+Son estas ganas que me motivaron en querer aprender mas y mas. Y como la mejor manera que tengo de aprender es tomando notas,
+este book no existiria sin el.
