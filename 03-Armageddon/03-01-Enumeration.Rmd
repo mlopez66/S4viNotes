@@ -14,7 +14,7 @@ ttl: 63 -> maquina linux
 ```bash
 nmap -p- --open -T5 -v -n 10.10.10.233 -oG allPorts
 extractPorts allPorts
-nmap -sC -sV -p53,80,2222 10.10.10.83 -oN targeted
+nmap -sC -sV -p22,80 10.10.10.233 -oN targeted
 ```
 
 - Drupal 7

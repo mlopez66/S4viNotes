@@ -20,7 +20,7 @@ Va un poquito lento...
 ```bash
 nmap -p- -sS --min-rate 5000 --open -vvv -n -Pn 10.10.10.165 -oG allPorts
 extractPorts allPorts
-nmap -sC -sV -p 10.10.10.165 -oN targeted
+nmap -sC -sV -p22,80 10.10.10.165 -oN targeted
 ```
 
 |Puerto|Servicio| Que se nos occure?    |    Que falta?      |
