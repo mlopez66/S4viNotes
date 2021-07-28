@@ -23,12 +23,10 @@ extractPorts allPorts
 nmap -sC -sV -p22,3128 10.10.10.21 -oN targeted
 ```
 
-- Drupal 7
-
 |Puerto|Servicio    | Que se nos occure?              |    Que falta?      |
 |------|------------|---------------------------------|--------------------|
 |22    |ssh         |Accesso directo                  |usuario y contraseña|
-|3128  |squid-proxy |Browsear la web por este puerot  |Checkear el exploit |
+|3128  |squid-proxy |Browsear la web por este puerto  |Checkear el exploit |
 
 #### Browsear la web por el puerto 3128{-}
 

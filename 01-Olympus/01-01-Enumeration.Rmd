@@ -27,7 +27,7 @@ nmap -sC -sV -p53,80,2222 10.10.10.83 -oN targeted
 |------|--------|-----------------------|--------------------|
 |53    |domain  |Domain zone transfer   |Un nombre de dominio|
 |80    |http    |whatweb, http-enum     |Checkear la web     |
-|2222  |ssh     |conneccion a la maquina|Usuario contraseña  |
+|2222  |ssh     |conexion a la maquina |Usuario contraseña  |
 
 
 ### Empezamos por el puerto 80 {-}
