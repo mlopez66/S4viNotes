@@ -17,7 +17,6 @@ bookdown::gitbook:
         </li>
       after: |
         <li class="summary-footer"><a class="logo" href="https://lopezmichel.org"><img alt="IPESE" src="assets/wr404-transparent.png"></a></li>
-    download: ["pdf"]
     edit:  https://github.com/mlopez66/hacking-notes/edit/master/%s
     sharing: no
   includes:
