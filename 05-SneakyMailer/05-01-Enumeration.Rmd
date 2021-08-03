@@ -21,7 +21,6 @@ Va lento
 nmap -sS -p- --open --min-rate 5000 -vvv -n -Pn 10.10.10.197 -oG allPorts 
 extractPorts allPorts
 nmap -sC -sV -p21,22,25,80,143,993,8080 10.10.10.197 -oX targetedXML
-
 ```
 
 
