@@ -1,0 +1,97 @@
+## Enumeracion {-}
+
+### Reconocimiento de maquina, puertos abiertos y servicios {-} 
+
+#### Ping {-}
+
+```bash
+ping -c 1 10.10.10.37
+```
+ttl: 63 -> maquina linux
+
+#### Nmap {-}
+
+```bash
+nmap -p- --open -T5 -v -n 10.10.10.37 
+```
+
+Va lento
+
+```bash
+nmap -sS -p- --open --min-rate 5000 -vvv -n -Pn 10.10.10.37 -oG allPorts 
+extractPorts allPorts
+nmap -sC -sV -p21,22,80,25565 10.10.10.37 -oN targeted
+```
+
+| Puerto | Servicio  | Que se nos occure?                        | Que falta?           |
+| ------ | --------- | ----------------------------------------- | -------------------- |
+| 21     | ftp       | connectar como anonymous                  |                      |
+| 22     | ssh       | connection directa                        | usuario y contraseña |
+| 80     | http      | Analizis de la web y Fuzzing              |                      |
+| 25565  | minecraft | con el puerto 53 pensamos en virt hosting |                      |
+
+
+### Connectar al ftp como anonymous {-}
+
+```bash
+ftp 10.10.10.37
+Name: anonymous
+password: <enter>
+#Output
+530 Login incorrect.
+```
+
+No nos deja entrar como anonymous
+
+### Analyzando la web {-}
+
+#### Whatweb {-}
+
+```bash
+whatweb http://10.10.10.37
+```
+
+Aqui vemos que estamos en un Wordpress
+
+#### http-enum {-}
+
+Lanzamos un web scan con nmap.
+
+```bash
+nmap --script http-enum -p80 10.10.10.37 -oN webScan
+```
+
+Ya nos detecta un `/phpmyadmin/` y ficheros de wordpress
+
+#### Checkear la web del puerto 80 {-}
+
+Hablan de virtualhosting
+
+Con firefox navigamos en la web para ver lo que es.
+
+- wappalizer nos dice que es Wordpress
+- Vemos que la web esta under construction
+- Si pinchamos el post vemos que es el usuario NOTCH que lo a echo
+
+Como es un wordpress intentamos ir al `http://10.10.10.37/wp-login.php` y miramos si hay el usuario NOTCH. 
+Effectivamente el usuario NOTCH existe. 
+
+Vamos a por el `http://10.10.10.37/phpmyadmin/` y buscamos previamente en google si encontramos credenciales por
+defecto pero no functionnan.
+
+Tenemos que ir buscando mas rutas.
+
+#### Fuzzing con WFuzz {-}
+
+```bash
+wfuzz -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt http://10.10.10.37/WFUZZ
+```
+
+Encontramos un ruta plugins que no suele ser normal porque en wordpress los plugins suelen estar en `/wp-content/plugins` y no
+en `/plugins` directamente
+
+Aqui encontramos dos ficheros `.jar`. Los descargamos en nuestra maquina de attackante.
+
+
+
+

