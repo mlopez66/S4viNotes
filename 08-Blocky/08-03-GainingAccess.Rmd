@@ -34,7 +34,7 @@ stty -a
 stty rows <rownb> columns <colnb>
 ```
 
-User Pivoting al usuario notch {-}
+### User Pivoting al usuario notch {-}
 
 Miramos si hay reutilisacion de contraseñas 
 

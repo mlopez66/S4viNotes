@@ -5,79 +5,56 @@
 #### Ping {-}
 
 ```bash
-ping -c 1 10.10.10.37
+ping -c 1 10.10.10.230
 ```
 ttl: 63 -> maquina linux
 
 #### Nmap {-}
 
 ```bash
-nmap -p- --open -T5 -v -n 10.10.10.37 
-```
-
-Va lento
-
-```bash
-nmap -sS -p- --open --min-rate 5000 -vvv -n -Pn 10.10.10.37 -oG allPorts 
+nmap -p- --open -T5 -v -n 10.10.10.230 -oG allPorts 
 extractPorts allPorts
-nmap -sC -sV -p21,22,80,25565 10.10.10.37 -oN targeted
+nmap -sC -sV -p22,80 10.10.10.230 -oN targeted
 ```
 
 | Puerto | Servicio  | Que se nos occure?                        | Que falta?           |
 | ------ | --------- | ----------------------------------------- | -------------------- |
-| 21     | ftp       | connectar como anonymous                  |                      |
 | 22     | ssh       | connection directa                        | usuario y contraseña |
 | 80     | http      | Analizis de la web y Fuzzing              |                      |
-| 25565  | minecraft | con el puerto 53 pensamos en virt hosting |                      |
 
-
-### Connectar al ftp como anonymous {-}
-
-```bash
-ftp 10.10.10.37
-Name: anonymous
-password: <enter>
-#Output
-530 Login incorrect.
-```
-
-No nos deja entrar como anonymous
 
 ### Analyzando la web {-}
 
 #### Whatweb {-}
 
 ```bash
-whatweb http://10.10.10.37
+whatweb http://10.10.10.230
 ```
 
-Aqui vemos que estamos en un Wordpress
+Nada muy interresante
 
 #### http-enum {-}
 
 Lanzamos un web scan con nmap.
 
 ```bash
-nmap --script http-enum -p80 10.10.10.37 -oN webScan
+nmap --script http-enum -p80 10.10.10.230 -oN webScan
 ```
 
 Ya nos detecta un `/phpmyadmin/` y ficheros de wordpress
 
-#### Checkear la web del puerto 80 {-}
+#### Checkear la web por puerto 80 {-}
 
 Con firefox navigamos en la web para ver lo que es.
 
-- wappalizer nos dice que es Wordpress
-- Vemos que la web esta under construction
-- Si pinchamos el post vemos que es el usuario NOTCH que lo a echo
+- wappalizer nos dice que hay nginx ubuntu bootstrap
+- hay un register y un login pero no vemos extensiones php
+- Si pinchamos el login intentamos ponerle un admin admin y nos dice que la contraseña es incorrecta -> usuario admin existe
+- Si ponemos administrator admin nos dice que el usuario es incorrecto
 
-Como es un wordpress intentamos ir al `http://10.10.10.37/wp-login.php` y miramos si hay el usuario NOTCH. 
-Effectivamente el usuario NOTCH existe. 
+Vemos que hay formas de enumeracion con este login
 
-Vamos a por el `http://10.10.10.37/phpmyadmin/` y buscamos previamente en google si encontramos credenciales por
-defecto pero no functionnan.
 
-Tenemos que ir buscando mas rutas.
 
 #### Fuzzing con WFuzz {-}
 
