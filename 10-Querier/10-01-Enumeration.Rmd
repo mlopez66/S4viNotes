@@ -19,7 +19,7 @@ nmap -sC -sV -p135,139,445,1433,5985,47001,49664,49665,49666,49667,49668,49669,4
 
 | Puerto | Servicio        | Que se nos occure?                                | Que falta?           |
 | ------ | --------------- | ------------------------------------------------- | -------------------- |
-| 135    | ssh             | connection directa                                | usuario y contraseña |
+| 135    | rpc             |                                                   |                      |
 | 139    | netbios-ssn     |                                                   |                      |
 | 445    | smb             | crackmapexec, smbclient, smbmap                   |                      |
 | 1433   | mssql           | Intento de connexion con credenciales por defecto | usuario y contraseña |

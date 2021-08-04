@@ -61,3 +61,7 @@ whoami
 #Output
 nt authority\system
 ```
+
+Ya estamos como root y podemos ver la flag ;)
+
+> [!] NOTA: S4vitar nos enseña mas technicas para connectarnos en el video. Os invito a verlas a partir del minuto 1:24:20

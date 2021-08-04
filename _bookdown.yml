@@ -12,3 +12,4 @@ rmd_subdir:
   - "08-Blocky"
   - "09-TheNotebook"
   - "10-Querier"
+  - "11-Minion"
