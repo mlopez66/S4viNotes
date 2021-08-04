@@ -11,3 +11,4 @@ rmd_subdir:
   - "07-Scavenger"
   - "08-Blocky"
   - "09-TheNotebook"
+  - "10-Querier"
