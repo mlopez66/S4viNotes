@@ -13,10 +13,10 @@ bookdown::gitbook:
           <a class="logo" href="/">
             <img src="assets/wr404-transparent.png" alt="LoOpInG 404" class="img-fluid">
           </a>
-          <h1>Lo0pInG 404</h1>
+          <h1>Lo0p1nG 404</h1>
         </li>
       after: |
-        <li class="summary-footer"><a class="logo" href="https://lopezmichel.org"><img alt="IPESE" src="assets/wr404-transparent.png"></a></li>
+        <li class="summary-footer"><a class="logo" href="https://looping404.michellopez.org"><img alt="Lo0p1nG404" src="assets/wr404-transparent.png"></a></li>
     edit:  https://github.com/mlopez66/hacking-notes/edit/master/%s
     sharing: no
   includes:
