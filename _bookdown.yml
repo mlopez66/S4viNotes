@@ -13,3 +13,4 @@ rmd_subdir:
   - "09-TheNotebook"
   - "10-Querier"
   - "11-Minion"
+  - "12-TartarSauce"
