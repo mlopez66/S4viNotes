@@ -1,0 +1,17 @@
+## Vuln exploit & Gaining Access {-}
+
+### Conneccion por SSH {-}
+
+Como ya tenemos una id_rsa nos connectaremos como el usuario roosa
+
+```bash
+chmod 600 id_rsa
+ssh -i id_rsa roosa@10.10.10.91
+```
+
+Ya estamos connectados como Roosa y podemos leer la flag.
+
+
+
+
+
