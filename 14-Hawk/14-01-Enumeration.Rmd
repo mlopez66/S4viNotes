@@ -17,14 +17,14 @@ extractPorts allPorts
 nmap -sC -sV -p22,5000 10.10.10.102 -oN targeted
 ```
 
-| Puerto | Servicio | Que se nos occure?    | Que falta?   |
-| ------ | -------- | --------------------- | ------------ |
-| 21     | ftp      | Accesso por anonymous | Credenciales |
-| 22     | ssh      | Accesso directorio    | Credenciales |
-| 80     | http     | Web, fuzzing          |              |
-| 5435   | ssh      | Accesso directorio    | Credenciales |
-| 8082   | http     | Web, fuzzing          |              |
-| 9092   | http     | Web, fuzzing          |              |
+| Puerto | Servicio     | Que se nos occure?    | Que falta?   |
+| ------ | ------------ | --------------------- | ------------ |
+| 21     | ftp          | Accesso por anonymous |              |
+| 22     | ssh          | Accesso directorio    | Credenciales |
+| 80     | http         | Web, fuzzing          |              |
+| 5435   | tcpwrapped   |                       |              |
+| 8082   | http         | Web, fuzzing          |              |
+| 9092   | XmlIpcRegSvc |                       |              |
 
 
 ### Conneccion como anonymous al servicio FTP {-}
