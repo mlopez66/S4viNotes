@@ -23,27 +23,27 @@ extractPorts allPorts
 nmap -sC -sV -p80,135,139,443,445,3306,5000,5040,5985,5986,7680,47001,49664,49665,4966,49667,49668,49669,49670 10.10.10.239 -oN targeted
 ```
 
-| Puerto | Servicio    | Que se nos occure? | Que falta? |
-| ------ | ----------- | ------------------ | ---------- |
-| 80     | http        | Web, fuzzing       |            |
-| 135    | rpc         |                    |            |
-| 139    | NetBios     |                    |            |
-| 443    | ssl (https) |                    |            |
-| 445    | SMB         | Null creds         |            |
-| 3306   | mssql?      |                    |            |
-| 5000   | http        |                    |            |
-| 5040   | http        |                    |            |
-| 5985   | WinRM       |                    |            |
-| 5986   | WinRM ssl   |                    |            |
-| 7680   | http        |                    |            |
-| 47001  | http        |                    |            |
-| 49664  | http        |                    |            |
-| 49665  | http        |                    |            |
-| 49666  | http        |                    |            |
-| 49667  | http        |                    |            |
-| 49668  | http        |                    |            |
-| 49669  | http        |                    |            |
-| 49670  | http        |                    |            |
+| Puerto | Servicio       | Que se nos occure?              | Que falta? |
+| ------ | -------------- | ------------------------------- | ---------- |
+| 80     | http           | Web, fuzzing                    |            |
+| 135    | rpc            |                                 |            |
+| 139    | NetBios        |                                 |            |
+| 443    | ssl (https)    |                                 |            |
+| 445    | SMB            | Null creds                      |            |
+| 3306   | mssql?         |                                 |            |
+| 5000   | http           |                                 |            |
+| 5040   | http           |                                 |            |
+| 5985   | WinRM          |                                 |            |
+| 5986   | WinRM ssl      |                                 |            |
+| 7680   | tcp panda-pub? |                                 |            |
+| 47001  | http           |                                 |            |
+| 49664  | msrpc          | puertos por defectos de windows |            |
+| 49665  | msrpc          | puertos por defectos de windows |            |
+| 49666  | msrpc          | puertos por defectos de windows |            |
+| 49667  | msrpc          | puertos por defectos de windows |            |
+| 49668  | msrpc          | puertos por defectos de windows |            |
+| 49669  | msrpc          | puertos por defectos de windows |            |
+| 49670  | msrpc          | puertos por defectos de windows |            |
 
 
 ### Analyzando el SMB {-}
