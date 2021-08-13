@@ -2,7 +2,7 @@
 
 ## Introduccion {-}
 
-La maquina del dia 10/08/2021 se llama Love
+La maquina del dia 10/08/2021 se llama Conceal
 .
 
 El replay del live se puede ver aqui
