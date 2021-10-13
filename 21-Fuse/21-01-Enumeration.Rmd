@@ -63,9 +63,31 @@ Añadimos el dominio a nuestro `/etc/hosts`.
 ### Buscando ususarios con rpcclient y rpcenum {-}
 
 ```bash
-rpcclient -U "" 10.10.10.161 -N
+rpcclient -U "" 10.10.10.193 -N
 
 rpcclient $> enumdomusers
 ```
 
 Aqui vemos un Access Denied.
+
+### Analyzando la web {-}
+
+#### Whatweb {-}
+
+```bash
+whatweb http://10.10.10.193
+```
+
+Vemos una vez mas que estamos en frente de una IIS pero nada mas. Seguimos checkeando la web.
+
+
+#### Checkear la web {-}
+
+Sabemos que es un IIS 10.0 con asp.net. Hay una redireccion automatica a fuzse.fabricorp.local y vemos que estamos en frente
+de un servicio de impressora. Miramos los logs print y vemos una columna interesante que es la de **Users**.
+
+Nos creamos un fichero users y copiamos los usuarios de la web.
+
+Ya que tenemos un fichero con contraseñas, intentamos fuerza bruta con **crackmapexec**.
+
+
