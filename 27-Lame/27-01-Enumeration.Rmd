@@ -36,8 +36,6 @@ nmap -sC -sV -p21,22,139,445,3632 10.10.10.3 -oN targeted
 
 ### Conexion Anonymous con ftp {-}
 
-#### Whatweb {-}
-
 ```bash
 ftp 10.10.10.3
 
