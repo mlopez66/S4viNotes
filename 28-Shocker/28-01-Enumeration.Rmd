@@ -50,7 +50,7 @@ Lanzamos un web scan con nmap.
 nmap --script http-enum -p80 10.10.10.56 -oN webScan
 ```
 
-Vemos que hay un `/phpmyadmin`
+Nada interesante.
 
 #### Analyzando la web con Firefox {-}
 
@@ -63,9 +63,4 @@ wfuzz -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-me
 ```
 
 Encontramos una routa muy interesante que es el `cgi-bin` que es la routa donde si la bash es vulnerable podemos hacer un ataque shellshock.
-
-sh
-pl
-py
-cgi
 
