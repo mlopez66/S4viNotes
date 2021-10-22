@@ -20,14 +20,14 @@ Va lento
 ```bash
 nmap -sS -p- --open --min-rate 5000 -vvv -n -Pn 10.10.10.242 -oG allPorts 
 extractPorts allPorts
-nmap -sC -sV -p9255,9256 10.10.10.242 -oN targeted
+nmap -sC -sV -p22,80 10.10.10.242 -oN targeted
 ```
 
 
 | Puerto | Servicio | Que se nos occure? | Que falta? |
 | ------ | -------- | ------------------ | ---------- |
-| 22     | ssh      | Conneccion directa | creds      |
-| 80     | http     | Web, Fuzzing       |            |
+| 22     | tcp      | Conneccion directa | creds      |
+| 80     | tcp      | Web, Fuzzing       |            |
 
 ### Analyzando la web {-}
 
