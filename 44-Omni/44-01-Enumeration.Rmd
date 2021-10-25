@@ -1,0 +1,107 @@
+## Enumeracion {-}
+
+### Reconocimiento de maquina, puertos abiertos y servicios {-} 
+
+#### Ping {-}
+
+```bash
+ping -c 1 10.10.10.204
+```
+ttl: 127 -> maquina Windows
+
+#### Nmap {-}
+
+```bash
+nmap -p- --open -T5 -v -n 10.10.10.204
+```
+
+Va lento
+
+```bash
+nmap -sS -p- --open --min-rate 5000 -vvv -n -Pn 10.10.10.204 -oG allPorts 
+extractPorts allPorts
+nmap -sC -sV -p135,5985,8080,29817,29819,29820 10.10.10.204 -oN targeted
+```
+
+
+| Puerto | Servicio | Que se nos occure?             | Que falta?   |
+| ------ | -------- | ------------------------------ | ------------ |
+| 135    | msrpc    | rpcclient con nul session      |              |
+| 5985   | WinRM    | evil-winrm                     | credenciales |
+| 8080   | http     | Web Fuzzing                    |              |
+| 29817  | msrpc    | Puertos por defecto de windows |              |
+| 29819  | msrpc    | Puertos por defecto de windows |              |
+| 29820  | msrpc    | Puertos por defecto de windows |              |
+
+### Analyzando la web {-}
+
+#### Whatweb {-}
+
+```bash
+whatweb http://10.10.10.204:8080
+```
+
+Es un Windows Device Portal con un HTTPapi y un WWW-Athentication.
+
+#### Checkear la web {-}
+
+Si entramos en la url `http://10.10.10.204:8080`, Vemos un panel basic authentication.
+
+
+#### Checkeando la cavezera con curl {-}
+
+```bash
+curl -s -X GET "http://10.10.10.204:8080"
+curl -s -X GET "http://10.10.10.204:8080" -I
+```
+
+Vemos en la cabezera que el basic-auth es sobre un `Windows Device Portal`
+Buscamos si existe una vulnerabilidad asociada en google poniendo `Windows Device Portal github exploit` y encontramos
+una pagina interesante de [SirepRAT](https://github.com/SafeBreach-Labs/SirepRAT) que nos permitiria ejecutar RCE.
+
+
+
+### Buscando ususarios con rpcclient y rpcenum {-}
+
+```bash
+rpcclient -U "" 10.10.10.204 -N
+
+rpcclient $> enumdomusers
+```
+
+Como no nos deja unumerar cosas con el null session vamos a necesitar credenciales validas para poder hacerlo
+
+### Analyzando el SMB {-}
+
+```bash
+crackmapexec smb 10.10.10.204
+smbclient -L 10.10.10.204 -N
+```
+
+Vemos que estamos en frente de una maquina Windows 10 Standard de 64 bit pro que se llama **DC01** en el dominio **BLACKFIELD.local**.
+Añadimos los dominios `blackfield.local` y `dc01.blackfield.local` a nuestro `/etc/hosts`.
+
+Tambien vemos recursos compartidos a nivel de red como:
+
+- ADMIN$
+- C$
+- forensic
+- IPC$
+- NETLOGON
+- profiles$
+- SYSVOL
+
+Usando de la heramienta smbmap, podemos ver si tenemos accessos a estos recursos.
+
+```bash
+smbmap -H 10.10.10.192 -u 'null'
+```
+
+y vemos que denemos accesso con derecho de lectura a los recursos `profiles$` y `IPC$`. IPC$ no es un recurso que nos interesa.
+
+```bash
+smbclient //10.10.10.192/profiles$ -N
+dir
+```
+
+Aqui podemos ver registros que parecen ser directorios de ususarios.
