@@ -48,3 +48,4 @@ rmd_subdir:
   - "44-Omni"
   - "45-OpenAdmin"
   - "46-Jail"
+  - "47-BankRobber"
