@@ -8,6 +8,8 @@
 ping -c 1 10.10.10.83
 ```
 ttl: 63 -> maquina linux
+Recuerda que en cuanto a ttl 64 es igual a linux y 128 es igual a windows
+pero como estamos en hackthebox hay un nodo intermediario que hace que disminuya el ttl en una unidad 
 
 #### Nmap {-}
 
@@ -15,8 +17,7 @@ ttl: 63 -> maquina linux
 nmap -p- --open -T5 -v -n 10.10.10.83
 ```
 
-Que lento madre mia...
-
+Si consideras que va muy lento, puedes utilizar los siguientes parametros para que valla mucho mas rapido
 ```bash
 nmap -p- -sS --min-rate 5000 --open -vvv -n -Pn 10.10.10.83 -oG allPorts
 extractPorts allPorts
@@ -27,7 +28,7 @@ nmap -sC -sV -p53,80,2222 10.10.10.83 -oN targeted
 |------|--------|-----------------------|--------------------|
 |53    |domain  |Domain zone transfer   |Un nombre de dominio|
 |80    |http    |whatweb, http-enum     |Checkear la web     |
-|2222  |ssh     |conexion a la maquina |Usuario contraseña  |
+|2222  |ssh     |conexion a la maquina  |Usuario contraseña  |
 
 
 ### Empezamos por el puerto 80 {-}
@@ -38,17 +39,17 @@ nmap -sC -sV -p53,80,2222 10.10.10.83 -oN targeted
 whatweb http://10.10.10.83
 ```
 
-Nada interessante
+Nada interesante
 
 #### Browsear la web {-}
 
 Hay una imagen, se nos occure steganografia pero no hay nada.
 
-El Wappalyser no dice que el servidor web empleado es un Apache. 
+El Wappalyzer no dice que el servidor web empleado es un Apache. 
 
 #### WFuzz {-}
 
-Como no hay mucho mas que ver, applicaremos **fuzzing** para descubrir si hay mas rutas.
+Como no hay mucho mas que ver, aplicaremos **fuzzing** para descubrir si hay mas rutas.
 
 ```bash
 wfuzz -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt http://10.10.10.83/FUZZ
