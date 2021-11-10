@@ -2,7 +2,7 @@
 
 ## Introduccion {-}
 
-La maquina del dia 12/08/2021 se llama Sizzle.
+La maquina del dia se llama Sizzle.
 
 El replay del live se puede ver aqui
 
