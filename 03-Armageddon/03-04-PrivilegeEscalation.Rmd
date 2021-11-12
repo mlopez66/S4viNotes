@@ -1,4 +1,4 @@
-## Privilege Escalation {-}
+## Escalada de privilegios {-}
 
 ### Enumeracion del usuario en la maquina victima {-}
 
