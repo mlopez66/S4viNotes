@@ -1,8 +1,8 @@
-## Vuln exploit & Gaining Access {-}
+## Explotacion de vulnerabilidad & Ganando acceso {-}
 
 ### Reverse shell por UDP {-}
 
-1. En la maquina de attaquante con el parametro `-u`
+1. En la maquina de atacante con el parametro `-u`
 
     ```bash
     nc -u -nlvp 443
@@ -49,4 +49,4 @@ id
 sudo -l
 ```
 
-El commando `sudo -l` nos dice que podemos ejecutar `sudoedit /var/www/*/*/layout.html` como el usuario alekos. 
+El comando `sudo -l` nos dice que podemos ejecutar `sudoedit /var/www/*/*/layout.html` como el usuario alekos. 

