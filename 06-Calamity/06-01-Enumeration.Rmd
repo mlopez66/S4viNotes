@@ -7,7 +7,9 @@
 ```bash
 ping -c 1 10.10.10.27
 ```
-ttl: 63 -> maquina linux
+ttl: 63 -> maquina linux. 
+Recuerda que tratandose de ttl 64 = linux y 128 = windows. 
+Pero como estamos en hackthebox hay un nodo intermediario que hace que el ttl disminuya una unidad
 
 #### Nmap {-}
 
@@ -22,7 +24,7 @@ nmap -sC -sV -p22,80 -oN targeted
 |22    |ssh         |Accesso directo                      |usuario y contraseña|
 |80    |http        |Analizis de la web y Fuzzing         |                    |
 
-### Analyzando la web {-}
+### Analizando la web {-}
 
 #### Whatweb {-}
 
@@ -48,7 +50,7 @@ Abrimos la web y vemos cosas:
 - parece que todavia la web esta en fase de desarollo
 - el directorio `/uploads/` muestra una capacidad de directory listing pero no se ve gran cosa
 - el `/admin.php` nos muestra un login.
-- haciendo un `Ctrl-U` no muestra una contraseña en un commentario ;)
+- haciendo un `Ctrl-U` no muestra una contraseña en un comentario ;)
 
 
 

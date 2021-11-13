@@ -1,4 +1,4 @@
-## Vuln exploit & Gaining Access {-}
+## Explotacion de vulnerabilidad & Ganando acceso {-}
 
 ### Crear una reverse shell con s4vishell.php {-}
 
@@ -44,13 +44,13 @@ ps -fawwx
 ```
 
 Vemos la flag pero no podemos leerla. Huele a que nos tenemos que convertir al usuario **low**. Tambien vemos un recurso **Pypi** con
-un fichero de credentiales typo `.htpasswd`
+un fichero de credenciales tipo `.htpasswd`
 
 ```cat
 cat /var/www/pypi.sneakycorp.htb/.htpasswd
 ```
 
-Vemos la contraseña del usuarion **pypi**. La copiamos en la maquina de attaquante y tratamos de romperla con **John**
+Vemos la contraseña del usuarion **pypi**. La copiamos en la maquina de atacante y tratamos de romperla con **John**
 
 Por ultimo se puede ver un nuevo subdominio llamado `pypi.sneakycorp.htb`, lo introduzimos en el `/etc/hosts`
 
@@ -67,8 +67,8 @@ Hemos podido crackear la contraseña del usuario pypi
 
 ### Descubrimiento de la configuration NGINX {-}
 
-Intentando connectarnos a la web por el subdominio `pypi.sneakycorp.htb`, vemos que hay una redirection automatica al domino normal.
-Saviendo que estamos en frente de un **NGINX**, analyzamos como el reverse proxy esta configurado.
+Intentando conectarnos a la web por el subdominio `pypi.sneakycorp.htb`, vemos que hay una redirection automatica al domino normal.
+Sabiendo que estamos en frente de un **NGINX**, analizamos como el reverse proxy esta configurado.
 
 ```bash
 cd /etc/nginx
@@ -78,12 +78,12 @@ cat sneakycorp.htb
 cat pypi.sneakycorp.htb
 ```
 
-Hay ya vemos que para ir al subdominio `pypi.sneakycorp.htb` tenemos que passar por el puerto **8080**, y effectivamente si browseamos
+Hay ya vemos que para ir al subdominio `pypi.sneakycorp.htb` tenemos que pasar por el puerto **8080**, y efectivamente si browseamos
 la web con `pypi.sneakycorp.htb:8080` ya podemos ver la web del **pypi server**
 
 ### Crear un packete malicioso para pypi {-}
 
-Como el servicio pypi es un server que tiene connectividad con el exterior, podemos seguir lo siguientes passos en la maquina de attackante.
+Como el servicio pypi es un server que tiene conectividad con el exterior, podemos seguir lo siguientes pasos en la maquina de atacante.
 
 ```bash
 mkdir pypi
@@ -160,7 +160,7 @@ Ahora podemos enviarlo
     python3 setup.py sdist upload -r remote
     ```
 
-1. Tenemos una shell pero primero nos a ejecutado desde nuestro proprio equipo
+1. Tenemos una shell pero primero nos a ejecutado desde nuestro propio equipo
 
     - no ponemos una vez mas en escucha al puerto 443
 
