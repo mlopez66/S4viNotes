@@ -1,4 +1,4 @@
-## Privilege Escalation {-}
+## Escalada de privilegios {-}
 
 ### Rootear la maquina {-}
 
@@ -7,7 +7,7 @@ whoami
 id
 ```
 
-En este punto vemos que el usuario xalvas esta en el grupo **lxd** y ya tenemos la possibilidad de escalar privilegios con esto.
+En este punto vemos que el usuario xalvas esta en el grupo **lxd** y ya tenemos la posibilidad de escalar privilegios con esto.
 
 ```bash
 searchsploit lxd
@@ -20,9 +20,9 @@ Si Si el exploit a sido creado por el mismo S4vitar. Para usar el exploit, lo pr
 uname -a
 ```
 
-Seguimos los passos del exploit
+Seguimos los pasos del exploit
 
-1. En la maquina de attaquante
+1. En la maquina de atacante
 
     ```bash
     wget https://raw.githubusercontent.com/saghul/lxd-alpine-builder/master/build-alpine

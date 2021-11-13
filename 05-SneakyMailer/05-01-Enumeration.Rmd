@@ -7,7 +7,9 @@
 ```bash
 ping -c 1 10.10.10.197
 ```
-ttl: 63 -> maquina linux
+ttl: 63 -> maquina linux. 
+Recuerda que tratandose de ttl 64 = linux y 128 = windows. 
+Pero como estamos en hackthebox hay un nodo intermediario que hace que el ttl disminuya una unidad
 
 #### Nmap {-}
 
@@ -66,7 +68,7 @@ nano /etc/hosts
 
 Abrimos la web y vemos cosas:
 
-- Ya estamos loggeados
+- Ya estamos logeados
 - Hay mensajes de collegasos, pinchamos pero no passa nada
 - Proyecto pypi testeado a 80%
 - Proyecto POP3 y SMTP testeado completamente
