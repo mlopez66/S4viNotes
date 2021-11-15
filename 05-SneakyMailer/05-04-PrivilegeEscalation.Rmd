@@ -1,4 +1,4 @@
-## Privilege Escalation {-}
+## Escalada de privilegios {-}
 
 ### Rootear la maquina {-}
 
@@ -6,7 +6,7 @@
 sudo -l
 ```
 
-vemos aqui que podemos utilizar la heramienta pip3 con el privilegio del usuario root sin proporsionar contraseña.
+vemos aqui que podemos utilizar la heramienta pip3 con el privilegio del usuario root sin proporcionar contraseña.
 
 Miramos en [GTFOBINS](https://gtfobins.github.io/gtfobins/pip/#sudo)
 

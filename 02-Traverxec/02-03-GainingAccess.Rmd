@@ -1,4 +1,4 @@
-## Vuln exploit & Gaining Access {-}
+## Explotacion de vulnerabilidad & Ganando Acceso {-}
 
 ### Autopwn.py {-}
 
@@ -79,6 +79,6 @@ export SHELL=bash
 
 stty -a
 
-stty rows <rownb> columns <colnb>
+stty rows <numero filas> columns <numero columnas>
 ```
 
