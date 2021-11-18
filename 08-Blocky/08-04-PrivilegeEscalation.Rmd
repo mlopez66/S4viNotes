@@ -1,4 +1,4 @@
-## Privilege Escalation {-}
+## Escalada de privilegios {-}
 
 ### Rootear la maquina {-}
 
@@ -8,7 +8,7 @@ sudo -l
 (ALL : ALL) ALL
 ```
 
-Vemos que el usuario notch puede effectuar qualquier commando como qualquier usuario ;)
+Vemos que el usuario notch puede efectuar cualquier comando como qualquier usuario ;)
 
 ```bash
 sudo su

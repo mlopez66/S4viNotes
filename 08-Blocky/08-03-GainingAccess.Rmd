@@ -1,4 +1,4 @@
-## Vuln exploit & Gaining Access {-}
+## Explotacion de vulnerabilidad & Ganando Acceso {-}
 
 ### Crear una reverse shell desde la 404 Template {-}
 
@@ -42,4 +42,4 @@ Miramos si hay reutilisacion de contraseñas
 su notch 
 ```
 
-Y con la contraseña encontrada en el ficher `BlockyCore.class` functiona. Y ya podemos ver la flag.
+Y con la contraseña encontrada en el ficher `BlockyCore.class` funciona. Y ya podemos ver la flag.

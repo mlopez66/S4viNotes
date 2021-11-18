@@ -1,4 +1,4 @@
-## Vuln exploit & Gaining Access {-}
+## Explotacion de vulnerabilidad & Ganando acceso {-}
 
 ### Crear una reverse shell desde la webshell {-}
 
@@ -44,11 +44,11 @@ while true; do
 done
 ```
 
-Ya lo podemos lanzar con el commando `rlwrap ./fakeShell.sh`
+Ya lo podemos lanzar con el comando `rlwrap ./fakeShell.sh`
 
 > [ ! ] Notas: Las explicaciones del script se pueden ver en el video live en el minuto 1:15:38
 
-Tambien se podria utilizar la heramienta creada por s4vitar [ttyoverhttp](https://github.com/s4vitar/ttyoverhttp)
+Tambien se podria utilizar la herramienta creada por s4vitar [ttyoverhttp](https://github.com/s4vitar/ttyoverhttp)
 
 ### Enumeramos el equipo {-}
 
@@ -63,13 +63,13 @@ cat /home/ib01c03/www/wp-config.php
 ```
 
 Vemos un fichero comprimido de wordpress. Buscamos el fichero de configuracion de wordpress que suele tener credenciales en
-texto claro. Una vez encontrado lo mirramos con `cat`. Encontramos usuario y contraseña para el servicio mysql. Aqui no hay nada interresante.
+texto claro. Una vez encontrado lo miramos con `cat`. Encontramos usuario y contraseña para el servicio mysql. Aqui no hay nada interesante.
 
-### Checkeamos ficheros del servicio SMTP {-}
+### Chequeamos ficheros del servicio SMTP {-}
 
 Los ficheros de email suelen ser guardados en el `/var/spool/mail`. Aqui vemos dos ficheros y une tiene credenciales para el **FTP** en texto claro.
 
-### Conneccion por ftp {-}
+### Conexion por ftp {-}
 
 ```bash
 ftp 10.10.10.155
@@ -77,7 +77,7 @@ Name: ib01ftp
 Password: 
 ```
 
-ya hemos podido entrar en la maquina. Vemos archivos y nos los descargamos a la maquina de attackante
+ya hemos podido entrar en la maquina. Vemos archivos y nos los descargamos a la maquina de atacante
 
 ```bash
 binary
@@ -85,7 +85,7 @@ prompt off
 mget *
 ```
 
-Hay ficheros interessantes como `notes.txt` o `ib01c01.access.log` que nos dan pistas pero nosotros vamos a por el fichero `ib01c01_incident.pcap`
+Hay ficheros interesantes como `notes.txt` o `ib01c01.access.log` que nos dan pistas pero nosotros vamos a por el fichero `ib01c01_incident.pcap`
 
 ### Investigamos el fichero pcap con TShark {-}
 
@@ -96,13 +96,13 @@ tshark -r ib01c01_incident.pcap -Y "http.request.method==POST" -Tjson 2>/dev/nul
 tshark -r ib01c01_incident.pcap -Y "http.request.method==POST" -Tfields -e tcp.payload 2>/dev/null | xxd -ps -r
 ```
 
-Analizando aqui encontramos passwords que son codeadas en url-encode. Tratamos de connectar con el usuario de estos ficheros `ib01c01` con la 
+Analizando aqui encontramos passwords que son codeadas en url-encode. Tratamos de conectar con el usuario de estos ficheros `ib01c01` con la 
 nueva contraseña y pa dentro. Ya podemos ver el fichero **user.txt**
 
 ### Continuacion de la investigacion con Wireshark {-}
 
 Aqui llegamos a una parte bastante complicada de explicar por escrito. Mejor verlo directamente con el video desde el minuto 1:40:45
-De echo esta parte explica como encuentra un modulo rootkit en el systema y explica como tratarla.
+De echo esta parte explica como encuentra un modulo rootkit en el sistema y explica como tratarla.
 
 
 
