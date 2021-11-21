@@ -7,7 +7,9 @@
 ```bash
 ping -c 1 10.10.10.230
 ```
-ttl: 63 -> maquina linux
+ttl: 63 -> maquina linux.
+Recuerda que en cuanto a ttl respecta 64 = linux y 128 = windows. 
+Pero como estamos en hackthebox hay un nodo intermediario que hace que el ttl disminuya una unidad
 
 #### Nmap {-}
 
@@ -19,11 +21,11 @@ nmap -sC -sV -p22,80 10.10.10.230 -oN targeted
 
 | Puerto | Servicio  | Que se nos occure?                        | Que falta?           |
 | ------ | --------- | ----------------------------------------- | -------------------- |
-| 22     | ssh       | connection directa                        | usuario y contraseña |
+| 22     | ssh       | conexion directa                        | usuario y contraseña |
 | 80     | http      | Analizis de la web y Fuzzing              |                      |
 
 
-### Analyzando la web {-}
+### Analizando la web {-}
 
 #### Whatweb {-}
 
@@ -31,7 +33,7 @@ nmap -sC -sV -p22,80 10.10.10.230 -oN targeted
 whatweb http://10.10.10.230
 ```
 
-Nada muy interresante
+Nada muy interesante
 
 #### http-enum {-}
 
@@ -43,7 +45,7 @@ nmap --script http-enum -p80 10.10.10.230 -oN webScan
 
 Ya nos detecta un `/phpmyadmin/` y ficheros de wordpress
 
-#### Checkear la web por puerto 80 {-}
+#### Chequear la web por puerto 80 {-}
 
 Con firefox navigamos en la web para ver lo que es.
 
@@ -65,7 +67,7 @@ wfuzz -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-me
 Encontramos un ruta plugins que no suele ser normal porque en wordpress los plugins suelen estar en `/wp-content/plugins` y no
 en `/plugins` directamente
 
-Aqui encontramos dos ficheros `.jar`. Los descargamos en nuestra maquina de attackante.
+Aqui encontramos dos ficheros `.jar`. Los descargamos en nuestra maquina de atacante.
 
 
 

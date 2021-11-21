@@ -7,7 +7,9 @@
 ```bash
 ping -c 1 10.10.10.125
 ```
-ttl: 127 -> maquina Windows
+ttl: 127 -> maquina Windows.
+Recuerda que tratandose de ttl 64 = linux y 128 = windows. 
+Pero como estamos en hackthebox hay un nodo intermediario que hace que el ttl disminuya una unidad
 
 #### Nmap {-}
 
@@ -35,7 +37,7 @@ nmap -sC -sV -p135,139,445,1433,5985,47001,49664,49665,49666,49667,49668,49669,4
 | 49671  | windows puertos | Puertos windows que no nos lleva a nada           |                      |
 
 
-### Analyzando el smb 445 {-}
+### Analizando el smb 445 {-}
 
 1. Scannear el servicio smb
 
@@ -49,7 +51,7 @@ nmap -sC -sV -p135,139,445,1433,5985,47001,49664,49665,49666,49667,49668,49669,4
     smbclient -L 10.10.10.125 -N
     ```
 
-1. Intentamos connectarnos al recurso Reports
+1. Intentamos conectarnos al recurso Reports
 
     ```bash
     smbclient "//10.10.10.125/Reports" -N
@@ -65,9 +67,9 @@ Que vemos:
 - recurso compartido : Reports
 - archivo encontrado : Currency Volume Report.xlsm
 
-### Conneccion por MSSQL credenciales por defecto {-}
+### Conexion por MSSQL credenciales por defecto {-}
 
-Intentamos connectarnos al servicio MSQL con credenciales por defecto usando `mssqlclient.py`
+Intentamos conectarnos al servicio MSQL con credenciales por defecto usando `mssqlclient.py`
 
 ```bash
 locate mssqlclient.py

