@@ -1,4 +1,4 @@
-## Vuln exploit & Gaining Access {-}
+## Explotacion de vulnerabilidad & Ganando Acceso {-}
 
 ### Entablar una reverse shell desde la vulnerabilidad Gwolle {-}
 
@@ -10,7 +10,7 @@
     ?>
     ```
 
-1. Montamos un servidor web desde la maquina de attackante
+1. Montamos un servidor web desde la maquina de atacante
 
     ```bash
     python3 -m http.server
@@ -72,12 +72,12 @@ sudo -l
 (onuma) NOPASSWD: /bin/tar
 ```
 
-Aqui vemos que hay un usuario onuma en el directorio home pero no tenemos capacidad de accesso. Tambien vemos que podemos uzar 
-el commando tar como el usuario **onuma** sin proporcionar contraseña.
+Aqui vemos que hay un usuario onuma en el directorio home pero no tenemos capacidad de acceso. Tambien vemos que podemos usar 
+el comando tar como el usuario **onuma** sin proporcionar contraseña.
 
 ### User Pivoting al usuario onuma {-}
 
-Como es possible utilizar el commando tar como el usuario onuma sin propocionar contraseña, vamos a la pagina [GTFOBINS](https://gtfobins.github.io/) y buscamos 
+Como es posible utilizar el comando tar como el usuario onuma sin propocionar contraseña, vamos a la pagina [GTFOBINS](https://gtfobins.github.io/) y buscamos 
 una manera de entablarnos una shell como el usuario onuma
 
 ```bash
@@ -90,7 +90,7 @@ onuma
 
 Aqui ya podemos ver la flag.
 
-### Automatizamos el accesso en bash {-}
+### Automatizamos el acceso en bash {-}
 
 ```bash
 #!/bin/bash

@@ -7,7 +7,9 @@
 ```bash
 ping -c 1 10.10.10.88
 ```
-ttl: 63 -> maquina Linux
+ttl: 63 -> maquina Linux. 
+Recordar que en cuanto a ttl se trata 64 = linux y 128 = windows. 
+Pero como estamos en hackthebox hay un nodo intermediario que hace que el ttl disminuya una unidad
 
 #### Nmap {-}
 
@@ -15,7 +17,8 @@ ttl: 63 -> maquina Linux
 nmap -p- --open -T5 -v -n 10.10.10.88 
 ```
 
-Va lento
+Si consideras que va muy lento, puedes utilizar los siguientes parametros para que 
+tu escaneo sea mucho mas rapido
 
 ```bash
 nmap -sS -p- --open --min-rate 5000 -vvv -n -Pn 10.10.10.88 -oG allPorts 
@@ -28,7 +31,7 @@ nmap -sC -sV -p80 10.10.10.88 -oN targeted
 | 80     | http     | Web, fuzzing, robots.txt |            |
 
 
-### Analyzando la web {-}
+### Analizando la web {-}
 
 #### Whatweb {-}
 
@@ -36,7 +39,7 @@ nmap -sC -sV -p80 10.10.10.88 -oN targeted
 whatweb http://10.10.10.88
 ```
 
-Nada muy interresante
+Nada muy interesante
 
 #### http-enum {-}
 
@@ -48,11 +51,11 @@ nmap --script http-enum -p80 10.10.10.88 -oN webScan
 
 No nos detecta nada
 
-#### Checkear la web por puerto 80 {-}
+#### Chequear la web por puerto 80 {-}
 
-Con firefox navigamos en la web para ver lo que es. 
+Con firefox navegamos en la web para ver lo que es. 
 
-Nada interessante aqui. 
+Nada interesante aqui. 
 
 Miramos lo que hay en el `robots.txt` que nmap nos a encontrado. En el `robots.txt` vemos rutas que son **disallow**. 
 
@@ -62,7 +65,7 @@ Miramos lo que hay en el `robots.txt` que nmap nos a encontrado. En el `robots.t
 - **/webservices/phpmyadmin**
 
 Quitando partes de las rutas disalloweadas, vemos que la routa `http://10.10.10.88/webservices` esta forbidden y no estan Not Found como cuando
-le ponemos la ruta completa. Esto quiere decir que esta routa existe y que puede existir otros recursos debajo de ella. Vamos a Fuzzear este directorio.
+le ponemos la ruta completa. Esto quiere decir que esta ruta existe y que puede existir otros recursos debajo de ella. Vamos a Fuzzear este directorio.
 
 #### Fuzzing con WFuzz {-}
 
@@ -70,7 +73,7 @@ le ponemos la ruta completa. Esto quiere decir que esta routa existe y que puede
 wfuzz -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt http://10.10.10.88/webservices/FUZZ
 ```
 
-Encontramos un ruta `/webservices/wp/`. Lo checkeamos en firefox. 
+Encontramos un ruta `/webservices/wp/`. Lo chequeamos en firefox. 
 
 #### Checkeamos la ruta webservice/wp {-}
 
@@ -80,9 +83,9 @@ Analizando vemos
 - Wapalizer nos dice que es un wordpress
 - En el codigo fuente vemos un tartartsauce.htb
 
-Como se applica virtualhost routing, añadimos el dominio `tartartsauce.htb` al `/etc/hosts`
+Como se aplica virtualhost routing, añadimos el dominio `tartartsauce.htb` al `/etc/hosts`
 
 
-Ya se ve la web mejor y podemos mirrar la web por `http://tartartsauce.htb/webservices/wp/`
+Ya se ve la web mejor y podemos mirar la web por `http://tartartsauce.htb/webservices/wp/`
 
 

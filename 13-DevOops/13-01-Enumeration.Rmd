@@ -7,7 +7,9 @@
 ```bash
 ping -c 1 10.10.10.91
 ```
-ttl: 63 -> maquina Linux
+ttl: 63 -> maquina Linux. 
+Recordar que en cuanto a ttl se trata 64 = linux y 128 = windows. 
+Pero como estamos en hackthebox hay un nodo intermediario que hace que el ttl disminuya una unidad
 
 #### Nmap {-}
 
@@ -19,11 +21,11 @@ nmap -sC -sV -p22,5000 10.10.10.91 -oN targeted
 
 | Puerto | Servicio | Que se nos occure? | Que falta?   |
 | ------ | -------- | ------------------ | ------------ |
-| 22     | ssh      | Accesso directorio | Credenciales |
+| 22     | ssh      | Acceso directorio  | Credenciales |
 | 5000   | http     | Web, fuzzing       |              |
 
 
-### Analyzando la web {-}
+### Analizando la web {-}
 
 #### Whatweb {-}
 
@@ -31,7 +33,7 @@ nmap -sC -sV -p22,5000 10.10.10.91 -oN targeted
 whatweb http://10.10.10.91:5000
 ```
 
-Nada muy interresante
+Nada muy interesante
 
 #### http-enum {-}
 
@@ -43,16 +45,16 @@ nmap --script http-enum -p5000 10.10.10.91 -oN webScan
 
 No nos detecta nada
 
-#### Checkear la web por puerto 5000 {-}
+#### Chequear la web por puerto 5000 {-}
 
-Con firefox navigamos en la web para ver lo que es. 
+Con firefox navegamos en la web para ver lo que es. 
 
 - Under construction
 - la web es una simple imagen
 - hablan de `.py`
 - vemos usuarios
 
-Como no hay nada interressante vamos a por WFUZZ
+Como no hay nada interesante vamos a por WFUZZ
 
 #### Fuzzing con WFuzz {-}
 
@@ -60,18 +62,18 @@ Como no hay nada interressante vamos a por WFUZZ
 wfuzz -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt http://10.10.10.91:5000/FUZZ
 ```
 
-Encontramos una ruta `/feed` y `/upload`. Lo checkeamos en firefox. 
+Encontramos una ruta `/feed` y `/upload`. Lo chequeamos en firefox. 
 
-#### Checkeamos la routa upload {-}
+#### Chequeamos la ruta upload {-}
 
-Vemos una pagina que nos permitte uploadear ficheros. Parece que tenemos que uploadear ficheros XML que tiene que tener los elementos
+Vemos una pagina que nos permite uploadear ficheros. Parece que tenemos que uploadear ficheros XML que tiene que tener los elementos
 siguientes:
 
 - Author
 - Subject
 - Content
 
-Huele a **XXE** pero primero tratamos de ver si podemos uploadear ficheros de otro typo.
+Huele a **XXE** pero primero tratamos de ver si podemos uploadear ficheros de otro tipo.
 
 creamos ficheros
 
@@ -89,11 +91,11 @@ creamos ficheros
     vi test.php
 
     <?php
-        echo "EEEEEEEeEEEE";
+        echo "EEEEEEEEEEE";
     ?>
     ```
 
-Cuando los uploadeamos no se ve nada. No savemos si la web nos subio los archivos o no. Intentamos con un fichero XML
+Cuando los uploadeamos no se ve nada. No sabemos si la web nos subio los archivos o no. Intentamos con un fichero XML
 
 ```xml
 vi test.xml
@@ -108,7 +110,7 @@ vi test.xml
 Lo uploadeamos y ahora vemos que el Blogpost a sido processado, vemos los elementos **Author** **Subject** **Content** y que lo a guardado en
 `/home/roosa/deploy/src` y que la url para **later reference** es `/uploads/test.xml`
 
-Si mirramos lo que hay en `http://10.10.10.91:5000/upload/test.xml` vemos el contenido de nuestro fichero XML
+Si miramos lo que hay en `http://10.10.10.91:5000/upload/test.xml` vemos el contenido de nuestro fichero XML
 
 
 
