@@ -20,7 +20,7 @@ Va lento
 ```bash
 nmap -sS -p- --open --min-rate 5000 -vvv -n -Pn 10.10.10.95 -oG allPorts 
 extractPorts allPorts
-nmap -sC -sV -p53,88,135,139,289,445,464,593,636,3269,5985,9389,49667,49673,49674,49677,49689,49698 10.10.10.95 -oN targeted
+nmap -sC -sV -p8080 10.10.10.95 -oN targeted
 ```
 
 
