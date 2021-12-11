@@ -1,4 +1,4 @@
-## Privilege Escalation {-}
+## Escalada de privilegios {-}
 
 ### Rootear la maquina {-}
 
@@ -9,11 +9,11 @@ sudo -l
 cd /root
 ```
 
-Aqui no vemos nada interresante y no podemos entrar en el directorio root.
+Aqui no vemos nada interesante y no podemos entrar en el directorio root.
 
-#### Analyzo de processos con PSPY {-}
+#### Analisis de processos con PSPY {-}
 
-installamos la herramienta en la maquina de attackante y lo compartimos con un web server.
+instalamos la herramienta en la maquina de atacante y lo compartimos con un web server.
 
 ```bash
 git clone https://github.com/DominicBreuker/pspy
@@ -40,7 +40,7 @@ Esperamos un poco y vemos que hay un script `/usr/bin/chkrootkit` que se ejecuta
 searchsploit chkrootkit
 ```
 
-Ya vemos que hay un exploit para Local Priviledge Escalation. Lo analyzamos.
+Ya vemos que hay un exploit para Local Priviledge Escalation. Lo analizamos.
 
 ```bash
 searchsploit -x 33899

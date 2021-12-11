@@ -7,7 +7,9 @@
 ```bash
 ping -c 1 10.10.10.102
 ```
-ttl: 63 -> maquina Linux
+ttl: 63 -> maquina Linux. 
+Recordar que en cuanto a ttl se trata 64 = linux y 128 = windows. 
+Pero como estamos en hackthebox el ttl disminuye en una unidad
 
 #### Nmap {-}
 
@@ -34,8 +36,8 @@ ftp 10.1.10.102
 Name: anonymous
 ```
 
-Mirando los ficheros con `ls -la` encontramos un fichero occulto llamado `.drupal.txt.enc`. Lo descargamos en nuestra
-maquina de attackante.
+Mirando los ficheros con `ls -la` encontramos un fichero oculto llamado `.drupal.txt.enc`. Lo descargamos en nuestra
+maquina de atacante.
 
 ```bash
 ls -la
@@ -44,7 +46,7 @@ ls -la
 get .drupal.txt.enc
 ```
 
-### Analyzando el fichero .drupal.txt.enc {-}
+### Analizando el fichero .drupal.txt.enc {-}
 
 ```bash
 mv .drupal.txt.enc drupal.txt.enc
@@ -73,27 +75,27 @@ strings drupal.txt.crypted
 file drupal.txt.crypted
 ```
 
-El commando file nos muestra que el fichero a sido encryptado por openssl con una contraseña.
+El comando file nos muestra que el fichero a sido encriptado por openssl con una contraseña.
 
-### Desencrypcion del ficher drupal.txt.crypted {-}
+### Desencripcion del fichero drupal.txt.crypted {-}
 
-El problema en este caso es que para leer el fichero necessitamos:
+El problema en este caso es que para leer el fichero necesitamos:
 
 - una contraseña
-- el modo de cifrado utlizado para encryptar
+- el modo de cifrado utlizado para encriptar
 
-Aqui tendriamos que intentar multiples modo de cifrado pero buscando por internet, vemos quel mas commun seri el `aes-256-cbc`
+Aqui tendriamos que intentar multiples modo de cifrado pero buscando por internet, vemos que el mas comun seria el `aes-256-cbc`
 
-En modo de ejemplo, estas serian la lineas para encryptar y desencryptar un fichero con openssl:
+En modo de ejemplo, estas serian la lineas para encriptar y desencriptar un fichero con openssl:
 
-1. Encrypcion
+1. Encripcion
     ```bash
     openssl aes-256-cbc -in fichero -out fichero.crypted -k password123
     ```
-1. Desencrypcion
+1. Desencripcion
 
     ```bash
     openssl aes-256-cbc -d -in fichero.crypted -out fichero -k password123
     ```
 
-La idea aqui es crearnos un script `bruteforce.sh` que nos permitte encontrar la contraseña.
+La idea aqui es crearnos un script `bruteforce.sh` que nos permite encontrar la contraseña.

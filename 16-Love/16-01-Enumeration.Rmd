@@ -7,7 +7,10 @@
 ```bash
 ping -c 1 10.10.10.239
 ```
-ttl: 127 -> maquina Windows
+ttl: 127 -> maquina Windows. 
+Recordar que en cuanto a ttl respecta 64 = linux y 128 = windows. 
+Pero comom estamos en hackthebox hay un nodo intermediario que hace que 
+el ttl disminuya una unidad
 
 #### Nmap {-}
 
@@ -15,7 +18,7 @@ ttl: 127 -> maquina Windows
 nmap -p- --open -T5 -v -n 10.10.10.239
 ```
 
-Va lento
+Si consideras que va muy lento puedes meter los siguientes parametros para que valla mucho mas rapido el escaneo
 
 ```bash
 nmap -sS -p- --open --min-rate 5000 -vvv -n -Pn 10.10.10.239 -oG allPorts 
@@ -46,7 +49,7 @@ nmap -sC -sV -p80,135,139,443,445,3306,5000,5040,5985,5986,7680,47001,49664,4966
 | 49670  | msrpc          | puertos por defectos de windows |            |
 
 
-### Analyzando el SMB {-}
+### Analizando el SMB {-}
 
 ```bash
 crackmapexec smb 10.10.10.239
@@ -55,7 +58,7 @@ smbclient -L 10.10.10.239 -N
 
 Vemos que estamos en frente de una maquina Windows10 pro que se llama **Love** y poco mas
 
-### Analyzando la web {-}
+### Analizando la web {-}
 
 #### Whatweb {-}
 
@@ -64,24 +67,24 @@ whatweb http://10.10.10.239
 whatweb https://10.10.10.239
 ```
 
-Nada muy interressante aqui
+Nada muy interesante aqui
 
-#### Checkear el contenido de el certificado SSL con openssl {-}
+#### Chequear el contenido de el certificado SSL con openssl {-}
 
 ```bash
 openssl s_client -connect 10.10.10.239:443
 ```
 
 vemos una direccion de correo `roy@love.htb` lo que quiere decir que tenemos un usuario y un dominio. 
-Tambien vemos un dominio `staging.love.htb`, quiere decir que es possible que se applique virtual hosting.
-Lo añadimos al `/etc/hosts` de la maquina de attackante.
+Tambien vemos un dominio `staging.love.htb`, quiere decir que es posible que se aplique virtual hosting.
+Lo añadimos al `/etc/hosts` de la maquina de atacante.
 
 
 ```{r, echo = FALSE, fig.cap="love virtual hosting", out.width="90%"}
 knitr::include_graphics("images/love-etc-hosts.png")
 ```
 
-#### Checkear la web los puertos web {-}
+#### Chequear la web los puertos web {-}
 
 ```bash
 cat targeted | grep "http"
@@ -90,7 +93,7 @@ cat targeted | grep "http" | grep -oP '\d{1-5}/tcp'
 
 Aqui descartamos el puerto **47001** y los puertos **5985-5986** que ya sabemos que son los **WinRM**.
 
-Con firefox navigamos en la web para ver lo que porque hay mucho por mirrar. 
+Con firefox navigamos en la web para ver lo que porque hay mucho por mirar. 
 
 - el puerto 80 nos muestra una pagina de login.
 - el puerto 443 nos muestra un **Forbidden**.
@@ -98,7 +101,7 @@ Con firefox navigamos en la web para ver lo que porque hay mucho por mirrar.
 - el dominio **staging.love.htb** nos muestra otra web
 
 
-#### Checkeando el puerto 80 {-}
+#### Chequeando el puerto 80 {-}
 
 Aqui como estamos en un panel de inicio de session, intentamos cosas
 
@@ -112,7 +115,7 @@ Aqui como estamos en un panel de inicio de session, intentamos cosas
 - 1 and sleep(5)-- - / #
 - 1000 / hola
 
-Aqui no parece que este vulnerable a injeccion SQL. Vamos a fuzzear la web
+Aqui no parece que este vulnerable a inyeccion SQL. Vamos a fuzzear la web
 
 
 #### Fuzzing con WFuzz {-}
@@ -125,7 +128,7 @@ wfuzz -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-me
 
 Encontramos una ruta `/admin`. En la pagina admin vemos otro panel de inicio de session que no es la misma que la del `index.php`
 
-#### Checkeando la pagina admin {-}
+#### Chequeando la pagina admin {-}
 
 Aqui como estamos en un panel de inicio de session, intentamos cosas
 
