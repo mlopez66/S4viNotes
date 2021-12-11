@@ -1,8 +1,8 @@
-## Vuln exploit & Gaining Access {-}
+## Explotacion de vulnerabilidad & Ganando Acceso {-}
 
-### Conneccion por Druppal {-}
+### Conexion por Druppal {-}
 
-Para ejecutar commandos o mejor dicho, para ganar accesso al systema desde un admin panel de drupal siempre es el mismo.
+Para ejecutar comandos o mejor dicho, para ganar accesso al sistema desde un admin panel de drupal siempre es el mismo.
 
 1. En modules, habilitar el componente PHP Filter
 
@@ -31,7 +31,7 @@ Para ejecutar commandos o mejor dicho, para ganar accesso al systema desde un ad
 1. En Text Format le ponemos a **PHP code**
 1. Le damos al boton Preview
 
-Ya hemos ganado accesso al systema como el usuario *www-data*
+Ya hemos ganado accesso al sistema como el usuario *www-data*
 
 ### Tratamiento de la TTY {-}
 
@@ -49,7 +49,7 @@ stty -a
 stty rows <rownb> columns <colnb>
 ```
 
-### Analyzamos la maquina {-}
+### Analizamos la maquina {-}
 
 ```bash
 ls -l

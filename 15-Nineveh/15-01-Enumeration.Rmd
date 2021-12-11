@@ -7,7 +7,10 @@
 ```bash
 ping -c 1 10.10.10.43
 ```
-ttl: 63 -> maquina Linux
+ttl: 63 -> maquina Linux. 
+Recordar que en cuanto a ttl respecta 64 = linux y 128 = windows. 
+Pero como estamos en hackthebox hay un nodo intermediario que hace que el ttl 
+disminuya en una unidad
 
 #### Nmap {-}
 
@@ -29,7 +32,7 @@ nmap -sC -sV -p80,443 10.10.10.43 -oN targeted
 | 443    | https    | Web, fuzzing       |            |
 
 
-### Analyzando la web {-}
+### Analizando la web {-}
 
 #### Whatweb {-}
 
@@ -38,19 +41,19 @@ whatweb http://10.10.10.43
 whatweb https://10.10.10.43
 ```
 
-Los dos resultados son los mismos y no hay nada muy interresante
+Los dos resultados son los mismos y no hay nada muy interesante
 
-#### Checkear la web por comparar los 2 puertos {-}
+#### Chequear la web por comparar los 2 puertos {-}
 
-Con firefox navigamos en la web para ver lo que es. 
+Con firefox navegamos en la web para ver lo que es. 
 
 - el puerto 80 nos muestra una pagina por defecto
 - el puerto 443 nos muestra una webapp con una imagen.
 
-El resultado de los 2 puertos muestran resulatados differentes y parece que la buena web app esta en el puerto 443. Delante de esta situacion,
-siempre es interressante mirar lo que hay en el certificado
+El resultado de los 2 puertos muestran resultados diferentes y parece que la buena web app esta en el puerto 443. Delante de esta situacion,
+siempre es interesante mirar lo que hay en el certificado
 
-#### Checkear el contenido de el certificado SSL con openssl {-}
+#### Chequear el contenido de el certificado SSL con openssl {-}
 
 ```bash
 openssl s_client -connect 10.10.10.43:443
@@ -78,15 +81,15 @@ wfuzz -c -t 200 --hc=404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-me
 
 Encontramos una ruta `/db`.
 
-#### Analizamos el directoryo department de puerto 80 {-}
+#### Analizamos el directorio department de puerto 80 {-}
 
 Aqui vemos una pagina de Login. El wappalizer no nos muestra algo nuevo. Poniendo como nombre de usuario **admin**, la web
 nos señala un mensaje `invalid password` lo que quiere decir que el usuario existe. Vamos a utilizar fuzzing con **BurpSuite**
 para encontrar la contraseña del usuario admin.
 
-#### Analizamos el directoryo db de puerto 443 {-}
+#### Analizamos el directorio db de puerto 443 {-}
 
 Aqui vemos una pagina de Login para un servicio `phpLiteAdmin` de version **1.9**. Buscamos en internet si hay un default password para este servicio y
-effectivamente el default password del servicio es **admin** pero en este caso no funcciona.
+efectivamente el default password del servicio es **admin** pero en este caso no funciona.
 
 

