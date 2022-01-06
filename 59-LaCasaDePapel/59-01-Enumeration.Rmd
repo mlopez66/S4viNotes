@@ -5,7 +5,7 @@
 #### Ping {-}
 
 ```bash
-ping -c 1 10.10.10.180
+ping -c 1 10.10.10.131
 ```
 ttl: 63 -> maquina Linux
 
