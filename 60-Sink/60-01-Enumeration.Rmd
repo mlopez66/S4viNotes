@@ -31,9 +31,6 @@ nmap -sC -sV -p22,3000,5000 10.10.10.225 -oN targeted
 | 5000   | https    | Web Fuzzing        |            |
 
 
-Ya aqui podemos ver en el commonName del certificado ssl `lacasadepapel.htb` que añadimos al `/etc/hosts`
-
-
 ### Analyzando la web {-}
 
 #### Whatweb {-}

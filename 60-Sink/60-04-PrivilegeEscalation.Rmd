@@ -171,7 +171,6 @@ nano decryptor.sh
 
 declare -a algorithms=(SYMMETRIC_DEFAULT RSAES_OAEP_SHA_1 RSAES_OAEP_SHA_256)
 
-
 for algo in "${algorithms[@]}"; do
     aws --endpoint-url="http://127.0.0.1:4566" kms list-keys | grep -i "keyid" | awk 'NF{print $NF}' | tr -d '"' | tr -d ',' | while read key_id; do
         echo -e "\n[+] Probando con el algoritmo $algo la key $key_id:\n"
