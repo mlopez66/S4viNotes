@@ -5,7 +5,7 @@
 #### Ping {-}
 
 ```bash
-ping -c 1 10.10.10.111
+ping -c 1 10.10.10.z
 ```
 ttl: 63 -> maquina Linux
 
@@ -43,16 +43,6 @@ smbmap -H 10.10.10.111
 Vemos un recurso `Printer Driver` y `IPC` pero no tenemos accesso.
 
 ### Analyzando la web {-}
-
-#### Whatweb {-}
-
-```bash
-whatweb http://10.10.10.225:3000
-whatweb http://10.10.10.225:5000
-```
-
-Vemos en el puerto 3000 informacion que habla de un git un poco como un github. Y en el puerto 5000 vemos un password field que parece ser un
-panel de inicio de session.
 
 #### Checkear la web {-}
 
